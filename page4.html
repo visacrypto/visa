@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>VISA – Биржевые торги | Акции, нефтехимия, металлы, товары</title>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #fff; line-height: 1.6; }
+        a { color: #7c8cff; text-decoration: none; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        
+        .lang-bar {
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 8px 0;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+        .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+
+        .bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
+            overflow: hidden;
+        }
+        .bg-canvas::before {
+            content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
+            animation: bgPulse 12s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
+        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+
+        header {
+            position: relative; z-index: 10; padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            background: rgba(10,10,26,0.6);
+        }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; }
+        .logo-wrap img { height: 44px; width: auto; }
+        .logo-wrap span {
+            font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .nav-links a {
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s;
+            padding: 6px 12px; border-radius: 8px;
+        }
+        .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .nav-links a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .btn-header {
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
+            color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(121,68,255,0.3);
+        }
+        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
+
+        .page-hero {
+            position: relative; z-index: 5; padding: 40px 0 30px;
+            text-align: center;
+        }
+        .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
+        .page-hero h1 span { background: linear-gradient(135deg, #f7931a, #ff6b00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
+
+        .badge {
+            display: inline-block; background: rgba(247,147,26,0.12); color: #f7931a;
+            padding: 4px 18px; border-radius: 40px; font-size: 13px; font-weight: 600;
+            letter-spacing: 0.5px; margin-bottom: 14px; border: 1px solid rgba(247,147,26,0.15);
+        }
+
+        .section-title { text-align: center; margin: 40px 0 32px; }
+        .section-title h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 700; }
+        .section-title p { color: #b0b8d1; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+            position: relative; z-index: 5;
+        }
+        .card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 20px 18px;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .card:hover { transform: translateY(-4px); border-color: rgba(247,147,26,0.25); }
+        .card .icon { font-size: 28px; margin-bottom: 8px; display: block; }
+        .card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .card p { color: #b0b8d1; font-size: 13px; }
+        .card .tag {
+            display: inline-block; background: rgba(247,147,26,0.08); color: #f7931a;
+            padding: 2px 12px; border-radius: 40px; font-size: 11px; font-weight: 600;
+            margin-top: 8px; border: 1px solid rgba(247,147,26,0.08);
+        }
+        .card .link { display: block; margin-top: 10px; font-size: 13px; font-weight: 600; color: #f7931a; }
+        .card .link:hover { text-decoration: underline; }
+
+        .calculator-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 32px 28px;
+            margin: 32px 0;
+            position: relative; z-index: 5;
+        }
+        .calculator-section h3 { font-size: 22px; margin-bottom: 16px; }
+        .calc-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+        .calc-row label { font-size: 14px; color: #b0b8d1; display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 140px; }
+        .calc-row input {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 16px;
+            width: 100%;
+        }
+        .calc-row input:focus { outline: none; border-color: #f7931a; }
+        .calc-result { margin-top: 16px; font-size: 20px; font-weight: 700; color: #f7931a; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f7931a, #ff6b00);
+            padding: 12px 32px; border-radius: 50px; font-weight: 600; font-size: 15px;
+            color: #fff; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(247,147,26,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(247,147,26,0.5); }
+
+        footer {
+            position: relative; z-index: 5; padding: 40px 0 24px;
+            border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;
+        }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-inner p { color: #5a6380; font-size: 14px; }
+        .footer-socials { display: flex; gap: 20px; }
+        .footer-socials a { color: #5a6380; font-size: 18px; transition: color 0.3s; }
+        .footer-socials a:hover { color: #fff; }
+        .footer-disclaimer { text-align: center; margin-top: 20px; font-size: 12px; color: #3a4360; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        @media (max-width: 600px) {
+            .nav-links { gap: 8px; }
+            .nav-links a { font-size: 12px; padding: 4px 8px; }
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .calc-row { flex-direction: column; }
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <div class="container">
+        <a href="#" class="active" data-lang="en">English</a>
+        <a href="#" data-lang="ru">Русский</a>
+        <a href="#" data-lang="es">Español</a>
+        <a href="#" data-lang="fr">Français</a>
+        <a href="#" data-lang="zh">中文</a>
+        <a href="#" data-lang="ja">日本語</a>
+        <a href="#" data-lang="ar">العربية</a>
+        <a href="#" data-lang="hi">हिन्दी</a>
+    </div>
+</div>
+
+<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo-wrap">
+            <img src="visa_logo.jpg" alt="VISA" />
+            <span>VISA</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="page2.html">Финансы</a>
+            <a href="page3.html">Крипто</a>
+            <a href="page4.html" class="active">Биржа</a>
+            <a href="page5.html">Страхование</a>
+            <a href="page6.html">Бизнес</a>
+            <a href="page7.html">Туризм</a>
+            <a href="page8.html">Карты</a>
+            <a href="index.html#buy" class="btn-header">🚀 Купить VISA</a>
+        </nav>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <div class="badge">📈 100+ биржевых продуктов</div>
+        <h1>Биржевые <span>торги</span></h1>
+        <p>Акции, нефтехимия, металлы, зерно, лес, уголь, газ, электроэнергия и всё через VISA.</p>
+    </div>
+</section>
+
+<!-- ===== КАЛЬКУЛЯТОР ПРИБЫЛИ ===== -->
+<div class="container">
+    <div class="calculator-section fade-in">
+        <h3>📊 Калькулятор прибыли от торговли</h3>
+        <div class="calc-row">
+            <label>Сумма инвестиций ($)<input type="number" id="tradeAmount" value="10000" /></label>
+            <label>Цена входа ($)<input type="number" id="entryPrice" value="100" /></label>
+            <label>Цена выхода ($)<input type="number" id="exitPrice" value="120" /></label>
+            <button class="btn-primary" onclick="calcTrade()">Рассчитать</button>
+        </div>
+        <div class="calc-result" id="tradeResult">Прибыль: $2,000.00 | ROI: 20.00%</div>
+    </div>
+</div>
+
+<!-- ===== 100+ ФУНКЦИЙ ===== -->
+<div class="container">
+    <div class="section-title fade-in">
+        <h2>Все <span style="color:#f7931a;">биржевые товары</span></h2>
+        <p>Акции, сырьё, энергия и более 100 инструментов через VISA.</p>
+    </div>
+    <div class="cards-grid">
+        <!-- АКЦИИ -->
+        <div class="card fade-in"><span class="icon">🏦</span><h4>Акции S&P 500</h4><p>США</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🏛️</span><h4>Акции Nasdaq</h4><p>Технологии</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4>Акции МосБиржи</h4><p>Россия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🏯</span><h4>Акции Токио</h4><p>Япония</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🐉</span><h4>Акции Шанхая</h4><p>Китай</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🇪🇺</span><h4>Акции Евро</h4><p>EURO STOXX 50</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🇬🇧</span><h4>Акции FTSE 100</h4><p>Великобритания</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🇩🇪</span><h4>Акции DAX 40</h4><p>Германия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🇫🇷</span><h4>Акции CAC 40</h4><p>Франция</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🇮🇳</span><h4>Акции NIFTY 50</h4><p>Индия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🇦🇺</span><h4>Акции ASX 200</h4><p>Австралия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🇨🇦</span><h4>Акции TSX 60</h4><p>Канада</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+
+        <!-- НЕФТЕХИМИЯ -->
+        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть Brent</h4><p>Сорт Brent</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть WTI</h4><p>Сорт WTI</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть Urals</h4><p>Россия</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть Dubai</h4><p>ОАЭ</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4>Природный газ</h4><p>Henry Hub</p><span class="tag">Газ</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4>СПГ</h4><p>Сжиженный газ</p><span class="tag">Газ</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4>Бензин</h4><p>Rbob Gasoline</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4>Дизель</h4><p>Heating Oil</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4>Пропан</h4><p>Сжиженный газ</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4>Этилен</h4><p>Сырьё для пластика</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4>Полипропилен</h4><p>Пластик</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4>Полиэтилен</h4><p>Пластик</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+
+        <!-- МЕТАЛЛЫ -->
+        <div class="card fade-in"><span class="icon">🥇</span><h4>Золото</h4><p>XAU/USD</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🥈</span><h4>Серебро</h4><p>XAG/USD</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🥉</span><h4>Платина</h4><p>PL</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">💎</span><h4>Палладий</h4><p>PD</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Медь</h4><p>HG</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Алюминий</h4><p>AL</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Цинк</h4><p>ZN</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Свинец</h4><p>PB</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Никель</h4><p>NI</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Сталь</h4><p>HRC</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Железная руда</h4><p>Iron Ore</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4>Уран</h4><p>U</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+
+        <!-- СЕЛЬСКОЕ ХОЗЯЙСТВО -->
+        <div class="card fade-in"><span class="icon">🌾</span><h4>Пшеница</h4><p>Wheat</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🌽</span><h4>Кукуруза</h4><p>Corn</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4>Соя</h4><p>Soybean</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4>Рис</h4><p>Rice</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4>Ячмень</h4><p>Barley</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4>Овёс</h4><p>Oats</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">☕</span><h4>Кофе</h4><p>Coffee</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🍫</span><h4>Какао</h4><p>Cocoa</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🍊</span><h4>Апельсиновый сок</h4><p>OJ</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🧈</span><h4>Сливочное масло</h4><p>Butter</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🥛</span><h4>Сухое молоко</h4><p>Milk Powder</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🐄</span><h4>КРС</h4><p>Cattle</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+
+        <!-- ЭНЕРГИЯ -->
+        <div class="card fade-in"><span class="icon">⚡</span><h4>Электроэнергия</h4><p>Power</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">☀️</span><h4>Солнечная энергия</h4><p>Solar</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">💨</span><h4>Ветряная энергия</h4><p>Wind</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4>Гидроэнергия</h4><p>Hydro</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">⛏️</span><h4>Уголь</h4><p>Coal</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4>Лес</h4><p>Timber</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4>Целлюлоза</h4><p>Pulp</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4>Резина</h4><p>Rubber</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4>Хлопок</h4><p>Cotton</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4>Шерсть</h4><p>Wool</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4>Сахар</h4><p>Sugar</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4>Соль</h4><p>Salt</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="logo-wrap"><img src="visa_logo.jpg" alt="VISA" style="height:32px;" /><span style="font-size:16px;background:linear-gradient(135deg,#f7931a,#ff6b00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">VISA</span></div>
+            <div class="footer-socials">
+                <a href="https://cis.visa.com" target="_blank">🌐 Visa CIS</a>
+                <a href="https://twitter.com/visa" target="_blank">🐦 X</a>
+                <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
+            </div>
+        </div>
+        <div class="footer-disclaimer">⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).</div>
+    </div>
+</footer>
+
+<script>
+    function calcTrade() {
+        const amount = parseFloat(document.getElementById('tradeAmount').value);
+        const entry = parseFloat(document.getElementById('entryPrice').value);
+        const exit = parseFloat(document.getElementById('exitPrice').value);
+        if (!amount || !entry || !exit) { document.getElementById('tradeResult').textContent = 'Заполните все поля'; return; }
+        const units = amount / entry;
+        const profit = units * (exit - entry);
+        const roi = (profit / amount) * 100;
+        document.getElementById('tradeResult').textContent = `Прибыль: $${profit.toFixed(2)} | ROI: ${roi.toFixed(2)}%`;
+    }
+    calcTrade();
+
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.lang-bar a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.lang-bar a').forEach(x => x.classList.remove('active'));
+            this.classList.add('active');
+            alert('🌍 Язык изменён на: ' + this.textContent.trim());
+        });
+    });
+</script>
+</body>
+          </html>
