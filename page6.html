@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>VISA – Бизнес-услуги | B2B-платежи, зарплатные проекты, бухгалтерия</title>
+    <title>VISA – Business Services | B2B, Payroll, Corporate Cards</title>
     <link rel="icon" href="favicon.ico" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,9 +22,9 @@
             backdrop-filter: blur(12px);
         }
         .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
-        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 4px 12px; border-radius: 4px; cursor: pointer; }
         .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.12); }
 
         .bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
@@ -33,15 +33,15 @@
         }
         .bg-canvas::before {
             content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
-            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
+            background: radial-gradient(circle at 30% 40%, rgba(124,140,255,0.08) 0%, transparent 50%),
                         radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
         @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
         .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
-        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
-        .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
-        .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        .orb-1 { width: 500px; height: 500px; background: #7c8cff; top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #9945ff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-3 { width: 300px; height: 300px; background: #00c8ff; top: 50%; left: 50%; animation-delay: -12s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
 
         header {
@@ -60,7 +60,7 @@
         }
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .nav-links a {
-            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s;
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s, background 0.3s;
             padding: 6px 12px; border-radius: 8px;
         }
         .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
@@ -73,12 +73,9 @@
         }
         .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
 
-        .page-hero {
-            position: relative; z-index: 5; padding: 40px 0 30px;
-            text-align: center;
-        }
+        .page-hero { position: relative; z-index: 5; padding: 40px 0 30px; text-align: center; }
         .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
-        .page-hero h1 span { background: linear-gradient(135deg, #00c8ff, #7c8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-hero h1 span { background: linear-gradient(135deg, #7c8cff, #9945ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
 
         .badge {
@@ -142,15 +139,15 @@
 <body>
 
 <div class="lang-bar">
-    <div class="container">
-        <a href="#" class="active" data-lang="en">English</a>
-        <a href="#" data-lang="ru">Русский</a>
-        <a href="#" data-lang="es">Español</a>
-        <a href="#" data-lang="fr">Français</a>
-        <a href="#" data-lang="zh">中文</a>
-        <a href="#" data-lang="ja">日本語</a>
-        <a href="#" data-lang="ar">العربية</a>
-        <a href="#" data-lang="hi">हिन्दी</a>
+    <div class="container" id="languageSwitcher">
+        <a data-lang="en" class="active">English</a>
+        <a data-lang="ru">Русский</a>
+        <a data-lang="es">Español</a>
+        <a data-lang="fr">Français</a>
+        <a data-lang="zh">中文</a>
+        <a data-lang="ja">日本語</a>
+        <a data-lang="ar">العربية</a>
+        <a data-lang="hi">हिन्दी</a>
     </div>
 </div>
 
@@ -163,102 +160,102 @@
             <span>VISA</span>
         </div>
         <nav class="nav-links">
-            <a href="index.html">Главная</a>
-            <a href="page2.html">Финансы</a>
-            <a href="page3.html">Крипто</a>
-            <a href="page4.html">Биржа</a>
-            <a href="page5.html">Страхование</a>
-            <a href="page6.html" class="active">Бизнес</a>
-            <a href="page7.html">Туризм</a>
-            <a href="page8.html">Карты</a>
-            <a href="index.html#buy" class="btn-header">🚀 Купить VISA</a>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="page2.html" data-i18n="nav_finance">Finance</a>
+            <a href="page3.html" data-i18n="nav_crypto">Crypto</a>
+            <a href="page4.html" data-i18n="nav_exchange">Exchange</a>
+            <a href="page5.html" data-i18n="nav_insurance">Insurance</a>
+            <a href="page6.html" class="active" data-i18n="nav_business">Business</a>
+            <a href="page7.html" data-i18n="nav_travel">Travel</a>
+            <a href="page8.html" data-i18n="nav_cards">Cards</a>
+            <a href="index.html#buy" class="btn-header" data-i18n="nav_buy">Buy VISA</a>
         </nav>
     </div>
 </header>
 
 <section class="page-hero">
     <div class="container">
-        <div class="badge">🏢 100+ бизнес-решений</div>
-        <h1>Бизнес <span>услуги</span></h1>
-        <p>B2B-платежи, зарплатные проекты, корпоративные карты, бухгалтерия и более 100 продуктов через VISA.</p>
+        <div class="badge" data-i18n="p6_badge">🏢 100+ Business Solutions</div>
+        <h1><span data-i18n="p6_title">Business</span> <span data-i18n="p6_title2">Services</span></h1>
+        <p data-i18n="p6_desc">B2B payments, payroll projects, corporate cards, accounting and more than 100 products through VISA.</p>
     </div>
 </section>
 
 <div class="container">
     <div class="section-title fade-in">
-        <h2>Все <span style="color:#7c8cff;">бизнес-продукты</span></h2>
-        <p>Более 100 инструментов для развития и управления бизнесом.</p>
+        <h2><span data-i18n="p6_sec_title">All</span> <span style="color:#7c8cff;" data-i18n="p6_sec_title2">Business Products</span></h2>
+        <p data-i18n="p6_sec_desc">More than 100 tools for business development and management.</p>
     </div>
     <div class="cards-grid">
-        <!-- B2B-ПЛАТЕЖИ -->
-        <div class="card fade-in"><span class="icon">💳</span><h4>B2B-платежи</h4><p>Между юрлицами</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4>Кросс-граничные платежи</h4><p>Международные</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">⏱️</span><h4>Мгновенные платежи</h4><p>Real-time</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📋</span><h4>Массовые выплаты</h4><p>Зарплата, поставщики</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Регулярные платежи</h4><p>Автоплатежи</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Платежные шлюзы</h4><p>API для сайтов</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4>Платежи через QR</h4><p>Быстрая оплата</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔗</span><h4>Интеграция с 1С</h4><p>Бухгалтерия</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4>Электронные счета</h4><p>Документооборот</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4>Защита платежей</h4><p>Антифрод</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Аналитика платежей</h4><p>Отчёты</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🤖</span><h4>Автоматизация платежей</h4><p>AI-оптимизация</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <!-- B2B PAYMENTS -->
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p6_b2b1">B2B Payments</h4><p data-i18n="p6_b2b1_desc">Between legal entities</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p6_b2b2">Cross-Border Payments</h4><p data-i18n="p6_b2b2_desc">International</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">⏱️</span><h4 data-i18n="p6_b2b3">Instant Payments</h4><p data-i18n="p6_b2b3_desc">Real-time</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4 data-i18n="p6_b2b4">Mass Payments</h4><p data-i18n="p6_b2b4_desc">Salary, suppliers</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p6_b2b5">Recurring Payments</h4><p data-i18n="p6_b2b5_desc">Auto-payments</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p6_b2b6">Payment Gateways</h4><p data-i18n="p6_b2b6_desc">API for sites</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p6_b2b7">QR Payments</h4><p data-i18n="p6_b2b7_desc">Fast payment</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔗</span><h4 data-i18n="p6_b2b8">1C Integration</h4><p data-i18n="p6_b2b8_desc">Accounting</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p6_b2b9">Electronic Invoices</h4><p data-i18n="p6_b2b9_desc">Document flow</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p6_b2b10">Payment Protection</h4><p data-i18n="p6_b2b10_desc">Anti-fraud</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p6_b2b11">Payment Analytics</h4><p data-i18n="p6_b2b11_desc">Reports</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🤖</span><h4 data-i18n="p6_b2b12">Payment Automation</h4><p data-i18n="p6_b2b12_desc">AI optimization</p><span class="tag" data-i18n="p6_tag_pay">Payments</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
 
-        <!-- ЗАРПЛАТНЫЕ ПРОЕКТЫ -->
-        <div class="card fade-in"><span class="icon">💳</span><h4>Зарплатные карты VISA</h4><p>Для сотрудников</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4>Корпоративные карты</h4><p>Для расходов</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💰</span><h4>Зарплата в криптовалюте</h4><p>USDC, VISA</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Расчёт зарплаты</h4><p>Калькулятор налогов</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📋</span><h4>Табель учёта</h4><p>Рабочее время</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4>Расчётные листки</h4><p>Электронные</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Аналитика зарплат</h4><p>Статистика</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Индексация зарплат</h4><p>Автоматическая</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4>Бонусные программы</h4><p>Премии</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧑‍💻</span><h4>Удалённые сотрудники</h4><p>В любой стране</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4>Международные зарплаты</h4><p>В разной валюте</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4>Безопасность зарплат</h4><p>Защита данных</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- PAYROLL -->
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p6_pay1">VISA Payroll Cards</h4><p data-i18n="p6_pay1_desc">For employees</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p6_pay2">Corporate Cards</h4><p data-i18n="p6_pay2_desc">For expenses</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p6_pay3">Crypto Payroll</h4><p data-i18n="p6_pay3_desc">USDC, VISA</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p6_pay4">Payroll Calculator</h4><p data-i18n="p6_pay4_desc">Tax calculator</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4 data-i18n="p6_pay5">Timesheet</h4><p data-i18n="p6_pay5_desc">Working hours</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p6_pay6">Payslips</h4><p data-i18n="p6_pay6_desc">Electronic</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p6_pay7">Salary Analytics</h4><p data-i18n="p6_pay7_desc">Statistics</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p6_pay8">Salary Indexation</h4><p data-i18n="p6_pay8_desc">Automatic</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p6_pay9">Bonus Programs</h4><p data-i18n="p6_pay9_desc">Incentives</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🧑‍💻</span><h4 data-i18n="p6_pay10">Remote Employees</h4><p data-i18n="p6_pay10_desc">Any country</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p6_pay11">International Payroll</h4><p data-i18n="p6_pay11_desc">Multi-currency</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p6_pay12">Payroll Security</h4><p data-i18n="p6_pay12_desc">Data protection</p><span class="tag" data-i18n="p6_tag_payroll">Payroll</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
 
-        <!-- БУХГАЛТЕРИЯ -->
-        <div class="card fade-in"><span class="icon">📊</span><h4>Бухгалтерский учёт</h4><p>Проводки</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4>Налоговый учёт</h4><p>Расчёт налогов</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4>Сдача отчётности</h4><p>Электронная</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📋</span><h4>Первичные документы</h4><p>Счета, накладные</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Баланс и отчёты</h4><p>Финансовые отчёты</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Управленческий учёт</h4><p>Аналитика</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Сверка с контрагентами</h4><p>Акты сверки</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4>Банковская выписка</h4><p>Электронная</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4>Кассовые операции</h4><p>Касса</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4>Мобильная бухгалтерия</h4><p>С телефона</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🤖</span><h4>Автоматизация учёта</h4><p>AI-бухгалтер</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4>Архивация данных</h4><p>Хранение</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <!-- ACCOUNTING -->
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p6_acc1">Accounting</h4><p data-i18n="p6_acc1_desc">Transactions</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p6_acc2">Tax Accounting</h4><p data-i18n="p6_acc2_desc">Tax calculation</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p6_acc3">Reporting</h4><p data-i18n="p6_acc3_desc">Electronic</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4 data-i18n="p6_acc4">Primary Documents</h4><p data-i18n="p6_acc4_desc">Invoices, waybills</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p6_acc5">Balance Sheet</h4><p data-i18n="p6_acc5_desc">Financial reports</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p6_acc6">Management Accounting</h4><p data-i18n="p6_acc6_desc">Analytics</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p6_acc7">Reconciliation</h4><p data-i18n="p6_acc7_desc">With counterparties</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p6_acc8">Bank Statement</h4><p data-i18n="p6_acc8_desc">Electronic</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p6_acc9">Cash Operations</h4><p data-i18n="p6_acc9_desc">Cash desk</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p6_acc10">Mobile Accounting</h4><p data-i18n="p6_acc10_desc">From phone</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🤖</span><h4 data-i18n="p6_acc11">Accounting Automation</h4><p data-i18n="p6_acc11_desc">AI accountant</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p6_acc12">Data Archiving</h4><p data-i18n="p6_acc12_desc">Storage</p><span class="tag" data-i18n="p6_tag_acc">Accounting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
 
-        <!-- КОРПОРАТИВНЫЕ КАРТЫ -->
-        <div class="card fade-in"><span class="icon">💳</span><h4>Корпоративная карта VISA</h4><p>Для бизнеса</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4>Топливные карты</h4><p>Для автопарка</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4>Карты для командировок</h4><p>Расходы</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4>Виртуальные корпоративные</h4><p>Онлайн-оплата</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💰</span><h4>Лимиты карт</h4><p>Контроль расходов</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Отчёты по картам</h4><p>Аналитика</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4>Страхование карт</h4><p>Защита</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔒</span><h4>Безопасность карт</h4><p>3D Secure</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4>Управление картами</h4><p>Мобильное приложение</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Блокировка карт</h4><p>Онлайн</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Кэшбэк для бизнеса</h4><p>Возврат %</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4>Международные карты</h4><p>В любой валюте</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- CORPORATE CARDS -->
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p6_card1">VISA Corporate Card</h4><p data-i18n="p6_card1_desc">For business</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">⛽</span><h4 data-i18n="p6_card2">Fuel Cards</h4><p data-i18n="p6_card2_desc">For fleet</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p6_card3">Travel Cards</h4><p data-i18n="p6_card3_desc">Expenses</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p6_card4">Virtual Corporate Cards</h4><p data-i18n="p6_card4_desc">Online payments</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p6_card5">Card Limits</h4><p data-i18n="p6_card5_desc">Expense control</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p6_card6">Card Reports</h4><p data-i18n="p6_card6_desc">Analytics</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p6_card7">Card Insurance</h4><p data-i18n="p6_card7_desc">Protection</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔒</span><h4 data-i18n="p6_card8">Card Security</h4><p data-i18n="p6_card8_desc">3D Secure</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p6_card9">Card Management</h4><p data-i18n="p6_card9_desc">Mobile app</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p6_card10">Card Blocking</h4><p data-i18n="p6_card10_desc">Online</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p6_card11">Business Cashback</h4><p data-i18n="p6_card11_desc">% return</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p6_card12">International Cards</h4><p data-i18n="p6_card12_desc">Any currency</p><span class="tag" data-i18n="p6_tag_card">Cards</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
 
-        <!-- ДРУГИЕ БИЗНЕС-УСЛУГИ -->
-        <div class="card fade-in"><span class="icon">🏢</span><h4>Регистрация бизнеса</h4><p>ООО, ИП</p><span class="tag">Юридические</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4>Юридические консультации</h4><p>Договоры</p><span class="tag">Юридические</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Бизнес-планирование</h4><p>Стратегия</p><span class="tag">Консалтинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Маркетинговые услуги</h4><p>Продвижение</p><span class="tag">Консалтинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🤖</span><h4>Автоматизация бизнеса</h4><p>CRM, ERP</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">💻</span><h4>Разработка сайтов</h4><p>Под ключ</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4>Мобильные приложения</h4><p>iOS, Android</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4>Кибербезопасность</h4><p>Защита бизнеса</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Аналитика бизнеса</h4><p>Big Data</p><span class="tag">Аналитика</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🧠</span><h4>AI-решения</h4><p>Искусственный интеллект</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4>ЭДО</h4><p>Электронный документооборот</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4>Корпоративный VPN</h4><p>Безопасный доступ</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <!-- OTHER -->
+        <div class="card fade-in"><span class="icon">🏢</span><h4 data-i18n="p6_other1">Business Registration</h4><p data-i18n="p6_other1_desc">LLC, sole proprietor</p><span class="tag" data-i18n="p6_tag_legal">Legal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p6_other2">Legal Consulting</h4><p data-i18n="p6_other2_desc">Contracts</p><span class="tag" data-i18n="p6_tag_legal">Legal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p6_other3">Business Planning</h4><p data-i18n="p6_other3_desc">Strategy</p><span class="tag" data-i18n="p6_tag_consult">Consulting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p6_other4">Marketing Services</h4><p data-i18n="p6_other4_desc">Promotion</p><span class="tag" data-i18n="p6_tag_consult">Consulting</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🤖</span><h4 data-i18n="p6_other5">Business Automation</h4><p data-i18n="p6_other5_desc">CRM, ERP</p><span class="tag" data-i18n="p6_tag_tech">Tech</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p6_other6">Website Development</h4><p data-i18n="p6_other6_desc">Turnkey</p><span class="tag" data-i18n="p6_tag_tech">Tech</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p6_other7">Mobile Apps</h4><p data-i18n="p6_other7_desc">iOS, Android</p><span class="tag" data-i18n="p6_tag_tech">Tech</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p6_other8">Cybersecurity</h4><p data-i18n="p6_other8_desc">Business protection</p><span class="tag" data-i18n="p6_tag_tech">Tech</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p6_other9">Business Analytics</h4><p data-i18n="p6_other9_desc">Big Data</p><span class="tag" data-i18n="p6_tag_analytics">Analytics</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p6_other10">AI Solutions</h4><p data-i18n="p6_other10_desc">Artificial intelligence</p><span class="tag" data-i18n="p6_tag_tech">Tech</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p6_other11">EDO</h4><p data-i18n="p6_other11_desc">Electronic document flow</p><span class="tag" data-i18n="p6_tag_tech">Tech</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p6_other12">Corporate VPN</h4><p data-i18n="p6_other12_desc">Secure access</p><span class="tag" data-i18n="p6_tag_tech">Tech</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p6_link_start">Start →</a></div>
     </div>
 </div>
 
@@ -272,25 +269,187 @@
                 <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
             </div>
         </div>
-        <div class="footer-disclaimer">⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).</div>
+        <div class="footer-disclaimer" data-i18n="footer_disclaimer">⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).</div>
     </div>
 </footer>
 
 <script>
+    const translations = {
+        en: {
+            nav_home: "Home", nav_finance: "Finance", nav_crypto: "Crypto", nav_exchange: "Exchange",
+            nav_insurance: "Insurance", nav_business: "Business", nav_travel: "Travel", nav_cards: "Cards", nav_buy: "Buy VISA",
+            footer_disclaimer: "⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).",
+            p6_badge: "🏢 100+ Business Solutions",
+            p6_title: "Business", p6_title2: "Services",
+            p6_desc: "B2B payments, payroll projects, corporate cards, accounting and more than 100 products through VISA.",
+            p6_sec_title: "All", p6_sec_title2: "Business Products", p6_sec_desc: "More than 100 tools for business development and management.",
+            p6_link_start: "Start →",
+            p6_tag_pay: "Payments", p6_tag_payroll: "Payroll", p6_tag_acc: "Accounting", p6_tag_card: "Cards", p6_tag_legal: "Legal", p6_tag_consult: "Consulting", p6_tag_tech: "Tech", p6_tag_analytics: "Analytics",
+            p6_b2b1: "B2B Payments", p6_b2b1_desc: "Between legal entities",
+            p6_b2b2: "Cross-Border Payments", p6_b2b2_desc: "International",
+            p6_b2b3: "Instant Payments", p6_b2b3_desc: "Real-time",
+            p6_b2b4: "Mass Payments", p6_b2b4_desc: "Salary, suppliers",
+            p6_b2b5: "Recurring Payments", p6_b2b5_desc: "Auto-payments",
+            p6_b2b6: "Payment Gateways", p6_b2b6_desc: "API for sites",
+            p6_b2b7: "QR Payments", p6_b2b7_desc: "Fast payment",
+            p6_b2b8: "1C Integration", p6_b2b8_desc: "Accounting",
+            p6_b2b9: "Electronic Invoices", p6_b2b9_desc: "Document flow",
+            p6_b2b10: "Payment Protection", p6_b2b10_desc: "Anti-fraud",
+            p6_b2b11: "Payment Analytics", p6_b2b11_desc: "Reports",
+            p6_b2b12: "Payment Automation", p6_b2b12_desc: "AI optimization",
+            p6_pay1: "VISA Payroll Cards", p6_pay1_desc: "For employees",
+            p6_pay2: "Corporate Cards", p6_pay2_desc: "For expenses",
+            p6_pay3: "Crypto Payroll", p6_pay3_desc: "USDC, VISA",
+            p6_pay4: "Payroll Calculator", p6_pay4_desc: "Tax calculator",
+            p6_pay5: "Timesheet", p6_pay5_desc: "Working hours",
+            p6_pay6: "Payslips", p6_pay6_desc: "Electronic",
+            p6_pay7: "Salary Analytics", p6_pay7_desc: "Statistics",
+            p6_pay8: "Salary Indexation", p6_pay8_desc: "Automatic",
+            p6_pay9: "Bonus Programs", p6_pay9_desc: "Incentives",
+            p6_pay10: "Remote Employees", p6_pay10_desc: "Any country",
+            p6_pay11: "International Payroll", p6_pay11_desc: "Multi-currency",
+            p6_pay12: "Payroll Security", p6_pay12_desc: "Data protection",
+            p6_acc1: "Accounting", p6_acc1_desc: "Transactions",
+            p6_acc2: "Tax Accounting", p6_acc2_desc: "Tax calculation",
+            p6_acc3: "Reporting", p6_acc3_desc: "Electronic",
+            p6_acc4: "Primary Documents", p6_acc4_desc: "Invoices, waybills",
+            p6_acc5: "Balance Sheet", p6_acc5_desc: "Financial reports",
+            p6_acc6: "Management Accounting", p6_acc6_desc: "Analytics",
+            p6_acc7: "Reconciliation", p6_acc7_desc: "With counterparties",
+            p6_acc8: "Bank Statement", p6_acc8_desc: "Electronic",
+            p6_acc9: "Cash Operations", p6_acc9_desc: "Cash desk",
+            p6_acc10: "Mobile Accounting", p6_acc10_desc: "From phone",
+            p6_acc11: "Accounting Automation", p6_acc11_desc: "AI accountant",
+            p6_acc12: "Data Archiving", p6_acc12_desc: "Storage",
+            p6_card1: "VISA Corporate Card", p6_card1_desc: "For business",
+            p6_card2: "Fuel Cards", p6_card2_desc: "For fleet",
+            p6_card3: "Travel Cards", p6_card3_desc: "Expenses",
+            p6_card4: "Virtual Corporate Cards", p6_card4_desc: "Online payments",
+            p6_card5: "Card Limits", p6_card5_desc: "Expense control",
+            p6_card6: "Card Reports", p6_card6_desc: "Analytics",
+            p6_card7: "Card Insurance", p6_card7_desc: "Protection",
+            p6_card8: "Card Security", p6_card8_desc: "3D Secure",
+            p6_card9: "Card Management", p6_card9_desc: "Mobile app",
+            p6_card10: "Card Blocking", p6_card10_desc: "Online",
+            p6_card11: "Business Cashback", p6_card11_desc: "% return",
+            p6_card12: "International Cards", p6_card12_desc: "Any currency",
+            p6_other1: "Business Registration", p6_other1_desc: "LLC, sole proprietor",
+            p6_other2: "Legal Consulting", p6_other2_desc: "Contracts",
+            p6_other3: "Business Planning", p6_other3_desc: "Strategy",
+            p6_other4: "Marketing Services", p6_other4_desc: "Promotion",
+            p6_other5: "Business Automation", p6_other5_desc: "CRM, ERP",
+            p6_other6: "Website Development", p6_other6_desc: "Turnkey",
+            p6_other7: "Mobile Apps", p6_other7_desc: "iOS, Android",
+            p6_other8: "Cybersecurity", p6_other8_desc: "Business protection",
+            p6_other9: "Business Analytics", p6_other9_desc: "Big Data",
+            p6_other10: "AI Solutions", p6_other10_desc: "Artificial intelligence",
+            p6_other11: "EDO", p6_other11_desc: "Electronic document flow",
+            p6_other12: "Corporate VPN", p6_other12_desc: "Secure access"
+        },
+        ru: {
+            nav_home: "Главная", nav_finance: "Финансы", nav_crypto: "Крипто", nav_exchange: "Биржа",
+            nav_insurance: "Страхование", nav_business: "Бизнес", nav_travel: "Туризм", nav_cards: "Карты", nav_buy: "Купить VISA",
+            footer_disclaimer: "⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).",
+            p6_badge: "🏢 100+ бизнес-решений",
+            p6_title: "Бизнес", p6_title2: "услуги",
+            p6_desc: "B2B-платежи, зарплатные проекты, корпоративные карты, бухгалтерия и более 100 продуктов через VISA.",
+            p6_sec_title: "Все", p6_sec_title2: "бизнес-продукты", p6_sec_desc: "Более 100 инструментов для развития и управления бизнесом.",
+            p6_link_start: "Начать →",
+            p6_tag_pay: "Платежи", p6_tag_payroll: "Зарплата", p6_tag_acc: "Бухгалтерия", p6_tag_card: "Карты", p6_tag_legal: "Юридические", p6_tag_consult: "Консалтинг", p6_tag_tech: "Технологии", p6_tag_analytics: "Аналитика",
+            p6_b2b1: "B2B-платежи", p6_b2b1_desc: "Между юрлицами",
+            p6_b2b2: "Кросс-граничные платежи", p6_b2b2_desc: "Международные",
+            p6_b2b3: "Мгновенные платежи", p6_b2b3_desc: "Real-time",
+            p6_b2b4: "Массовые выплаты", p6_b2b4_desc: "Зарплата, поставщики",
+            p6_b2b5: "Регулярные платежи", p6_b2b5_desc: "Автоплатежи",
+            p6_b2b6: "Платежные шлюзы", p6_b2b6_desc: "API для сайтов",
+            p6_b2b7: "Платежи через QR", p6_b2b7_desc: "Быстрая оплата",
+            p6_b2b8: "Интеграция с 1С", p6_b2b8_desc: "Бухгалтерия",
+            p6_b2b9: "Электронные счета", p6_b2b9_desc: "Документооборот",
+            p6_b2b10: "Защита платежей", p6_b2b10_desc: "Антифрод",
+            p6_b2b11: "Аналитика платежей", p6_b2b11_desc: "Отчёты",
+            p6_b2b12: "Автоматизация платежей", p6_b2b12_desc: "AI-оптимизация",
+            p6_pay1: "Зарплатные карты VISA", p6_pay1_desc: "Для сотрудников",
+            p6_pay2: "Корпоративные карты", p6_pay2_desc: "Для расходов",
+            p6_pay3: "Зарплата в криптовалюте", p6_pay3_desc: "USDC, VISA",
+            p6_pay4: "Расчёт зарплаты", p6_pay4_desc: "Калькулятор налогов",
+            p6_pay5: "Табель учёта", p6_pay5_desc: "Рабочее время",
+            p6_pay6: "Расчётные листки", p6_pay6_desc: "Электронные",
+            p6_pay7: "Аналитика зарплат", p6_pay7_desc: "Статистика",
+            p6_pay8: "Индексация зарплат", p6_pay8_desc: "Автоматическая",
+            p6_pay9: "Бонусные программы", p6_pay9_desc: "Премии",
+            p6_pay10: "Удалённые сотрудники", p6_pay10_desc: "В любой стране",
+            p6_pay11: "Международные зарплаты", p6_pay11_desc: "В разной валюте",
+            p6_pay12: "Безопасность зарплат", p6_pay12_desc: "Защита данных",
+            p6_acc1: "Бухгалтерский учёт", p6_acc1_desc: "Проводки",
+            p6_acc2: "Налоговый учёт", p6_acc2_desc: "Расчёт налогов",
+            p6_acc3: "Сдача отчётности", p6_acc3_desc: "Электронная",
+            p6_acc4: "Первичные документы", p6_acc4_desc: "Счета, накладные",
+            p6_acc5: "Баланс и отчёты", p6_acc5_desc: "Финансовые отчёты",
+            p6_acc6: "Управленческий учёт", p6_acc6_desc: "Аналитика",
+            p6_acc7: "Сверка с контрагентами", p6_acc7_desc: "Акты сверки",
+            p6_acc8: "Банковская выписка", p6_acc8_desc: "Электронная",
+            p6_acc9: "Кассовые операции", p6_acc9_desc: "Касса",
+            p6_acc10: "Мобильная бухгалтерия", p6_acc10_desc: "С телефона",
+            p6_acc11: "Автоматизация учёта", p6_acc11_desc: "AI-бухгалтер",
+            p6_acc12: "Архивация данных", p6_acc12_desc: "Хранение",
+            p6_card1: "Корпоративная карта VISA", p6_card1_desc: "Для бизнеса",
+            p6_card2: "Топливные карты", p6_card2_desc: "Для автопарка",
+            p6_card3: "Карты для командировок", p6_card3_desc: "Расходы",
+            p6_card4: "Виртуальные корпоративные", p6_card4_desc: "Онлайн-оплата",
+            p6_card5: "Лимиты карт", p6_card5_desc: "Контроль расходов",
+            p6_card6: "Отчёты по картам", p6_card6_desc: "Аналитика",
+            p6_card7: "Страхование карт", p6_card7_desc: "Защита",
+            p6_card8: "Безопасность карт", p6_card8_desc: "3D Secure",
+            p6_card9: "Управление картами", p6_card9_desc: "Мобильное приложение",
+            p6_card10: "Блокировка карт", p6_card10_desc: "Онлайн",
+            p6_card11: "Кэшбэк для бизнеса", p6_card11_desc: "Возврат %",
+            p6_card12: "Международные карты", p6_card12_desc: "В любой валюте",
+            p6_other1: "Регистрация бизнеса", p6_other1_desc: "ООО, ИП",
+            p6_other2: "Юридические консультации", p6_other2_desc: "Договоры",
+            p6_other3: "Бизнес-планирование", p6_other3_desc: "Стратегия",
+            p6_other4: "Маркетинговые услуги", p6_other4_desc: "Продвижение",
+            p6_other5: "Автоматизация бизнеса", p6_other5_desc: "CRM, ERP",
+            p6_other6: "Разработка сайтов", p6_other6_desc: "Под ключ",
+            p6_other7: "Мобильные приложения", p6_other7_desc: "iOS, Android",
+            p6_other8: "Кибербезопасность", p6_other8_desc: "Защита бизнеса",
+            p6_other9: "Аналитика бизнеса", p6_other9_desc: "Big Data",
+            p6_other10: "AI-решения", p6_other10_desc: "Искусственный интеллект",
+            p6_other11: "ЭДО", p6_other11_desc: "Электронный документооборот",
+            p6_other12: "Корпоративный VPN", p6_other12_desc: "Безопасный доступ"
+        },
+        es: {}, fr: {}, zh: {}, ja: {}, ar: {}, hi: {}
+    };
+
+    let currentLang = localStorage.getItem('visaLang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('visaLang', lang);
+        document.querySelectorAll('#languageSwitcher a').forEach(el => {
+            el.classList.toggle('active', el.dataset.lang === lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            const translation = translations[lang]?.[key];
+            if (translation !== undefined) el.textContent = translation;
+        });
+        document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('#languageSwitcher a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            setLanguage(this.dataset.lang);
+        });
+    });
+
     const faders = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     faders.forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.lang-bar a').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.lang-bar a').forEach(x => x.classList.remove('active'));
-            this.classList.add('active');
-            alert('🌍 Язык изменён на: ' + this.textContent.trim());
-        });
-    });
+    setLanguage(currentLang);
 </script>
 </body>
 </html>
