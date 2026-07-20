@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>VISA – Страхование | Жизнь, здоровье, авто, недвижимость, кибер</title>
+    <title>VISA – Insurance | Life, Health, Auto, Real Estate, Cyber</title>
     <link rel="icon" href="favicon.ico" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #fff; line-height: 1.6; }
-        a { color: #7c8cff; text-decoration: none; }
+        a { color: #0088ff; text-decoration: none; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
         
         .lang-bar {
@@ -22,9 +22,9 @@
             backdrop-filter: blur(12px);
         }
         .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
-        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 4px 12px; border-radius: 4px; cursor: pointer; }
         .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .lang-bar a.active { color: #0088ff; background: rgba(0,136,255,0.12); }
 
         .bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
@@ -33,13 +33,13 @@
         }
         .bg-canvas::before {
             content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
-            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
+            background: radial-gradient(circle at 30% 40%, rgba(0,136,255,0.08) 0%, transparent 50%),
                         radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
         @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
         .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
-        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
+        .orb-1 { width: 500px; height: 500px; background: #0088ff; top: -10%; left: -5%; }
         .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
         .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
@@ -55,30 +55,27 @@
         .logo-wrap img { height: 44px; width: auto; }
         .logo-wrap span {
             font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            background: linear-gradient(135deg, #0088ff, #00c8ff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .nav-links a {
-            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s;
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s, background 0.3s;
             padding: 6px 12px; border-radius: 8px;
         }
         .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
-        .nav-links a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .nav-links a.active { color: #0088ff; background: rgba(0,136,255,0.1); }
         .btn-header {
-            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            background: linear-gradient(135deg, #0088ff, #00c8ff);
             padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
             color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 20px rgba(121,68,255,0.3);
+            box-shadow: 0 4px 20px rgba(0,136,255,0.3);
         }
-        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
+        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(0,136,255,0.5); }
 
-        .page-hero {
-            position: relative; z-index: 5; padding: 40px 0 30px;
-            text-align: center;
-        }
+        .page-hero { position: relative; z-index: 5; padding: 40px 0 30px; text-align: center; }
         .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
-        .page-hero h1 span { background: linear-gradient(135deg, #00c8ff, #0088ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-hero h1 span { background: linear-gradient(135deg, #0088ff, #00c8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
 
         .badge {
@@ -174,15 +171,15 @@
 <body>
 
 <div class="lang-bar">
-    <div class="container">
-        <a href="#" class="active" data-lang="en">English</a>
-        <a href="#" data-lang="ru">Русский</a>
-        <a href="#" data-lang="es">Español</a>
-        <a href="#" data-lang="fr">Français</a>
-        <a href="#" data-lang="zh">中文</a>
-        <a href="#" data-lang="ja">日本語</a>
-        <a href="#" data-lang="ar">العربية</a>
-        <a href="#" data-lang="hi">हिन्दी</a>
+    <div class="container" id="languageSwitcher">
+        <a data-lang="en" class="active">English</a>
+        <a data-lang="ru">Русский</a>
+        <a data-lang="es">Español</a>
+        <a data-lang="fr">Français</a>
+        <a data-lang="zh">中文</a>
+        <a data-lang="ja">日本語</a>
+        <a data-lang="ar">العربية</a>
+        <a data-lang="hi">हिन्दी</a>
     </div>
 </div>
 
@@ -195,116 +192,116 @@
             <span>VISA</span>
         </div>
         <nav class="nav-links">
-            <a href="index.html">Главная</a>
-            <a href="page2.html">Финансы</a>
-            <a href="page3.html">Крипто</a>
-            <a href="page4.html">Биржа</a>
-            <a href="page5.html" class="active">Страхование</a>
-            <a href="page6.html">Бизнес</a>
-            <a href="page7.html">Туризм</a>
-            <a href="page8.html">Карты</a>
-            <a href="index.html#buy" class="btn-header">🚀 Купить VISA</a>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="page2.html" data-i18n="nav_finance">Finance</a>
+            <a href="page3.html" data-i18n="nav_crypto">Crypto</a>
+            <a href="page4.html" data-i18n="nav_exchange">Exchange</a>
+            <a href="page5.html" class="active" data-i18n="nav_insurance">Insurance</a>
+            <a href="page6.html" data-i18n="nav_business">Business</a>
+            <a href="page7.html" data-i18n="nav_travel">Travel</a>
+            <a href="page8.html" data-i18n="nav_cards">Cards</a>
+            <a href="index.html#buy" class="btn-header" data-i18n="nav_buy">Buy VISA</a>
         </nav>
     </div>
 </header>
 
 <section class="page-hero">
     <div class="container">
-        <div class="badge">🛡️ 100+ страховых продуктов</div>
-        <h1>Страхование <span>и пенсии</span></h1>
-        <p>Жизнь, здоровье, авто, недвижимость, киберстрахование, пенсионные продукты и более 100 решений через VISA.</p>
+        <div class="badge" data-i18n="p5_badge">🛡️ 100+ Insurance Products</div>
+        <h1><span data-i18n="p5_title">Insurance</span> <span data-i18n="p5_title2">& Pensions</span></h1>
+        <p data-i18n="p5_desc">Life, health, auto, real estate, cyber insurance, pension products and more than 100 solutions through VISA.</p>
     </div>
 </section>
 
-<!-- ===== КАЛЬКУЛЯТОР СТРАХОВАНИЯ ===== -->
+<!-- ===== INSURANCE CALCULATOR ===== -->
 <div class="container">
     <div class="calculator-section fade-in">
-        <h3>🧾 Калькулятор страховой премии</h3>
+        <h3 data-i18n="p5_calc_title">🧾 Insurance Premium Calculator</h3>
         <div class="calc-row">
-            <label>Страховая сумма ($)<input type="number" id="insuranceAmount" value="50000" /></label>
-            <label>Ставка (%)<input type="number" id="insuranceRate" value="2" step="0.1" /></label>
-            <button class="btn-primary" onclick="calcInsurance()">Рассчитать</button>
+            <label data-i18n="p5_calc_amount">Coverage Amount ($)<input type="number" id="insuranceAmount" value="50000" /></label>
+            <label data-i18n="p5_calc_rate">Rate (%)<input type="number" id="insuranceRate" value="2" step="0.1" /></label>
+            <button class="btn-primary" onclick="calcInsurance()" data-i18n="p5_calc_btn">Calculate</button>
         </div>
-        <div class="calc-result" id="insuranceResult">Годовая премия: $1,000.00</div>
+        <div class="calc-result" id="insuranceResult">Annual premium: $1,000.00</div>
     </div>
 </div>
 
-<!-- ===== 100+ ФУНКЦИЙ ===== -->
+<!-- ===== 100+ FEATURES ===== -->
 <div class="container">
     <div class="section-title fade-in">
-        <h2>Все <span style="color:#0088ff;">страховые продукты</span></h2>
-        <p>Более 100 инструментов для защиты жизни, здоровья, имущества и бизнеса.</p>
+        <h2><span data-i18n="p5_sec_title">All</span> <span style="color:#0088ff;" data-i18n="p5_sec_title2">Insurance Products</span></h2>
+        <p data-i18n="p5_sec_desc">More than 100 tools for life, health, property and business protection.</p>
     </div>
     <div class="cards-grid">
-        <!-- ЖИЗНЬ И ЗДОРОВЬЕ -->
-        <div class="card fade-in"><span class="icon">❤️</span><h4>Страхование жизни</h4><p>На случай смерти</p><span class="tag">Жизнь</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏥</span><h4>Медицинское страхование</h4><p>ДМС</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🦷</span><h4>Стоматологическое страхование</h4><p>Лечение зубов</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">👁️</span><h4>Страхование зрения</h4><p>Очки, линзы</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧠</span><h4>Неврологическое страхование</h4><p>Защита от инсультов</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">❤️</span><h4>Кардиострахование</h4><p>Сердечно-сосудистые</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🩺</span><h4>Онкострахование</h4><p>Лечение рака</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚑</span><h4>Скорая помощь</h4><p>Экстренная медицина</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧬</span><h4>Генетическое страхование</h4><p>Риски по ДНК</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧘</span><h4>Ментальное здоровье</h4><p>Психотерапия</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏋️</span><h4>Страхование спортсменов</h4><p>Травмы</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4>Страхование путешественников</h4><p>За границей</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- LIFE & HEALTH -->
+        <div class="card fade-in"><span class="icon">❤️</span><h4 data-i18n="p5_life1">Life Insurance</h4><p data-i18n="p5_life1_desc">Death coverage</p><span class="tag" data-i18n="p5_tag_life">Life</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏥</span><h4 data-i18n="p5_life2">Health Insurance</h4><p data-i18n="p5_life2_desc">Medical coverage</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🦷</span><h4 data-i18n="p5_life3">Dental Insurance</h4><p data-i18n="p5_life3_desc">Teeth treatment</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">👁️</span><h4 data-i18n="p5_life4">Vision Insurance</h4><p data-i18n="p5_life4_desc">Glasses, lenses</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p5_life5">Neurological Insurance</h4><p data-i18n="p5_life5_desc">Stroke protection</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">❤️</span><h4 data-i18n="p5_life6">Cardio Insurance</h4><p data-i18n="p5_life6_desc">Cardiovascular</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🩺</span><h4 data-i18n="p5_life7">Cancer Insurance</h4><p data-i18n="p5_life7_desc">Cancer treatment</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚑</span><h4 data-i18n="p5_life8">Emergency Medical</h4><p data-i18n="p5_life8_desc">Ambulance</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧬</span><h4 data-i18n="p5_life9">Genetic Insurance</h4><p data-i18n="p5_life9_desc">DNA risks</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧘</span><h4 data-i18n="p5_life10">Mental Health</h4><p data-i18n="p5_life10_desc">Psychotherapy</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏋️</span><h4 data-i18n="p5_life11">Athlete Insurance</h4><p data-i18n="p5_life11_desc">Sports injuries</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_life12">Travel Insurance</h4><p data-i18n="p5_life12_desc">Abroad</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
-        <!-- АВТО -->
-        <div class="card fade-in"><span class="icon">🚗</span><h4>ОСАГО</h4><p>Обязательное авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>КАСКО</h4><p>Полное покрытие</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование каршеринга</h4><p>Аренда авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование мотоцикла</h4><p>Мото</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование грузовиков</h4><p>Грузовики</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование автопарка</h4><p>Бизнес</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Зелёная карта</h4><p>Для путешествий</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование от угона</h4><p>Кража авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование от ДТП</h4><p>Аварии</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование от стихии</h4><p>Град, наводнение</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование шин</h4><p>Покрышки</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование багажа</h4><p>В авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- AUTO -->
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto1">OSAGO</h4><p data-i18n="p5_auto1_desc">Mandatory auto</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto2">CASCO</h4><p data-i18n="p5_auto2_desc">Full coverage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto3">Car Rental Insurance</h4><p data-i18n="p5_auto3_desc">For rentals</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏍️</span><h4 data-i18n="p5_auto4">Motorcycle Insurance</h4><p data-i18n="p5_auto4_desc">Moto</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚛</span><h4 data-i18n="p5_auto5">Truck Insurance</h4><p data-i18n="p5_auto5_desc">Commercial vehicles</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏢</span><h4 data-i18n="p5_auto6">Fleet Insurance</h4><p data-i18n="p5_auto6_desc">Business fleet</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_auto7">Green Card</h4><p data-i18n="p5_auto7_desc">For travel</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔑</span><h4 data-i18n="p5_auto8">Theft Protection</h4><p data-i18n="p5_auto8_desc">Vehicle theft</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💥</span><h4 data-i18n="p5_auto9">Accident Insurance</h4><p data-i18n="p5_auto9_desc">Crash coverage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p5_auto10">Natural Disaster Auto</h4><p data-i18n="p5_auto10_desc">Hail, flood</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">⛽</span><h4 data-i18n="p5_auto11">Tire Insurance</h4><p data-i18n="p5_auto11_desc">Tire damage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧳</span><h4 data-i18n="p5_auto12">Baggage Insurance</h4><p data-i18n="p5_auto12_desc">In vehicle</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
-        <!-- НЕДВИЖИМОСТЬ -->
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование квартиры</h4><p>Имущество</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование дома</h4><p>Частный дом</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏢</span><h4>Страхование офиса</h4><p>Коммерческая</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏭</span><h4>Страхование склада</h4><p>Хранение</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование от пожара</h4><p>Огонь</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🌊</span><h4>Страхование от затопления</h4><p>Вода</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">⚡</span><h4>Страхование от электричества</h4><p>Короткое замыкание</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏚️</span><h4>Страхование разрушения</h4><p>Обрушение</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование аренды</h4><p>Съёмное жильё</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование ипотеки</h4><p>Защита кредита</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование залога</h4><p>Обеспечение</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование новостройки</h4><p>Строительство</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- PROPERTY -->
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop1">Apartment Insurance</h4><p data-i18n="p5_prop1_desc">Property coverage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop2">House Insurance</h4><p data-i18n="p5_prop2_desc">Private home</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏢</span><h4 data-i18n="p5_prop3">Office Insurance</h4><p data-i18n="p5_prop3_desc">Commercial space</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏭</span><h4 data-i18n="p5_prop4">Warehouse Insurance</h4><p data-i18n="p5_prop4_desc">Storage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p5_prop5">Fire Insurance</h4><p data-i18n="p5_prop5_desc">Fire damage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p5_prop6">Flood Insurance</h4><p data-i18n="p5_prop6_desc">Water damage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p5_prop7">Electrical Insurance</h4><p data-i18n="p5_prop7_desc">Short circuit</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏚️</span><h4 data-i18n="p5_prop8">Collapse Insurance</h4><p data-i18n="p5_prop8_desc">Building collapse</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop9">Rental Insurance</h4><p data-i18n="p5_prop9_desc">Rented property</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop10">Mortgage Insurance</h4><p data-i18n="p5_prop10_desc">Loan protection</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop11">Collateral Insurance</h4><p data-i18n="p5_prop11_desc">Security coverage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏗️</span><h4 data-i18n="p5_prop12">Construction Insurance</h4><p data-i18n="p5_prop12_desc">New building</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
-        <!-- КИБЕР -->
-        <div class="card fade-in"><span class="icon">💻</span><h4>Киберстрахование</h4><p>Хакерские атаки</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4>Страхование данных</h4><p>Утечка</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔒</span><h4>Страхование от вымогателей</h4><p>Ransomware</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4>Страхование сайтов</h4><p>DDoS</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4>Страхование мобильных</h4><p>Потеря телефона</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🖥️</span><h4>Страхование серверов</h4><p>Сбои</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4>Страхование криптокошельков</h4><p>Потеря доступа</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🪙</span><h4>Страхование стейкинга</h4><p>Риски валидаторов</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Страхование DeFi</h4><p>Взломы смарт-контрактов</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4>Страхование токенов</h4><p>Скамы</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔗</span><h4>Страхование мостов</h4><p>Кросс-чейн риски</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧠</span><h4>Страхование AI-проектов</h4><p>ИИ риски</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- CYBER -->
+        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p5_cyber1">Cyber Insurance</h4><p data-i18n="p5_cyber1_desc">Hacker attacks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p5_cyber2">Data Insurance</h4><p data-i18n="p5_cyber2_desc">Data breach</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔒</span><h4 data-i18n="p5_cyber3">Ransomware Insurance</h4><p data-i18n="p5_cyber3_desc">Ransomware</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p5_cyber4">Website Insurance</h4><p data-i18n="p5_cyber4_desc">DDoS protection</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p5_cyber5">Mobile Insurance</h4><p data-i18n="p5_cyber5_desc">Phone loss</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🖥️</span><h4 data-i18n="p5_cyber6">Server Insurance</h4><p data-i18n="p5_cyber6_desc">Server failures</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p5_cyber7">Crypto Wallet Insurance</h4><p data-i18n="p5_cyber7_desc">Wallet access loss</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🪙</span><h4 data-i18n="p5_cyber8">Staking Insurance</h4><p data-i18n="p5_cyber8_desc">Validator risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p5_cyber9">DeFi Insurance</h4><p data-i18n="p5_cyber9_desc">Smart contract hacks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p5_cyber10">Token Insurance</h4><p data-i18n="p5_cyber10_desc">Scam protection</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔗</span><h4 data-i18n="p5_cyber11">Bridge Insurance</h4><p data-i18n="p5_cyber11_desc">Cross-chain risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p5_cyber12">AI Project Insurance</h4><p data-i18n="p5_cyber12_desc">AI risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
-        <!-- ПЕНСИИ -->
-        <div class="card fade-in"><span class="icon">👵</span><h4>Накопительная пенсия</h4><p>Сбережения</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">👴</span><h4>Корпоративная пенсия</h4><p>От работодателя</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💰</span><h4>ИПП</h4><p>Индивидуальный план</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Инвестиционная пенсия</h4><p>В акции</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4>Пенсионный депозит</h4><p>Банковский счет</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🪙</span><h4>Пенсионный стейкинг</h4><p>На криптовалюте</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Пенсионная недвижимость</h4><p>Арендный доход</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🥇</span><h4>Пенсионное золото</h4><p>Драгметаллы</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4>Международная пенсия</h4><p>В любой стране</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4>Пенсионный план для ИП</h4><p>Самозанятые</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">👨‍👩‍👧‍👦</span><h4>Семейная пенсия</h4><p>Наследование</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Перевод пенсии</h4><p>Из фонда в фонд</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- PENSIONS -->
+        <div class="card fade-in"><span class="icon">👵</span><h4 data-i18n="p5_pens1">Savings Pension</h4><p data-i18n="p5_pens1_desc">Savings</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">👴</span><h4 data-i18n="p5_pens2">Corporate Pension</h4><p data-i18n="p5_pens2_desc">Employer plan</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p5_pens3">Individual Pension Plan</h4><p data-i18n="p5_pens3_desc">Personal plan</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p5_pens4">Investment Pension</h4><p data-i18n="p5_pens4_desc">Stock-based</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p5_pens5">Pension Deposit</h4><p data-i18n="p5_pens5_desc">Bank deposit</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🪙</span><h4 data-i18n="p5_pens6">Pension Staking</h4><p data-i18n="p5_pens6_desc">On crypto</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_pens7">Real Estate Pension</h4><p data-i18n="p5_pens7_desc">Rental income</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🥇</span><h4 data-i18n="p5_pens8">Gold Pension</h4><p data-i18n="p5_pens8_desc">Precious metals</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_pens9">International Pension</h4><p data-i18n="p5_pens9_desc">Any country</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p5_pens10">Freelancer Pension</h4><p data-i18n="p5_pens10_desc">Self-employed</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">👨‍👩‍👧‍👦</span><h4 data-i18n="p5_pens11">Family Pension</h4><p data-i18n="p5_pens11_desc">Inheritance</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p5_pens12">Pension Transfer</h4><p data-i18n="p5_pens12_desc">Between funds</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
     </div>
 </div>
 
@@ -318,7 +315,7 @@
                 <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
             </div>
         </div>
-        <div class="footer-disclaimer">⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).</div>
+        <div class="footer-disclaimer" data-i18n="footer_disclaimer">⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).</div>
     </div>
 </footer>
 
@@ -326,11 +323,184 @@
     function calcInsurance() {
         const amount = parseFloat(document.getElementById('insuranceAmount').value);
         const rate = parseFloat(document.getElementById('insuranceRate').value) / 100;
-        if (!amount || rate === undefined) { document.getElementById('insuranceResult').textContent = 'Заполните все поля'; return; }
+        if (!amount || rate === undefined) { document.getElementById('insuranceResult').textContent = 'Fill in all fields'; return; }
         const premium = amount * rate;
-        document.getElementById('insuranceResult').textContent = `Годовая премия: $${premium.toFixed(2)}`;
+        document.getElementById('insuranceResult').textContent = `Annual premium: $${premium.toFixed(2)}`;
     }
     calcInsurance();
+
+    const translations = {
+        en: {
+            nav_home: "Home", nav_finance: "Finance", nav_crypto: "Crypto", nav_exchange: "Exchange",
+            nav_insurance: "Insurance", nav_business: "Business", nav_travel: "Travel", nav_cards: "Cards", nav_buy: "Buy VISA",
+            footer_disclaimer: "⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).",
+            p5_badge: "🛡️ 100+ Insurance Products",
+            p5_title: "Insurance", p5_title2: "& Pensions",
+            p5_desc: "Life, health, auto, real estate, cyber insurance, pension products and more than 100 solutions through VISA.",
+            p5_calc_title: "🧾 Insurance Premium Calculator",
+            p5_calc_amount: "Coverage Amount ($)", p5_calc_rate: "Rate (%)", p5_calc_btn: "Calculate",
+            p5_sec_title: "All", p5_sec_title2: "Insurance Products", p5_sec_desc: "More than 100 tools for life, health, property and business protection.",
+            p5_link_apply: "Apply →",
+            p5_tag_life: "Life", p5_tag_health: "Health", p5_tag_auto: "Auto", p5_tag_prop: "Property", p5_tag_cyber: "Cyber", p5_tag_pens: "Pension",
+            p5_life1: "Life Insurance", p5_life1_desc: "Death coverage",
+            p5_life2: "Health Insurance", p5_life2_desc: "Medical coverage",
+            p5_life3: "Dental Insurance", p5_life3_desc: "Teeth treatment",
+            p5_life4: "Vision Insurance", p5_life4_desc: "Glasses, lenses",
+            p5_life5: "Neurological Insurance", p5_life5_desc: "Stroke protection",
+            p5_life6: "Cardio Insurance", p5_life6_desc: "Cardiovascular",
+            p5_life7: "Cancer Insurance", p5_life7_desc: "Cancer treatment",
+            p5_life8: "Emergency Medical", p5_life8_desc: "Ambulance",
+            p5_life9: "Genetic Insurance", p5_life9_desc: "DNA risks",
+            p5_life10: "Mental Health", p5_life10_desc: "Psychotherapy",
+            p5_life11: "Athlete Insurance", p5_life11_desc: "Sports injuries",
+            p5_life12: "Travel Insurance", p5_life12_desc: "Abroad",
+            p5_auto1: "OSAGO", p5_auto1_desc: "Mandatory auto",
+            p5_auto2: "CASCO", p5_auto2_desc: "Full coverage",
+            p5_auto3: "Car Rental Insurance", p5_auto3_desc: "For rentals",
+            p5_auto4: "Motorcycle Insurance", p5_auto4_desc: "Moto",
+            p5_auto5: "Truck Insurance", p5_auto5_desc: "Commercial vehicles",
+            p5_auto6: "Fleet Insurance", p5_auto6_desc: "Business fleet",
+            p5_auto7: "Green Card", p5_auto7_desc: "For travel",
+            p5_auto8: "Theft Protection", p5_auto8_desc: "Vehicle theft",
+            p5_auto9: "Accident Insurance", p5_auto9_desc: "Crash coverage",
+            p5_auto10: "Natural Disaster Auto", p5_auto10_desc: "Hail, flood",
+            p5_auto11: "Tire Insurance", p5_auto11_desc: "Tire damage",
+            p5_auto12: "Baggage Insurance", p5_auto12_desc: "In vehicle",
+            p5_prop1: "Apartment Insurance", p5_prop1_desc: "Property coverage",
+            p5_prop2: "House Insurance", p5_prop2_desc: "Private home",
+            p5_prop3: "Office Insurance", p5_prop3_desc: "Commercial space",
+            p5_prop4: "Warehouse Insurance", p5_prop4_desc: "Storage",
+            p5_prop5: "Fire Insurance", p5_prop5_desc: "Fire damage",
+            p5_prop6: "Flood Insurance", p5_prop6_desc: "Water damage",
+            p5_prop7: "Electrical Insurance", p5_prop7_desc: "Short circuit",
+            p5_prop8: "Collapse Insurance", p5_prop8_desc: "Building collapse",
+            p5_prop9: "Rental Insurance", p5_prop9_desc: "Rented property",
+            p5_prop10: "Mortgage Insurance", p5_prop10_desc: "Loan protection",
+            p5_prop11: "Collateral Insurance", p5_prop11_desc: "Security coverage",
+            p5_prop12: "Construction Insurance", p5_prop12_desc: "New building",
+            p5_cyber1: "Cyber Insurance", p5_cyber1_desc: "Hacker attacks",
+            p5_cyber2: "Data Insurance", p5_cyber2_desc: "Data breach",
+            p5_cyber3: "Ransomware Insurance", p5_cyber3_desc: "Ransomware",
+            p5_cyber4: "Website Insurance", p5_cyber4_desc: "DDoS protection",
+            p5_cyber5: "Mobile Insurance", p5_cyber5_desc: "Phone loss",
+            p5_cyber6: "Server Insurance", p5_cyber6_desc: "Server failures",
+            p5_cyber7: "Crypto Wallet Insurance", p5_cyber7_desc: "Wallet access loss",
+            p5_cyber8: "Staking Insurance", p5_cyber8_desc: "Validator risks",
+            p5_cyber9: "DeFi Insurance", p5_cyber9_desc: "Smart contract hacks",
+            p5_cyber10: "Token Insurance", p5_cyber10_desc: "Scam protection",
+            p5_cyber11: "Bridge Insurance", p5_cyber11_desc: "Cross-chain risks",
+            p5_cyber12: "AI Project Insurance", p5_cyber12_desc: "AI risks",
+            p5_pens1: "Savings Pension", p5_pens1_desc: "Savings",
+            p5_pens2: "Corporate Pension", p5_pens2_desc: "Employer plan",
+            p5_pens3: "Individual Pension Plan", p5_pens3_desc: "Personal plan",
+            p5_pens4: "Investment Pension", p5_pens4_desc: "Stock-based",
+            p5_pens5: "Pension Deposit", p5_pens5_desc: "Bank deposit",
+            p5_pens6: "Pension Staking", p5_pens6_desc: "On crypto",
+            p5_pens7: "Real Estate Pension", p5_pens7_desc: "Rental income",
+            p5_pens8: "Gold Pension", p5_pens8_desc: "Precious metals",
+            p5_pens9: "International Pension", p5_pens9_desc: "Any country",
+            p5_pens10: "Freelancer Pension", p5_pens10_desc: "Self-employed",
+            p5_pens11: "Family Pension", p5_pens11_desc: "Inheritance",
+            p5_pens12: "Pension Transfer", p5_pens12_desc: "Between funds"
+        },
+        ru: {
+            nav_home: "Главная", nav_finance: "Финансы", nav_crypto: "Крипто", nav_exchange: "Биржа",
+            nav_insurance: "Страхование", nav_business: "Бизнес", nav_travel: "Туризм", nav_cards: "Карты", nav_buy: "Купить VISA",
+            footer_disclaimer: "⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).",
+            p5_badge: "🛡️ 100+ страховых продуктов",
+            p5_title: "Страхование", p5_title2: "и пенсии",
+            p5_desc: "Жизнь, здоровье, авто, недвижимость, киберстрахование, пенсионные продукты и более 100 решений через VISA.",
+            p5_calc_title: "🧾 Калькулятор страховой премии",
+            p5_calc_amount: "Страховая сумма ($)", p5_calc_rate: "Ставка (%)", p5_calc_btn: "Рассчитать",
+            p5_sec_title: "Все", p5_sec_title2: "страховые продукты", p5_sec_desc: "Более 100 инструментов для защиты жизни, здоровья, имущества и бизнеса.",
+            p5_link_apply: "Оформить →",
+            p5_tag_life: "Жизнь", p5_tag_health: "Здоровье", p5_tag_auto: "Авто", p5_tag_prop: "Недвижимость", p5_tag_cyber: "Кибер", p5_tag_pens: "Пенсия",
+            p5_life1: "Страхование жизни", p5_life1_desc: "На случай смерти",
+            p5_life2: "Медицинское страхование", p5_life2_desc: "ДМС",
+            p5_life3: "Стоматологическое страхование", p5_life3_desc: "Лечение зубов",
+            p5_life4: "Страхование зрения", p5_life4_desc: "Очки, линзы",
+            p5_life5: "Неврологическое страхование", p5_life5_desc: "Защита от инсультов",
+            p5_life6: "Кардиострахование", p5_life6_desc: "Сердечно-сосудистые",
+            p5_life7: "Онкострахование", p5_life7_desc: "Лечение рака",
+            p5_life8: "Скорая помощь", p5_life8_desc: "Экстренная медицина",
+            p5_life9: "Генетическое страхование", p5_life9_desc: "Риски по ДНК",
+            p5_life10: "Ментальное здоровье", p5_life10_desc: "Психотерапия",
+            p5_life11: "Страхование спортсменов", p5_life11_desc: "Травмы",
+            p5_life12: "Страхование путешественников", p5_life12_desc: "За границей",
+            p5_auto1: "ОСАГО", p5_auto1_desc: "Обязательное авто",
+            p5_auto2: "КАСКО", p5_auto2_desc: "Полное покрытие",
+            p5_auto3: "Страхование каршеринга", p5_auto3_desc: "Аренда авто",
+            p5_auto4: "Страхование мотоцикла", p5_auto4_desc: "Мото",
+            p5_auto5: "Страхование грузовиков", p5_auto5_desc: "Коммерческий транспорт",
+            p5_auto6: "Страхование автопарка", p5_auto6_desc: "Бизнес-парк",
+            p5_auto7: "Зелёная карта", p5_auto7_desc: "Для путешествий",
+            p5_auto8: "Страхование от угона", p5_auto8_desc: "Кража авто",
+            p5_auto9: "Страхование от ДТП", p5_auto9_desc: "Аварии",
+            p5_auto10: "Страхование от стихии", p5_auto10_desc: "Град, наводнение",
+            p5_auto11: "Страхование шин", p5_auto11_desc: "Покрышки",
+            p5_auto12: "Страхование багажа", p5_auto12_desc: "В авто",
+            p5_prop1: "Страхование квартиры", p5_prop1_desc: "Имущество",
+            p5_prop2: "Страхование дома", p5_prop2_desc: "Частный дом",
+            p5_prop3: "Страхование офиса", p5_prop3_desc: "Коммерческая",
+            p5_prop4: "Страхование склада", p5_prop4_desc: "Хранение",
+            p5_prop5: "Страхование от пожара", p5_prop5_desc: "Огонь",
+            p5_prop6: "Страхование от затопления", p5_prop6_desc: "Вода",
+            p5_prop7: "Страхование от электричества", p5_prop7_desc: "Короткое замыкание",
+            p5_prop8: "Страхование разрушения", p5_prop8_desc: "Обрушение",
+            p5_prop9: "Страхование аренды", p5_prop9_desc: "Съёмное жильё",
+            p5_prop10: "Страхование ипотеки", p5_prop10_desc: "Защита кредита",
+            p5_prop11: "Страхование залога", p5_prop11_desc: "Обеспечение",
+            p5_prop12: "Страхование новостройки", p5_prop12_desc: "Строительство",
+            p5_cyber1: "Киберстрахование", p5_cyber1_desc: "Хакерские атаки",
+            p5_cyber2: "Страхование данных", p5_cyber2_desc: "Утечка",
+            p5_cyber3: "Страхование от вымогателей", p5_cyber3_desc: "Ransomware",
+            p5_cyber4: "Страхование сайтов", p5_cyber4_desc: "DDoS",
+            p5_cyber5: "Страхование мобильных", p5_cyber5_desc: "Потеря телефона",
+            p5_cyber6: "Страхование серверов", p5_cyber6_desc: "Сбои",
+            p5_cyber7: "Страхование криптокошельков", p5_cyber7_desc: "Потеря доступа",
+            p5_cyber8: "Страхование стейкинга", p5_cyber8_desc: "Риски валидаторов",
+            p5_cyber9: "Страхование DeFi", p5_cyber9_desc: "Взломы смарт-контрактов",
+            p5_cyber10: "Страхование токенов", p5_cyber10_desc: "Скамы",
+            p5_cyber11: "Страхование мостов", p5_cyber11_desc: "Кросс-чейн риски",
+            p5_cyber12: "Страхование AI-проектов", p5_cyber12_desc: "ИИ риски",
+            p5_pens1: "Накопительная пенсия", p5_pens1_desc: "Сбережения",
+            p5_pens2: "Корпоративная пенсия", p5_pens2_desc: "От работодателя",
+            p5_pens3: "ИПП", p5_pens3_desc: "Индивидуальный план",
+            p5_pens4: "Инвестиционная пенсия", p5_pens4_desc: "В акции",
+            p5_pens5: "Пенсионный депозит", p5_pens5_desc: "Банковский счет",
+            p5_pens6: "Пенсионный стейкинг", p5_pens6_desc: "На криптовалюте",
+            p5_pens7: "Пенсионная недвижимость", p5_pens7_desc: "Арендный доход",
+            p5_pens8: "Пенсионное золото", p5_pens8_desc: "Драгметаллы",
+            p5_pens9: "Международная пенсия", p5_pens9_desc: "В любой стране",
+            p5_pens10: "Пенсионный план для ИП", p5_pens10_desc: "Самозанятые",
+            p5_pens11: "Семейная пенсия", p5_pens11_desc: "Наследование",
+            p5_pens12: "Перевод пенсии", p5_pens12_desc: "Из фонда в фонд"
+        },
+        es: {}, fr: {}, zh: {}, ja: {}, ar: {}, hi: {}
+    };
+
+    let currentLang = localStorage.getItem('visaLang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('visaLang', lang);
+        document.querySelectorAll('#languageSwitcher a').forEach(el => {
+            el.classList.toggle('active', el.dataset.lang === lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            const translation = translations[lang]?.[key];
+            if (translation !== undefined) el.textContent = translation;
+        });
+        document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('#languageSwitcher a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            setLanguage(this.dataset.lang);
+        });
+    });
 
     const faders = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
@@ -338,14 +508,7 @@
     }, { threshold: 0.1 });
     faders.forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.lang-bar a').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.lang-bar a').forEach(x => x.classList.remove('active'));
-            this.classList.add('active');
-            alert('🌍 Язык изменён на: ' + this.textContent.trim());
-        });
-    });
+    setLanguage(currentLang);
 </script>
 </body>
 </html>
