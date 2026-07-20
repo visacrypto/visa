@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>VISA Token – Verified Institutional Settlement Asset on Solana</title>
+    <meta name="description" content="VISA – Verified Institutional Settlement Asset. Мост между TradFi и DeFi на Solana." />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="VISA Token on Solana" />
+    <meta property="og:description" content="Verified Institutional Settlement Asset – мост TradFi и DeFi." />
+    <meta property="og:image" content="visa-og-image.jpg" />
+    <meta property="og:url" content="https://visacrypto.github.io/visa/" />
+    <meta property="og:type" content="website" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0a0a1a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #7c8cff;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
+            overflow: hidden;
+        }
+
+        .bg-canvas::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(120, 80, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(0, 200, 255, 0.06) 0%, transparent 50%);
+            animation: bgPulse 12s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgPulse {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-5%, -3%) scale(1.1); }
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: orbFloat 18s infinite alternate ease-in-out;
+        }
+        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; animation-delay: 0s; }
+        .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -40px) scale(1.2); }
+        }
+
+        /* ===== HEADER / NAV ===== */
+        header {
+            position: relative;
+            z-index: 10;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 26, 0.6);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-wrap img {
+            height: 44px;
+            width: auto;
+        }
+
+        .logo-wrap span {
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: #b0b8d1;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7c8cff, #9945ff);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-header {
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff !important;
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(121, 68, 255, 0.3);
+        }
+
+        .btn-header:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 30px rgba(121, 68, 255, 0.5);
+        }
+
+        .btn-header::after {
+            display: none !important;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            z-index: 5;
+            padding: 80px 0 60px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(38px, 6vw, 68px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, #7c8cff, #9945ff, #00c8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #b0b8d1;
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(121, 68, 255, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(121, 68, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(4px);
+            transition: background 0.3s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-stats div {
+            text-align: left;
+        }
+
+        .hero-stats .num {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .hero-stats .label {
+            font-size: 14px;
+            color: #7a84a3;
+        }
+
+        /* Hero image / video */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-visual video {
+            width: 100%;
+            max-width: 560px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-visual img {
+            width: 100%;
+            max-width: 560px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(30px, 4vw, 44px);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #b0b8d1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title .badge {
+            display: inline-block;
+            background: rgba(124, 140, 255, 0.12);
+            color: #7c8cff;
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(124, 140, 255, 0.15);
+        }
+
+        /* ===== CARDS GRID ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 32px 24px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(124, 140, 255, 0.25);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        }
+
+        .card .icon {
+            font-size: 38px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #b0b8d1;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .card .tag {
+            display: inline-block;
+            background: rgba(124, 140, 255, 0.08);
+            color: #7c8cff;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(124, 140, 255, 0.08);
+        }
+
+        /* ===== TOKENOMICS ===== */
+        .tokenomics-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .tokenomics-wrap img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            justify-self: center;
+        }
+
+        .tokenomics-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .tokenomics-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 3px solid #7c8cff;
+        }
+
+        .tokenomics-item .label {
+            color: #b0b8d1;
+        }
+
+        .tokenomics-item .value {
+            font-weight: 600;
+        }
+
+        /* ===== ROADMAP ===== */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+
+        .roadmap-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 24px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .roadmap-item .phase {
+            font-size: 13px;
+            font-weight: 700;
+            color: #7c8cff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .roadmap-item h4 {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        .roadmap-item p {
+            font-size: 14px;
+            color: #b0b8d1;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            position: relative;
+            z-index: 5;
+            padding: 48px 0 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-inner p {
+            color: #5a6380;
+            font-size: 14px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-socials a {
+            color: #5a6380;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: #ffffff;
+        }
+
+        .footer-disclaimer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12px;
+            color: #3a4360;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual video,
+            .hero-visual img {
+                max-width: 100%;
+            }
+
+            .tokenomics-wrap {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .tokenomics-wrap img {
+                max-width: 100%;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 40px 0 30px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .btn-header {
+                padding: 8px 20px;
+                font-size: 13px;
+            }
+
+            .card {
+                padding: 24px 16px;
+            }
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== BACKGROUND ===== -->
+    <div class="bg-canvas">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo-wrap">
+                <img src="visa_logo.jpg" alt="VISA Logo" />
+                <span>VISA</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#about">О токене</a>
+                <a href="#features">Возможности</a>
+                <a href="#tokenomics">Токеномика</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#buy" class="btn-header">Купить VISA</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="about">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="badge" style="display:inline-block;background:rgba(124,140,255,0.12);color:#7c8cff;padding:4px 18px;border-radius:40px;font-size:13px;font-weight:600;border:1px solid rgba(124,140,255,0.15);margin-bottom:16px;">
+                    🔥 Verified Institutional Settlement Asset
+                </div>
+                <h1>
+                    VISA на <br /><span class="highlight">Solana</span>
+                </h1>
+                <p>
+                    Мост между традиционными финансами и DeFi. Скорость Solana + надёжность Visa. 
+                    Стейкинг 18% APY, комиссия 0.05%, токеномика на 184B токенов.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#buy" class="btn-primary">🚀 Купить VISA</a>
+                    <a href="#features" class="btn-secondary">📖 Узнать больше</a>
+                </div>
+                <div class="hero-stats">
+                    <div><div class="num">184B</div><div class="label">Total Supply</div></div>
+                    <div><div class="num">$0.02</div><div class="label">Стартовая цена</div></div>
+                    <div><div class="num">0.05%</div><div class="label">Transfer Fee</div></div>
+                    <div><div class="num">18%</div><div class="label">APY стейкинг</div></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <video autoplay loop muted playsinline poster="visa-hero-banner.jpg">
+                    <source src="visa-teaser.mp4" type="video/mp4">
+                    <img src="visa-hero-banner.jpg" alt="VISA Hero Banner" />
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section id="features" class="container" style="position:relative;z-index:5;padding:40px 0;">
+        <div class="section-title fade-in">
+            <span class="badge">⚡ Экосистема</span>
+            <h2>Возможности токена <span style="color:#7c8cff;">VISA</span></h2>
+            <p>Всё, что нужно для институциональных расчётов в мире DeFi.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <span class="icon">🏦</span>
+                <h3>Институциональный мост</h3>
+                <p>Связь между TradFi банками и DeFi протоколами на Solana.</p>
+                <span class="tag">B2B</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">💰</span>
+                <h3>Стейкинг 18% APY</h3>
+                <p>Блокируй VISA и получай пассивный доход каждый день.</p>
+                <span class="tag">Доход</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">📊</span>
+                <h3>Комиссия 0.05%</h3>
+                <p>Минимальная плата за перевод — меньше, чем в любом банке.</p>
+                <span class="tag">Экономия</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">🗳️</span>
+                <h3>DAO-голосование</h3>
+                <p>Влияй на размер комиссий и новые пулы ликвидности.</p>
+                <span class="tag">Управление</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">💳</span>
+                <h3>Карта VISA</h3>
+                <p>Виртуальная и физическая карта для оплаты в любой точке мира.</p>
+                <span class="tag">Платежи</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">🌉</span>
+                <h3>Мост к стейблкоинам</h3>
+                <p>Обмен VISA ⇄ USDC/USDT без проскальзывания.</p>
+                <span class="tag">Ликвидность</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TOKENOMICS ===== -->
+    <section id="tokenomics" class="container" style="position:relative;z-index:5;padding:40px 0;">
+        <div class="section-title fade-in">
+            <span class="badge">📊 Распределение</span>
+            <h2>Токеномика <span style="color:#7c8cff;">VISA</span></h2>
+            <p>184 000 000 000 токенов с прозрачным распределением.</p>
+        </div>
+
+        <div class="tokenomics-wrap">
+            <img src="visa-tokenomics.png" alt="VISA Tokenomics" class="fade-in" />
+            <div class="tokenomics-list fade-in">
+                <div class="tokenomics-item"><span class="label">🌊 Ликвидность (Pinksale)</span><span class="value">40% – 73.6B</span></div>
+                <div class="tokenomics-item"><span class="label">📢 Маркетинг</span><span class="value">20% – 36.8B</span></div>
+                <div class="tokenomics-item"><span class="label">👥 Команда (лок 12 мес)</span><span class="value">15% – 27.6B</span></div>
+                <div class="tokenomics-item"><span class="label">⚡ Стейкинг-пул</span><span class="value">15% – 27.6B</span></div>
+                <div class="tokenomics-item"><span class="label">🔧 Развитие экосистемы</span><span class="value">10% – 18.4B</span></div>
+                <div class="tokenomics-item" style="border-left-color:#9945ff;"><span class="label">💰 Стартовая цена</span><span class="value">$0.02</span></div>
+                <div class="tokenomics-item" style="border-left-color:#00c8ff;"><span class="label">🔄 Transfer Fee</span><span class="value">0.05%</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ROADMAP ===== -->
+    <section id="roadmap" class="container" style="position:relative;z-index:5;padding:40px 0;">
+        <div class="section-title fade-in">
+            <span class="badge">🗺️ План</span>
+            <h2>Дорожная карта <span style="color:#7c8cff;">VISA</span></h2>
+            <p>Ключевые этапы развития проекта.</p>
+        </div>
+
+        <div class="roadmap-grid">
+            <div class="roadmap-item fade-in">
+                <div class="phase">Q4 2026</div>
+                <h4>🚀 Запуск токена</h4>
+                <p>Pinksale IDO, создание пула на Raydium, старт маркетинга.</p>
+            </div>
+            <div class="roadmap-item fade-in">
+                <div class="phase">Q1 2027</div>
+                <h4>⚡ Стейкинг-платформа</h4>
+                <p>Запуск пула с APY 18%, интеграция с кошельками.</p>
+            </div>
+            <div class="roadmap-item fade-in">
+                <div class="phase">Q2 2027</div>
+                <h4>💳 Виртуальная карта</h4>
+                <p>Выпуск крипто-карты VISA для оплаты в любой точке мира.</p>
+            </div>
+            <div class="roadmap-item fade-in">
+                <div class="phase">Q3 2027</div>
+                <h4>🌉 DAO и мосты</h4>
+                <p>DAO-голосование, мост к стейблкоинам и другим сетям.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BUY SECTION ===== -->
+    <section id="buy" class="container" style="position:relative;z-index:5;padding:40px 0 60px;">
+        <div class="section-title fade-in">
+            <span class="badge">🛒 Присоединяйся</span>
+            <h2>Купить <span style="color:#7c8cff;">VISA</span></h2>
+            <p>Токен уже доступен для покупки. Стань частью экосистемы!</p>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-top:20px;">
+            <a href="https://pinksale.finance" target="_blank" class="btn-primary" style="font-size:18px;padding:18px 48px;">
+                🛍️ Купить на Pinksale
+            </a>
+            <a href="https://jup.ag" target="_blank" class="btn-secondary" style="font-size:18px;padding:18px 48px;">
+                🔄 Купить на Jupiter
+            </a>
+            <a href="https://raydium.io" target="_blank" class="btn-secondary" style="font-size:18px;padding:18px 48px;">
+                💧 Купить на Raydium
+            </a>
+        </div>
+
+        <div style="text-align:center;margin-top:40px;background:rgba(255,255,255,0.03);padding:24px;border-radius:16px;border:1px solid rgba(255,255,255,0.05);">
+            <p style="color:#7a84a3;font-size:14px;word-break:break-all;">
+                <strong>Адрес токена:</strong> 
+                <span style="color:#b0b8d1;font-family:monospace;">BHvJfSSZ2cDJ1cGL9xTjCqKyvtrXTC2QiqjDtWJVhVtb</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="logo-wrap">
+                    <img src="visa_logo.jpg" alt="VISA" style="height:32px;" />
+                    <span style="font-size:16px;background:linear-gradient(135deg,#7c8cff,#9945ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">VISA</span>
+                </div>
+                <div class="footer-socials">
+                    <a href="#" target="_blank">🐦 X</a>
+                    <a href="#" target="_blank">💬 Telegram</a>
+                    <a href="#" target="_blank">🐙 GitHub</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                ⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. 
+                Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCROLL ANIMATION ===== -->
+    <script>
+        const faders = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+        });
+
+        faders.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
