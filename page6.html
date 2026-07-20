@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>VISA – Бизнес-услуги | B2B-платежи, зарплатные проекты, бухгалтерия</title>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #fff; line-height: 1.6; }
+        a { color: #7c8cff; text-decoration: none; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        
+        .lang-bar {
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 8px 0;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+        .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+
+        .bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
+            overflow: hidden;
+        }
+        .bg-canvas::before {
+            content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
+            animation: bgPulse 12s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
+        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+
+        header {
+            position: relative; z-index: 10; padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            background: rgba(10,10,26,0.6);
+        }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; }
+        .logo-wrap img { height: 44px; width: auto; }
+        .logo-wrap span {
+            font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .nav-links a {
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s;
+            padding: 6px 12px; border-radius: 8px;
+        }
+        .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .nav-links a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .btn-header {
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
+            color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(121,68,255,0.3);
+        }
+        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
+
+        .page-hero {
+            position: relative; z-index: 5; padding: 40px 0 30px;
+            text-align: center;
+        }
+        .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
+        .page-hero h1 span { background: linear-gradient(135deg, #00c8ff, #7c8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
+
+        .badge {
+            display: inline-block; background: rgba(124,140,255,0.12); color: #7c8cff;
+            padding: 4px 18px; border-radius: 40px; font-size: 13px; font-weight: 600;
+            letter-spacing: 0.5px; margin-bottom: 14px; border: 1px solid rgba(124,140,255,0.15);
+        }
+
+        .section-title { text-align: center; margin: 40px 0 32px; }
+        .section-title h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 700; }
+        .section-title p { color: #b0b8d1; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+            position: relative; z-index: 5;
+        }
+        .card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 20px 18px;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .card:hover { transform: translateY(-4px); border-color: rgba(124,140,255,0.25); }
+        .card .icon { font-size: 28px; margin-bottom: 8px; display: block; }
+        .card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .card p { color: #b0b8d1; font-size: 13px; }
+        .card .tag {
+            display: inline-block; background: rgba(124,140,255,0.08); color: #7c8cff;
+            padding: 2px 12px; border-radius: 40px; font-size: 11px; font-weight: 600;
+            margin-top: 8px; border: 1px solid rgba(124,140,255,0.08);
+        }
+        .card .link { display: block; margin-top: 10px; font-size: 13px; font-weight: 600; color: #7c8cff; }
+        .card .link:hover { text-decoration: underline; }
+
+        footer {
+            position: relative; z-index: 5; padding: 40px 0 24px;
+            border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;
+        }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-inner p { color: #5a6380; font-size: 14px; }
+        .footer-socials { display: flex; gap: 20px; }
+        .footer-socials a { color: #5a6380; font-size: 18px; transition: color 0.3s; }
+        .footer-socials a:hover { color: #fff; }
+        .footer-disclaimer { text-align: center; margin-top: 20px; font-size: 12px; color: #3a4360; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        @media (max-width: 600px) {
+            .nav-links { gap: 8px; }
+            .nav-links a { font-size: 12px; padding: 4px 8px; }
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <div class="container">
+        <a href="#" class="active" data-lang="en">English</a>
+        <a href="#" data-lang="ru">Русский</a>
+        <a href="#" data-lang="es">Español</a>
+        <a href="#" data-lang="fr">Français</a>
+        <a href="#" data-lang="zh">中文</a>
+        <a href="#" data-lang="ja">日本語</a>
+        <a href="#" data-lang="ar">العربية</a>
+        <a href="#" data-lang="hi">हिन्दी</a>
+    </div>
+</div>
+
+<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo-wrap">
+            <img src="visa_logo.jpg" alt="VISA" />
+            <span>VISA</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="page2.html">Финансы</a>
+            <a href="page3.html">Крипто</a>
+            <a href="page4.html">Биржа</a>
+            <a href="page5.html">Страхование</a>
+            <a href="page6.html" class="active">Бизнес</a>
+            <a href="page7.html">Туризм</a>
+            <a href="page8.html">Карты</a>
+            <a href="index.html#buy" class="btn-header">🚀 Купить VISA</a>
+        </nav>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <div class="badge">🏢 100+ бизнес-решений</div>
+        <h1>Бизнес <span>услуги</span></h1>
+        <p>B2B-платежи, зарплатные проекты, корпоративные карты, бухгалтерия и более 100 продуктов через VISA.</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="section-title fade-in">
+        <h2>Все <span style="color:#7c8cff;">бизнес-продукты</span></h2>
+        <p>Более 100 инструментов для развития и управления бизнесом.</p>
+    </div>
+    <div class="cards-grid">
+        <!-- B2B-ПЛАТЕЖИ -->
+        <div class="card fade-in"><span class="icon">💳</span><h4>B2B-платежи</h4><p>Между юрлицами</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4>Кросс-граничные платежи</h4><p>Международные</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">⏱️</span><h4>Мгновенные платежи</h4><p>Real-time</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4>Массовые выплаты</h4><p>Зарплата, поставщики</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4>Регулярные платежи</h4><p>Автоплатежи</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4>Платежные шлюзы</h4><p>API для сайтов</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4>Платежи через QR</h4><p>Быстрая оплата</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🔗</span><h4>Интеграция с 1С</h4><p>Бухгалтерия</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4>Электронные счета</h4><p>Документооборот</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4>Защита платежей</h4><p>Антифрод</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4>Аналитика платежей</h4><p>Отчёты</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🤖</span><h4>Автоматизация платежей</h4><p>AI-оптимизация</p><span class="tag">Платежи</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+
+        <!-- ЗАРПЛАТНЫЕ ПРОЕКТЫ -->
+        <div class="card fade-in"><span class="icon">💳</span><h4>Зарплатные карты VISA</h4><p>Для сотрудников</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4>Корпоративные карты</h4><p>Для расходов</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4>Зарплата в криптовалюте</h4><p>USDC, VISA</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4>Расчёт зарплаты</h4><p>Калькулятор налогов</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4>Табель учёта</h4><p>Рабочее время</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4>Расчётные листки</h4><p>Электронные</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4>Аналитика зарплат</h4><p>Статистика</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4>Индексация зарплат</h4><p>Автоматическая</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4>Бонусные программы</h4><p>Премии</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🧑‍💻</span><h4>Удалённые сотрудники</h4><p>В любой стране</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4>Международные зарплаты</h4><p>В разной валюте</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4>Безопасность зарплат</h4><p>Защита данных</p><span class="tag">Зарплата</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+
+        <!-- БУХГАЛТЕРИЯ -->
+        <div class="card fade-in"><span class="icon">📊</span><h4>Бухгалтерский учёт</h4><p>Проводки</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4>Налоговый учёт</h4><p>Расчёт налогов</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4>Сдача отчётности</h4><p>Электронная</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4>Первичные документы</h4><p>Счета, накладные</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4>Баланс и отчёты</h4><p>Финансовые отчёты</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4>Управленческий учёт</h4><p>Аналитика</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4>Сверка с контрагентами</h4><p>Акты сверки</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4>Банковская выписка</h4><p>Электронная</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4>Кассовые операции</h4><p>Касса</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4>Мобильная бухгалтерия</h4><p>С телефона</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🤖</span><h4>Автоматизация учёта</h4><p>AI-бухгалтер</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4>Архивация данных</h4><p>Хранение</p><span class="tag">Бухгалтерия</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+
+        <!-- КОРПОРАТИВНЫЕ КАРТЫ -->
+        <div class="card fade-in"><span class="icon">💳</span><h4>Корпоративная карта VISA</h4><p>Для бизнеса</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4>Топливные карты</h4><p>Для автопарка</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4>Карты для командировок</h4><p>Расходы</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4>Виртуальные корпоративные</h4><p>Онлайн-оплата</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4>Лимиты карт</h4><p>Контроль расходов</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4>Отчёты по картам</h4><p>Аналитика</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4>Страхование карт</h4><p>Защита</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔒</span><h4>Безопасность карт</h4><p>3D Secure</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4>Управление картами</h4><p>Мобильное приложение</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4>Блокировка карт</h4><p>Онлайн</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4>Кэшбэк для бизнеса</h4><p>Возврат %</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4>Международные карты</h4><p>В любой валюте</p><span class="tag">Карты</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+
+        <!-- ДРУГИЕ БИЗНЕС-УСЛУГИ -->
+        <div class="card fade-in"><span class="icon">🏢</span><h4>Регистрация бизнеса</h4><p>ООО, ИП</p><span class="tag">Юридические</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4>Юридические консультации</h4><p>Договоры</p><span class="tag">Юридические</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4>Бизнес-планирование</h4><p>Стратегия</p><span class="tag">Консалтинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4>Маркетинговые услуги</h4><p>Продвижение</p><span class="tag">Консалтинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🤖</span><h4>Автоматизация бизнеса</h4><p>CRM, ERP</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">💻</span><h4>Разработка сайтов</h4><p>Под ключ</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4>Мобильные приложения</h4><p>iOS, Android</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4>Кибербезопасность</h4><p>Защита бизнеса</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4>Аналитика бизнеса</h4><p>Big Data</p><span class="tag">Аналитика</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4>AI-решения</h4><p>Искусственный интеллект</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4>ЭДО</h4><p>Электронный документооборот</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4>Корпоративный VPN</h4><p>Безопасный доступ</p><span class="tag">Технологии</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="logo-wrap"><img src="visa_logo.jpg" alt="VISA" style="height:32px;" /><span style="font-size:16px;background:linear-gradient(135deg,#7c8cff,#9945ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">VISA</span></div>
+            <div class="footer-socials">
+                <a href="https://cis.visa.com" target="_blank">🌐 Visa CIS</a>
+                <a href="https://twitter.com/visa" target="_blank">🐦 X</a>
+                <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
+            </div>
+        </div>
+        <div class="footer-disclaimer">⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).</div>
+    </div>
+</footer>
+
+<script>
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.lang-bar a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.lang-bar a').forEach(x => x.classList.remove('active'));
+            this.classList.add('active');
+            alert('🌍 Язык изменён на: ' + this.textContent.trim());
+        });
+    });
+</script>
+</body>
+</html>
