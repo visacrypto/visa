@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>VISA – Страхование | Жизнь, здоровье, авто, недвижимость, кибер</title>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #fff; line-height: 1.6; }
+        a { color: #7c8cff; text-decoration: none; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        
+        .lang-bar {
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 8px 0;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+        .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+
+        .bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
+            overflow: hidden;
+        }
+        .bg-canvas::before {
+            content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
+            animation: bgPulse 12s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
+        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+
+        header {
+            position: relative; z-index: 10; padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            background: rgba(10,10,26,0.6);
+        }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; }
+        .logo-wrap img { height: 44px; width: auto; }
+        .logo-wrap span {
+            font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .nav-links a {
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s;
+            padding: 6px 12px; border-radius: 8px;
+        }
+        .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .nav-links a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .btn-header {
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
+            color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(121,68,255,0.3);
+        }
+        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
+
+        .page-hero {
+            position: relative; z-index: 5; padding: 40px 0 30px;
+            text-align: center;
+        }
+        .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
+        .page-hero h1 span { background: linear-gradient(135deg, #00c8ff, #0088ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
+
+        .badge {
+            display: inline-block; background: rgba(0,136,255,0.12); color: #0088ff;
+            padding: 4px 18px; border-radius: 40px; font-size: 13px; font-weight: 600;
+            letter-spacing: 0.5px; margin-bottom: 14px; border: 1px solid rgba(0,136,255,0.15);
+        }
+
+        .section-title { text-align: center; margin: 40px 0 32px; }
+        .section-title h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 700; }
+        .section-title p { color: #b0b8d1; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+            position: relative; z-index: 5;
+        }
+        .card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 20px 18px;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .card:hover { transform: translateY(-4px); border-color: rgba(0,136,255,0.25); }
+        .card .icon { font-size: 28px; margin-bottom: 8px; display: block; }
+        .card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .card p { color: #b0b8d1; font-size: 13px; }
+        .card .tag {
+            display: inline-block; background: rgba(0,136,255,0.08); color: #0088ff;
+            padding: 2px 12px; border-radius: 40px; font-size: 11px; font-weight: 600;
+            margin-top: 8px; border: 1px solid rgba(0,136,255,0.08);
+        }
+        .card .link { display: block; margin-top: 10px; font-size: 13px; font-weight: 600; color: #0088ff; }
+        .card .link:hover { text-decoration: underline; }
+
+        .calculator-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 32px 28px;
+            margin: 32px 0;
+            position: relative; z-index: 5;
+        }
+        .calculator-section h3 { font-size: 22px; margin-bottom: 16px; }
+        .calc-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+        .calc-row label { font-size: 14px; color: #b0b8d1; display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 140px; }
+        .calc-row input {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #fff;
+            font-size: 16px;
+            width: 100%;
+        }
+        .calc-row input:focus { outline: none; border-color: #0088ff; }
+        .calc-result { margin-top: 16px; font-size: 20px; font-weight: 700; color: #0088ff; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0088ff, #00c8ff);
+            padding: 12px 32px; border-radius: 50px; font-weight: 600; font-size: 15px;
+            color: #fff; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(0,136,255,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(0,136,255,0.5); }
+
+        footer {
+            position: relative; z-index: 5; padding: 40px 0 24px;
+            border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;
+        }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-inner p { color: #5a6380; font-size: 14px; }
+        .footer-socials { display: flex; gap: 20px; }
+        .footer-socials a { color: #5a6380; font-size: 18px; transition: color 0.3s; }
+        .footer-socials a:hover { color: #fff; }
+        .footer-disclaimer { text-align: center; margin-top: 20px; font-size: 12px; color: #3a4360; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        @media (max-width: 600px) {
+            .nav-links { gap: 8px; }
+            .nav-links a { font-size: 12px; padding: 4px 8px; }
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .calc-row { flex-direction: column; }
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <div class="container">
+        <a href="#" class="active" data-lang="en">English</a>
+        <a href="#" data-lang="ru">Русский</a>
+        <a href="#" data-lang="es">Español</a>
+        <a href="#" data-lang="fr">Français</a>
+        <a href="#" data-lang="zh">中文</a>
+        <a href="#" data-lang="ja">日本語</a>
+        <a href="#" data-lang="ar">العربية</a>
+        <a href="#" data-lang="hi">हिन्दी</a>
+    </div>
+</div>
+
+<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo-wrap">
+            <img src="visa_logo.jpg" alt="VISA" />
+            <span>VISA</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="page2.html">Финансы</a>
+            <a href="page3.html">Крипто</a>
+            <a href="page4.html">Биржа</a>
+            <a href="page5.html" class="active">Страхование</a>
+            <a href="page6.html">Бизнес</a>
+            <a href="page7.html">Туризм</a>
+            <a href="page8.html">Карты</a>
+            <a href="index.html#buy" class="btn-header">🚀 Купить VISA</a>
+        </nav>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <div class="badge">🛡️ 100+ страховых продуктов</div>
+        <h1>Страхование <span>и пенсии</span></h1>
+        <p>Жизнь, здоровье, авто, недвижимость, киберстрахование, пенсионные продукты и более 100 решений через VISA.</p>
+    </div>
+</section>
+
+<!-- ===== КАЛЬКУЛЯТОР СТРАХОВАНИЯ ===== -->
+<div class="container">
+    <div class="calculator-section fade-in">
+        <h3>🧾 Калькулятор страховой премии</h3>
+        <div class="calc-row">
+            <label>Страховая сумма ($)<input type="number" id="insuranceAmount" value="50000" /></label>
+            <label>Ставка (%)<input type="number" id="insuranceRate" value="2" step="0.1" /></label>
+            <button class="btn-primary" onclick="calcInsurance()">Рассчитать</button>
+        </div>
+        <div class="calc-result" id="insuranceResult">Годовая премия: $1,000.00</div>
+    </div>
+</div>
+
+<!-- ===== 100+ ФУНКЦИЙ ===== -->
+<div class="container">
+    <div class="section-title fade-in">
+        <h2>Все <span style="color:#0088ff;">страховые продукты</span></h2>
+        <p>Более 100 инструментов для защиты жизни, здоровья, имущества и бизнеса.</p>
+    </div>
+    <div class="cards-grid">
+        <!-- ЖИЗНЬ И ЗДОРОВЬЕ -->
+        <div class="card fade-in"><span class="icon">❤️</span><h4>Страхование жизни</h4><p>На случай смерти</p><span class="tag">Жизнь</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏥</span><h4>Медицинское страхование</h4><p>ДМС</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🦷</span><h4>Стоматологическое страхование</h4><p>Лечение зубов</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">👁️</span><h4>Страхование зрения</h4><p>Очки, линзы</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4>Неврологическое страхование</h4><p>Защита от инсультов</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">❤️</span><h4>Кардиострахование</h4><p>Сердечно-сосудистые</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🩺</span><h4>Онкострахование</h4><p>Лечение рака</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚑</span><h4>Скорая помощь</h4><p>Экстренная медицина</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🧬</span><h4>Генетическое страхование</h4><p>Риски по ДНК</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🧘</span><h4>Ментальное здоровье</h4><p>Психотерапия</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏋️</span><h4>Страхование спортсменов</h4><p>Травмы</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4>Страхование путешественников</h4><p>За границей</p><span class="tag">Здоровье</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+
+        <!-- АВТО -->
+        <div class="card fade-in"><span class="icon">🚗</span><h4>ОСАГО</h4><p>Обязательное авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>КАСКО</h4><p>Полное покрытие</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование каршеринга</h4><p>Аренда авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование мотоцикла</h4><p>Мото</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование грузовиков</h4><p>Грузовики</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование автопарка</h4><p>Бизнес</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Зелёная карта</h4><p>Для путешествий</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование от угона</h4><p>Кража авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование от ДТП</h4><p>Аварии</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование от стихии</h4><p>Град, наводнение</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование шин</h4><p>Покрышки</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4>Страхование багажа</h4><p>В авто</p><span class="tag">Авто</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+
+        <!-- НЕДВИЖИМОСТЬ -->
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование квартиры</h4><p>Имущество</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование дома</h4><p>Частный дом</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏢</span><h4>Страхование офиса</h4><p>Коммерческая</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏭</span><h4>Страхование склада</h4><p>Хранение</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование от пожара</h4><p>Огонь</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4>Страхование от затопления</h4><p>Вода</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4>Страхование от электричества</h4><p>Короткое замыкание</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏚️</span><h4>Страхование разрушения</h4><p>Обрушение</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование аренды</h4><p>Съёмное жильё</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование ипотеки</h4><p>Защита кредита</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование залога</h4><p>Обеспечение</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Страхование новостройки</h4><p>Строительство</p><span class="tag">Недвижимость</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+
+        <!-- КИБЕР -->
+        <div class="card fade-in"><span class="icon">💻</span><h4>Киберстрахование</h4><p>Хакерские атаки</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4>Страхование данных</h4><p>Утечка</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔒</span><h4>Страхование от вымогателей</h4><p>Ransomware</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4>Страхование сайтов</h4><p>DDoS</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4>Страхование мобильных</h4><p>Потеря телефона</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🖥️</span><h4>Страхование серверов</h4><p>Сбои</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4>Страхование криптокошельков</h4><p>Потеря доступа</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🪙</span><h4>Страхование стейкинга</h4><p>Риски валидаторов</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4>Страхование DeFi</h4><p>Взломы смарт-контрактов</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4>Страхование токенов</h4><p>Скамы</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔗</span><h4>Страхование мостов</h4><p>Кросс-чейн риски</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4>Страхование AI-проектов</h4><p>ИИ риски</p><span class="tag">Кибер</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+
+        <!-- ПЕНСИИ -->
+        <div class="card fade-in"><span class="icon">👵</span><h4>Накопительная пенсия</h4><p>Сбережения</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">👴</span><h4>Корпоративная пенсия</h4><p>От работодателя</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4>ИПП</h4><p>Индивидуальный план</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4>Инвестиционная пенсия</h4><p>В акции</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4>Пенсионный депозит</h4><p>Банковский счет</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🪙</span><h4>Пенсионный стейкинг</h4><p>На криптовалюте</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4>Пенсионная недвижимость</h4><p>Арендный доход</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🥇</span><h4>Пенсионное золото</h4><p>Драгметаллы</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4>Международная пенсия</h4><p>В любой стране</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4>Пенсионный план для ИП</h4><p>Самозанятые</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">👨‍👩‍👧‍👦</span><h4>Семейная пенсия</h4><p>Наследование</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4>Перевод пенсии</h4><p>Из фонда в фонд</p><span class="tag">Пенсия</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="logo-wrap"><img src="visa_logo.jpg" alt="VISA" style="height:32px;" /><span style="font-size:16px;background:linear-gradient(135deg,#0088ff,#00c8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">VISA</span></div>
+            <div class="footer-socials">
+                <a href="https://cis.visa.com" target="_blank">🌐 Visa CIS</a>
+                <a href="https://twitter.com/visa" target="_blank">🐦 X</a>
+                <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
+            </div>
+        </div>
+        <div class="footer-disclaimer">⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).</div>
+    </div>
+</footer>
+
+<script>
+    function calcInsurance() {
+        const amount = parseFloat(document.getElementById('insuranceAmount').value);
+        const rate = parseFloat(document.getElementById('insuranceRate').value) / 100;
+        if (!amount || rate === undefined) { document.getElementById('insuranceResult').textContent = 'Заполните все поля'; return; }
+        const premium = amount * rate;
+        document.getElementById('insuranceResult').textContent = `Годовая премия: $${premium.toFixed(2)}`;
+    }
+    calcInsurance();
+
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.lang-bar a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.lang-bar a').forEach(x => x.classList.remove('active'));
+            this.classList.add('active');
+            alert('🌍 Язык изменён на: ' + this.textContent.trim());
+        });
+    });
+</script>
+</body>
+</html>
