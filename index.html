@@ -55,959 +55,938 @@
         .lang-bar a:hover { color: #ffffff; background: rgba(255,255,255,0.06); }
         .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.12); }
 
-        /* ===== ANIMATED BACKGROUND ===== */
+        /* ===== ANIMATED BACKGROUND (MOVING SUBSTRATE) ===== */
         .bg-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
             background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
             overflow: hidden;
         }
         .bg-canvas::before {
-            content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
             background: 
                 radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
                 radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
-        @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
-        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
-        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
+        @keyframes bgPulse {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-5%, -3%) scale(1.1); }
+        }
+
+        /* Floating orbs - ДВИЖУЩИЕСЯ ПОДЛОЖКИ */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: orbFloat 18s infinite alternate ease-in-out;
+        }
+        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; animation-delay: 0s; }
         .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
         .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
-        @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+        .orb-4 { width: 350px; height: 350px; background: #ff6b6b; top: 20%; right: 10%; animation-delay: -4s; }
+        .orb-5 { width: 250px; height: 250px; background: #ffd93d; bottom: 20%; left: 10%; animation-delay: -9s; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, -40px) scale(1.2); }
+        }
+
+        /* ===== TICKER (БЕГУЩАЯ СТРОКА) ===== */
+        .ticker-wrap {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 0;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerScroll 30s linear infinite;
+            font-size: 14px;
+            font-weight: 500;
+            color: #b0b8d1;
+        }
+        .ticker span {
+            margin: 0 40px;
+            color: #7c8cff;
+        }
+        .ticker .highlight {
+            color: #00c8ff;
+        }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
         /* ===== HEADER ===== */
         header {
-            position: relative; z-index: 10; padding: 18px 0;
+            position: relative;
+            z-index: 10;
+            padding: 18px 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             backdrop-filter: blur(12px);
             background: rgba(10,10,26,0.6);
         }
         .header-inner {
-            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-        .logo-wrap { display: flex; align-items: center; gap: 12px; }
-        .logo-wrap img { height: 44px; width: auto; }
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-wrap img {
+            height: 44px;
+            width: auto;
+        }
         .logo-wrap span {
-            font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
+            font-weight: 700;
+            font-size: 22px;
+            letter-spacing: -0.5px;
             background: linear-gradient(135deg, #7c8cff, #9945ff);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
         .nav-links a {
-            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s, background 0.3s;
-            padding: 6px 12px; border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #b0b8d1;
+            transition: color 0.3s, background 0.3s;
+            padding: 6px 12px;
+            border-radius: 8px;
         }
-        .nav-links a:hover { color: #ffffff; background: rgba(255,255,255,0.05); }
-        .nav-links a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .nav-links a:hover {
+            color: #ffffff;
+            background: rgba(255,255,255,0.05);
+        }
+        .nav-links a.active {
+            color: #7c8cff;
+            background: rgba(124,140,255,0.1);
+        }
         .btn-header {
             background: linear-gradient(135deg, #7c8cff, #9945ff);
-            padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
-            color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #fff !important;
+            transition: transform 0.2s, box-shadow 0.3s;
             box-shadow: 0 4px 20px rgba(121,68,255,0.3);
         }
-        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
+        .btn-header:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 30px rgba(121,68,255,0.5);
+        }
 
         /* ===== HERO ===== */
-        .hero { position: relative; z-index: 5; padding: 60px 0 40px; min-height: 85vh; display: flex; align-items: center; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero-content h1 { font-size: clamp(38px, 6vw, 64px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-        .hero-content h1 .highlight { background: linear-gradient(135deg, #7c8cff, #9945ff, #00c8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-content p { font-size: 18px; color: #b0b8d1; max-width: 520px; margin-bottom: 24px; }
-        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero {
+            position: relative;
+            z-index: 5;
+            padding: 60px 0 40px;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-content h1 {
+            font-size: clamp(38px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, #7c8cff, #9945ff, #00c8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: #b0b8d1;
+            max-width: 520px;
+            margin-bottom: 24px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
         .btn-primary {
             background: linear-gradient(135deg, #7c8cff, #9945ff);
-            padding: 14px 36px; border-radius: 50px; font-weight: 600; font-size: 16px;
-            color: #fff; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 24px rgba(121,68,255,0.35); display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 24px rgba(121,68,255,0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(121,68,255,0.5); }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(121,68,255,0.5);
+        }
         .btn-secondary {
-            background: rgba(255,255,255,0.06); padding: 14px 32px; border-radius: 50px;
-            font-weight: 600; font-size: 16px; color: #fff; border: 1px solid rgba(255,255,255,0.12);
-            backdrop-filter: blur(4px); transition: background 0.3s, transform 0.2s; display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.06);
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(4px);
+            transition: background 0.3s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-        .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-3px); }
-        .hero-stats { display: flex; gap: 32px; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
-        .hero-stats .num { font-size: 26px; font-weight: 700; color: #fff; }
-        .hero-stats .label { font-size: 13px; color: #7a84a3; }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-3px);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            flex-wrap: wrap;
+        }
+        .hero-stats .num {
+            font-size: 26px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .hero-stats .label {
+            font-size: 13px;
+            color: #7a84a3;
+        }
 
-        .hero-visual video, .hero-visual img { width: 100%; max-width: 560px; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.06); }
+        .hero-visual video,
+        .hero-visual img {
+            width: 100%;
+            max-width: 560px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ===== POOL INFO CARDS ===== */
+        .pool-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 32px 0;
+            position: relative;
+            z-index: 5;
+        }
+        .pool-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 24px 20px;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .pool-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 140, 255, 0.25);
+        }
+        .pool-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .pool-card p {
+            color: #b0b8d1;
+            font-size: 14px;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+        .pool-card .tag {
+            display: inline-block;
+            background: rgba(124, 140, 255, 0.08);
+            color: #7c8cff;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(124, 140, 255, 0.08);
+        }
+        .pool-card .link-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+        .pool-card .link-btn:hover {
+            transform: scale(1.04);
+        }
 
         /* ===== SECTION ===== */
-        .section-title { text-align: center; margin-bottom: 48px; }
-        .section-title h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; margin-bottom: 10px; }
-        .section-title p { color: #b0b8d1; max-width: 600px; margin: 0 auto; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-title h2 {
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .section-title p {
+            color: #b0b8d1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
         .badge {
-            display: inline-block; background: rgba(124,140,255,0.12); color: #7c8cff;
-            padding: 4px 18px; border-radius: 40px; font-size: 13px; font-weight: 600;
-            letter-spacing: 0.5px; margin-bottom: 14px; border: 1px solid rgba(124,140,255,0.15);
+            display: inline-block;
+            background: rgba(124, 140, 255, 0.12);
+            color: #7c8cff;
+            padding: 4px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(124, 140, 255, 0.15);
         }
 
         /* ===== CARDS GRID ===== */
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin: 32px 0; }
-        .card {
-            background: rgba(255,255,255,0.03); backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.06); border-radius: 20px;
-            padding: 28px 22px; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
         }
-        .card:hover { transform: translateY(-6px); border-color: rgba(124,140,255,0.25); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
-        .card .icon { font-size: 34px; margin-bottom: 12px; display: block; }
-        .card h3 { font-size: 19px; font-weight: 600; margin-bottom: 6px; }
-        .card p { color: #b0b8d1; font-size: 14px; margin-bottom: 12px; }
-        .card .tag { display: inline-block; background: rgba(124,140,255,0.08); color: #7c8cff; padding: 2px 14px; border-radius: 40px; font-size: 12px; font-weight: 600; border: 1px solid rgba(124,140,255,0.08); }
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 28px 22px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(124, 140, 255, 0.25);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+        }
+        .card .icon {
+            font-size: 34px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .card h3 {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .card p {
+            color: #b0b8d1;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .card .tag {
+            display: inline-block;
+            background: rgba(124, 140, 255, 0.08);
+            color: #7c8cff;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(124, 140, 255, 0.08);
+        }
 
         /* ===== BUY OPTIONS ===== */
-        .buy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
-        .buy-item {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px;
-            padding: 16px 18px; text-align: center; transition: 0.3s;
+        .buy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
         }
-        .buy-item:hover { border-color: rgba(124,140,255,0.3); background: rgba(255,255,255,0.06); }
-        .buy-item a { font-weight: 600; font-size: 14px; display: block; }
-        .buy-item .sub { font-size: 12px; color: #7a84a3; }
+        .buy-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 16px 18px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .buy-item:hover {
+            border-color: rgba(124, 140, 255, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .buy-item a {
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+        }
+        .buy-item .sub {
+            font-size: 12px;
+            color: #7a84a3;
+        }
 
         /* ===== VISA EUROPE BANNER ===== */
         .visa-europe-banner {
-            background: linear-gradient(135deg, rgba(26,26,78,0.8), rgba(10,10,26,0.8));
-            border: 1px solid rgba(124,140,255,0.15);
-            border-radius: 20px; padding: 32px 40px; margin: 40px 0;
-            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+            background: linear-gradient(135deg, rgba(26, 26, 78, 0.8), rgba(10, 10, 26, 0.8));
+            border: 1px solid rgba(124, 140, 255, 0.15);
+            border-radius: 20px;
+            padding: 32px 40px;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
         }
-        .visa-europe-banner h3 { font-size: 22px; }
-        .visa-europe-banner p { color: #b0b8d1; max-width: 500px; }
+        .visa-europe-banner h3 {
+            font-size: 22px;
+        }
+        .visa-europe-banner p {
+            color: #b0b8d1;
+            max-width: 500px;
+        }
 
         /* ===== FOOTER ===== */
-        footer { position: relative; z-index: 5; padding: 40px 0 24px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .footer-inner p { color: #5a6380; font-size: 14px; }
-        .footer-socials { display: flex; gap: 20px; }
-        .footer-socials a { color: #5a6380; font-size: 18px; transition: color 0.3s; }
-        .footer-socials a:hover { color: #ffffff; }
-        .footer-disclaimer { text-align: center; margin-top: 20px; font-size: 12px; color: #3a4360; max-width: 700px; margin-left: auto; margin-right: auto; }
+        footer {
+            position: relative;
+            z-index: 5;
+            padding: 40px 0 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-inner p {
+            color: #5a6380;
+            font-size: 14px;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-socials a {
+            color: #5a6380;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .footer-socials a:hover {
+            color: #ffffff;
+        }
+        .footer-disclaimer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #3a4360;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 968px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-content p { margin-left: auto; margin-right: auto; }
-            .hero-buttons { justify-content: center; }
-            .hero-stats { justify-content: center; }
-            .hero-visual video, .hero-visual img { max-width: 100%; }
-            .visa-europe-banner { flex-direction: column; text-align: center; }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-visual video,
+            .hero-visual img {
+                max-width: 100%;
+            }
+            .visa-europe-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .pool-grid {
+                grid-template-columns: 1fr;
+            }
         }
         @media (max-width: 600px) {
-            .nav-links { gap: 8px; }
-            .btn-header { padding: 8px 18px; font-size: 13px; }
-            .card { padding: 20px 16px; }
+            .nav-links {
+                gap: 8px;
+            }
+            .btn-header {
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+            .card {
+                padding: 20px 16px;
+            }
+            .ticker {
+                font-size: 12px;
+            }
         }
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
-<!-- ===== LANGUAGE BAR ===== -->
-<div class="lang-bar">
-    <div class="container" id="languageSwitcher">
-        <a data-lang="en" class="active">English</a>
-        <a data-lang="ru">Русский</a>
-        <a data-lang="es">Español</a>
-        <a data-lang="fr">Français</a>
-        <a data-lang="zh">中文</a>
-        <a data-lang="ja">日本語</a>
-        <a data-lang="ar">العربية</a>
-        <a data-lang="hi">हिन्दी</a>
+    <!-- ===== LANGUAGE BAR ===== -->
+    <div class="lang-bar">
+        <div class="container" id="languageSwitcher">
+            <a data-lang="en" class="active">English</a>
+            <a data-lang="ru">Русский</a>
+            <a data-lang="es">Español</a>
+            <a data-lang="fr">Français</a>
+            <a data-lang="zh">中文</a>
+            <a data-lang="ja">日本語</a>
+            <a data-lang="ar">العربية</a>
+            <a data-lang="hi">हिन्दी</a>
+        </div>
     </div>
-</div>
 
-<!-- ===== BACKGROUND ===== -->
-<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+    <!-- ===== ANIMATED BACKGROUND (MOVING SUBSTRATE) ===== -->
+    <div class="bg-canvas">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+    </div>
 
-<!-- ===== HEADER ===== -->
-<header>
-    <div class="container header-inner">
-        <div class="logo-wrap">
-            <img src="visa_logo.jpg" alt="VISA Logo" />
-            <span>VISA</span>
+    <!-- ===== TICKER (БЕГУЩАЯ СТРОКА) ===== -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span>🚀 VISA Token — Verified Institutional Settlement Asset</span>
+            <span>💰 Price: $0.02</span>
+            <span>📊 Total Supply: 184,000,000,000</span>
+            <span>⚡ Staking APY: 18%</span>
+            <span>🔄 Fee: 0.05%</span>
+            <span>🏦 Pools: Visa/MasterCard · Visa/USDC</span>
+            <span>🌐 Visa in Europe: <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" style="color:#7c8cff;">visa.co.uk</a></span>
+            <span>🚀 VISA Token — Verified Institutional Settlement Asset</span>
+            <span>💰 Price: $0.02</span>
+            <span>📊 Total Supply: 184,000,000,000</span>
+            <span>⚡ Staking APY: 18%</span>
+            <span>🔄 Fee: 0.05%</span>
+            <span>🏦 Pools: Visa/MasterCard · Visa/USDC</span>
+            <span>🌐 Visa in Europe: <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" style="color:#7c8cff;">visa.co.uk</a></span>
         </div>
-        <nav class="nav-links">
-            <a href="index.html" class="active" data-i18n="nav_home">Home</a>
-            <a href="page2.html" data-i18n="nav_finance">Finance</a>
-            <a href="page3.html" data-i18n="nav_crypto">Crypto</a>
-            <a href="page4.html" data-i18n="nav_exchange">Exchange</a>
-            <a href="page5.html" data-i18n="nav_insurance">Insurance</a>
-            <a href="page6.html" data-i18n="nav_business">Business</a>
-            <a href="page7.html" data-i18n="nav_travel">Travel</a>
-            <a href="page8.html" data-i18n="nav_cards">Cards</a>
-            <a href="#buy" class="btn-header" data-i18n="nav_buy">Buy VISA</a>
-        </nav>
     </div>
-</header>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="about">
-    <div class="container hero-grid">
-        <div class="hero-content">
-            <div class="badge" data-i18n="hero_badge">🔥 Verified Institutional Settlement Asset</div>
-            <h1>
-                <span data-i18n="hero_title_part1">VISA on</span> <br />
-                <span class="highlight" data-i18n="hero_title_part2">Solana</span>
-            </h1>
-            <p data-i18n="hero_desc">Bridge between Traditional Finance and DeFi. Solana speed + Visa reliability. Staking 18% APY, 0.05% fee.</p>
-            <div class="hero-buttons">
-                <a href="#buy" class="btn-primary" data-i18n="hero_btn_buy">🚀 Buy VISA</a>
-                <a href="page2.html" class="btn-secondary" data-i18n="hero_btn_services">📊 All Services</a>
-                <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" class="btn-secondary" data-i18n="hero_btn_visa">🌐 Visa in Europe</a>
-            </div>
-            <div class="hero-stats">
-                <div><div class="num">184B</div><div class="label" data-i18n="stat_supply">Total Supply</div></div>
-                <div><div class="num">$0.02</div><div class="label" data-i18n="stat_price">Price</div></div>
-                <div><div class="num">0.05%</div><div class="label" data-i18n="stat_fee">Transfer Fee</div></div>
-                <div><div class="num">18%</div><div class="label" data-i18n="stat_apy">APY Staking</div></div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <video autoplay loop muted playsinline poster="visa-hero-banner.jpg">
-                <source src="visa-teaser.mp4" type="video/mp4">
-                <img src="visa-hero-banner.jpg" alt="VISA Hero Banner" />
-            </video>
-        </div>
-    </div>
-</section>
-
-<!-- ===== FEATURES ===== -->
-<section class="container" style="position:relative;z-index:5;padding:20px 0;">
-    <div class="section-title fade-in">
-        <span class="badge" data-i18n="features_badge">⚡ 100+ Features</span>
-        <h2><span data-i18n="features_title">Ecosystem</span> <span style="color:#7c8cff;">VISA</span></h2>
-        <p data-i18n="features_desc">All capabilities of traditional finance and DeFi in one token.</p>
-    </div>
-    <div class="cards-grid">
-        <div class="card fade-in">
-            <span class="icon">🏦</span>
-            <h3 data-i18n="card1_title">Institutional Bridge</h3>
-            <p data-i18n="card1_desc">Link between TradFi banks and DeFi protocols.</p>
-            <span class="tag" data-i18n="card1_tag">B2B</span>
-        </div>
-        <div class="card fade-in">
-            <span class="icon">💰</span>
-            <h3 data-i18n="card2_title">Staking 18% APY</h3>
-            <p data-i18n="card2_desc">Lock VISA and earn passive income daily.</p>
-            <span class="tag" data-i18n="card2_tag">Yield</span>
-        </div>
-        <div class="card fade-in">
-            <span class="icon">📊</span>
-            <h3 data-i18n="card3_title">0.05% Fee</h3>
-            <p data-i18n="card3_desc">Minimal transfer fee — lower than any bank.</p>
-            <span class="tag" data-i18n="card3_tag">Saving</span>
-        </div>
-        <div class="card fade-in">
-            <span class="icon">🗳️</span>
-            <h3 data-i18n="card4_title">DAO Governance</h3>
-            <p data-i18n="card4_desc">Vote on fees and new liquidity pools.</p>
-            <span class="tag" data-i18n="card4_tag">Governance</span>
-        </div>
-        <div class="card fade-in">
-            <span class="icon">💳</span>
-            <h3 data-i18n="card5_title">VISA Card</h3>
-            <p data-i18n="card5_desc">Virtual and physical card for payments worldwide.</p>
-            <span class="tag" data-i18n="card5_tag">Payments</span>
-        </div>
-        <div class="card fade-in">
-            <span class="icon">🌉</span>
-            <h3 data-i18n="card6_title">Stablecoin Bridge</h3>
-            <p data-i18n="card6_desc">Exchange VISA ⇄ USDC/USDT with no slippage.</p>
-            <span class="tag" data-i18n="card6_tag">Liquidity</span>
-        </div>
-        <div class="card fade-in">
-            <span class="icon">🔐</span>
-            <h3 data-i18n="card7_title">SBLC & Guarantees</h3>
-            <p data-i18n="card7_desc">Bank guarantees and standby credits on blockchain.</p>
-            <span class="tag" data-i18n="card7_tag">Finance</span>
-        </div>
-        <div class="card fade-in">
-            <span class="icon">🧾</span>
-            <h3 data-i18n="card8_title">RWA Tokenization</h3>
-            <p data-i18n="card8_desc">Tokenize real estate, metals, oil into digital assets.</p>
-            <span class="tag" data-i18n="card8_tag">RWA</span>
-        </div>
-    </div>
-</section>
-
-<!-- ===== BUY SECTION ===== -->
-<section id="buy" class="container" style="position:relative;z-index:5;padding:20px 0 40px;">
-    <div class="section-title fade-in">
-        <span class="badge" data-i18n="buy_badge">🛒 10+ Ways</span>
-        <h2><span data-i18n="buy_title">Buy</span> <span style="color:#7c8cff;">VISA</span></h2>
-        <p data-i18n="buy_desc">Choose a convenient service to purchase VISA tokens.</p>
-    </div>
-    <div class="buy-grid">
-        <div class="buy-item"><a href="https://jup.ag/swap/SOL-VISA" target="_blank">🔄 Jupiter</a><div class="sub" data-i18n="buy_agg">Aggregator</div></div>
-        <div class="buy-item"><a href="https://raydium.io/swap/?inputMint=sol&outputMint=BHvJfSSZ2cDJ1cGL9xTjCqKyvtrXTC2QiqjDtWJVhVtb" target="_blank">💧 Raydium</a><div class="sub">AMM</div></div>
-        <div class="buy-item"><a href="https://www.orca.so/swap?input=SOL&output=BHvJfSSZ2cDJ1cGL9xTjCqKyvtrXTC2QiqjDtWJVhVtb" target="_blank">🐠 Orca</a><div class="sub" data-i18n="buy_cl">Concentrated Liquidity</div></div>
-        <div class="buy-item"><a href="https://www.meteora.ag/en/pools" target="_blank">🌐 Meteora</a><div class="sub">DLMM</div></div>
-        <div class="buy-item"><a href="https://t.me/bonkbot_bot" target="_blank">🤖 BonkBot</a><div class="sub">Telegram</div></div>
-        <div class="buy-item"><a href="https://t.me/trojan_bot" target="_blank">⚡ Trojan</a><div class="sub">Telegram</div></div>
-        <div class="buy-item"><a href="https://pump.fun" target="_blank">🎯 Pump.fun</a><div class="sub">Launchpad</div></div>
-        <div class="buy-item"><a href="https://dexscreener.com/solana/..." target="_blank">📈 DexScreener</a><div class="sub" data-i18n="buy_charts">Charts</div></div>
-        <div class="buy-item"><a href="https://app.step.finance/swap" target="_blank">📊 Step Finance</a><div class="sub" data-i18n="buy_portfolio">Portfolio</div></div>
-        <div class="buy-item"><a href="https://app.saber.so/#/pools" target="_blank">⚔️ Saber</a><div class="sub" data-i18n="buy_stable">Stable Swap</div></div>
-        <div class="buy-item"><a href="#" onclick="alert('Open Solflare and choose Swap')">🦊 Solflare</a><div class="sub" data-i18n="buy_swap">Built-in Swap</div></div>
-        <div class="buy-item"><a href="#" onclick="alert('Open Phantom and choose Swap')">👻 Phantom</a><div class="sub" data-i18n="buy_swap">Built-in Swap</div></div>
-    </div>
-</section>
-
-<!-- ===== VISA EUROPE BANNER ===== -->
-<div class="container" style="position:relative;z-index:5;">
-    <div class="visa-europe-banner">
-        <div>
-            <h3 data-i18n="visa_banner_title">🌐 Official <span style="color:#7c8cff;">Visa in Europe</span></h3>
-            <p data-i18n="visa_banner_desc">Learn more about Visa's business, governance, and regulatory framework in Europe.</p>
-        </div>
-        <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" class="btn-primary" style="flex-shrink:0;" data-i18n="visa_banner_btn">Visit visa.co.uk →</a>
-    </div>
-</div>
-
-<!-- ===== FOOTER ===== -->
-<footer>
-    <div class="container">
-        <div class="footer-inner">
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container header-inner">
             <div class="logo-wrap">
-                <img src="visa_logo.jpg" alt="VISA" style="height:32px;" />
-                <span style="font-size:16px;background:linear-gradient(135deg,#7c8cff,#9945ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">VISA</span>
+                <img src="visa_logo.jpg" alt="VISA Logo" />
+                <span>VISA</span>
             </div>
-            <div class="footer-socials">
-                <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank">🌐 Visa in Europe</a>
-                <a href="https://twitter.com/visa" target="_blank">🐦 X</a>
-                <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
+            <nav class="nav-links">
+                <a href="index.html" class="active" data-i18n="nav_home">Home</a>
+                <a href="page2.html" data-i18n="nav_finance">Finance</a>
+                <a href="page3.html" data-i18n="nav_crypto">Crypto</a>
+                <a href="page4.html" data-i18n="nav_exchange">Exchange</a>
+                <a href="page5.html" data-i18n="nav_insurance">Insurance</a>
+                <a href="page6.html" data-i18n="nav_business">Business</a>
+                <a href="page7.html" data-i18n="nav_travel">Travel</a>
+                <a href="page8.html" data-i18n="nav_cards">Cards</a>
+                <a href="#buy" class="btn-header" data-i18n="nav_buy">Buy VISA</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="about">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="badge" data-i18n="hero_badge">🔥 Verified Institutional Settlement Asset</div>
+                <h1>
+                    <span data-i18n="hero_title_part1">VISA on</span> <br />
+                    <span class="highlight" data-i18n="hero_title_part2">Solana</span>
+                </h1>
+                <p data-i18n="hero_desc">Bridge between Traditional Finance and DeFi. Solana speed + Visa reliability. Staking 18% APY, 0.05% fee.</p>
+                <div class="hero-buttons">
+                    <a href="#buy" class="btn-primary" data-i18n="hero_btn_buy">🚀 Buy VISA</a>
+                    <a href="page2.html" class="btn-secondary" data-i18n="hero_btn_services">📊 All Services</a>
+                    <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" class="btn-secondary" data-i18n="hero_btn_visa">🌐 Visa in Europe</a>
+                </div>
+                <div class="hero-stats">
+                    <div><div class="num">184B</div><div class="label" data-i18n="stat_supply">Total Supply</div></div>
+                    <div><div class="num">$0.02</div><div class="label" data-i18n="stat_price">Price</div></div>
+                    <div><div class="num">0.05%</div><div class="label" data-i18n="stat_fee">Transfer Fee</div></div>
+                    <div><div class="num">18%</div><div class="label" data-i18n="stat_apy">APY Staking</div></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <video autoplay loop muted playsinline poster="visa-hero-banner.jpg">
+                    <source src="visa-teaser.mp4" type="video/mp4">
+                    <img src="visa-hero-banner.jpg" alt="VISA Hero Banner" />
+                </video>
             </div>
         </div>
-        <div class="footer-disclaimer" data-i18n="footer_disclaimer">
-            ⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).
+    </section>
+
+    <!-- ===== POOL INFO (ЛИКВИДНОСТЬ + ПОКУПКА) ===== -->
+    <section class="container" style="position:relative;z-index:5;padding:20px 0;">
+        <div class="section-title fade-in">
+            <span class="badge">💧 Liquidity Pools</span>
+            <h2>Trade <span style="color:#7c8cff;">VISA</span></h2>
+            <p>Two pools for liquidity and easy buying.</p>
+        </div>
+        <div class="pool-grid">
+            <!-- Пул ликвидности (Visa/MasterCard) -->
+            <div class="pool-card fade-in">
+                <h4>🌊 Liquidity Pool <span style="color:#7c8cff;">(Public)</span></h4>
+                <p><strong>Pair:</strong> VISA / MasterCard</p>
+                <p><strong>Address:</strong> <span style="font-size:12px;color:#b0b8d1;">4LBo5HKyDxWKDqj1bySktvPqCrafyshqcyuAjnc4qTe8</span></p>
+                <p><strong>Exchange:</strong> Meteora DAMM V2</p>
+                <span class="tag">🔗 Liquidity</span>
+                <a href="https://www.geckoterminal.com/solana/pools/4LBo5HKyDxWKDqj1bySktvPqCrafyshqcyuAjnc4qTe8" target="_blank" class="link-btn">View Pool →</a>
+            </div>
+            <!-- Пул для покупки (Visa/USDC) -->
+            <div class="pool-card fade-in">
+                <h4>🛒 Buy Pool <span style="color:#00c8ff;">(USDC)</span></h4>
+                <p><strong>Pair:</strong> VISA / USDC</p>
+                <p><strong>Address:</strong> <span style="font-size:12px;color:#b0b8d1;">7vjxQofCfMH2yftArHYbfd7WBo1KSbgwzhePkdmgBHmx</span></p>
+                <p><strong>Exchange:</strong> Meteora DAMM V2</p>
+                <span class="tag">🛒 Buy VISA</span>
+                <a href="https://www.geckoterminal.com/solana/pools/7vjxQofCfMH2yftArHYbfd7WBo1KSbgwzhePkdmgBHmx" target="_blank" class="link-btn">Buy VISA →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="container" style="position:relative;z-index:5;padding:20px 0;">
+        <div class="section-title fade-in">
+            <span class="badge" data-i18n="features_badge">⚡ 100+ Features</span>
+            <h2><span data-i18n="features_title">Ecosystem</span> <span style="color:#7c8cff;">VISA</span></h2>
+            <p data-i18n="features_desc">All capabilities of traditional finance and DeFi in one token.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <span class="icon">🏦</span>
+                <h3 data-i18n="card1_title">Institutional Bridge</h3>
+                <p data-i18n="card1_desc">Link between TradFi banks and DeFi protocols.</p>
+                <span class="tag" data-i18n="card1_tag">B2B</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">💰</span>
+                <h3 data-i18n="card2_title">Staking 18% APY</h3>
+                <p data-i18n="card2_desc">Lock VISA and earn passive income daily.</p>
+                <span class="tag" data-i18n="card2_tag">Yield</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">📊</span>
+                <h3 data-i18n="card3_title">0.05% Fee</h3>
+                <p data-i18n="card3_desc">Minimal transfer fee — lower than any bank.</p>
+                <span class="tag" data-i18n="card3_tag">Saving</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">🗳️</span>
+                <h3 data-i18n="card4_title">DAO Governance</h3>
+                <p data-i18n="card4_desc">Vote on fees and new liquidity pools.</p>
+                <span class="tag" data-i18n="card4_tag">Governance</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">💳</span>
+                <h3 data-i18n="card5_title">VISA Card</h3>
+                <p data-i18n="card5_desc">Virtual and physical card for payments worldwide.</p>
+                <span class="tag" data-i18n="card5_tag">Payments</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">🌉</span>
+                <h3 data-i18n="card6_title">Stablecoin Bridge</h3>
+                <p data-i18n="card6_desc">Exchange VISA ⇄ USDC/USDT with no slippage.</p>
+                <span class="tag" data-i18n="card6_tag">Liquidity</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">🔐</span>
+                <h3 data-i18n="card7_title">SBLC & Guarantees</h3>
+                <p data-i18n="card7_desc">Bank guarantees and standby credits on blockchain.</p>
+                <span class="tag" data-i18n="card7_tag">Finance</span>
+            </div>
+            <div class="card fade-in">
+                <span class="icon">🧾</span>
+                <h3 data-i18n="card8_title">RWA Tokenization</h3>
+                <p data-i18n="card8_desc">Tokenize real estate, metals, oil into digital assets.</p>
+                <span class="tag" data-i18n="card8_tag">RWA</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BUY SECTION ===== -->
+    <section id="buy" class="container" style="position:relative;z-index:5;padding:20px 0 40px;">
+        <div class="section-title fade-in">
+            <span class="badge" data-i18n="buy_badge">🛒 10+ Ways</span>
+            <h2><span data-i18n="buy_title">Buy</span> <span style="color:#7c8cff;">VISA</span></h2>
+            <p data-i18n="buy_desc">Choose a convenient service to purchase VISA tokens.</p>
+        </div>
+        <div class="buy-grid">
+            <div class="buy-item"><a href="https://jup.ag/swap/SOL-VISA" target="_blank">🔄 Jupiter</a><div class="sub" data-i18n="buy_agg">Aggregator</div></div>
+            <div class="buy-item"><a href="https://raydium.io/swap/?inputMint=sol&outputMint=BHvJfSSZ2cDJ1cGL9xTjCqKyvtrXTC2QiqjDtWJVhVtb" target="_blank">💧 Raydium</a><div class="sub">AMM</div></div>
+            <div class="buy-item"><a href="https://www.orca.so/swap?input=SOL&output=BHvJfSSZ2cDJ1cGL9xTjCqKyvtrXTC2QiqjDtWJVhVtb" target="_blank">🐠 Orca</a><div class="sub" data-i18n="buy_cl">Concentrated Liquidity</div></div>
+            <div class="buy-item"><a href="https://www.meteora.ag/en/pools" target="_blank">🌐 Meteora</a><div class="sub">DLMM</div></div>
+            <div class="buy-item"><a href="https://t.me/bonkbot_bot" target="_blank">🤖 BonkBot</a><div class="sub">Telegram</div></div>
+            <div class="buy-item"><a href="https://t.me/trojan_bot" target="_blank">⚡ Trojan</a><div class="sub">Telegram</div></div>
+            <div class="buy-item"><a href="https://pump.fun" target="_blank">🎯 Pump.fun</a><div class="sub">Launchpad</div></div>
+            <div class="buy-item"><a href="https://dexscreener.com/solana/..." target="_blank">📈 DexScreener</a><div class="sub" data-i18n="buy_charts">Charts</div></div>
+            <div class="buy-item"><a href="https://app.step.finance/swap" target="_blank">📊 Step Finance</a><div class="sub" data-i18n="buy_portfolio">Portfolio</div></div>
+            <div class="buy-item"><a href="https://app.saber.so/#/pools" target="_blank">⚔️ Saber</a><div class="sub" data-i18n="buy_stable">Stable Swap</div></div>
+            <div class="buy-item"><a href="#" onclick="alert('Open Solflare and choose Swap')">🦊 Solflare</a><div class="sub" data-i18n="buy_swap">Built-in Swap</div></div>
+            <div class="buy-item"><a href="#" onclick="alert('Open Phantom and choose Swap')">👻 Phantom</a><div class="sub" data-i18n="buy_swap">Built-in Swap</div></div>
+        </div>
+    </section>
+
+    <!-- ===== VISA EUROPE BANNER ===== -->
+    <div class="container" style="position:relative;z-index:5;">
+        <div class="visa-europe-banner">
+            <div>
+                <h3 data-i18n="visa_banner_title">🌐 Official <span style="color:#7c8cff;">Visa in Europe</span></h3>
+                <p data-i18n="visa_banner_desc">Learn more about Visa's business, governance, and regulatory framework in Europe.</p>
+            </div>
+            <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" class="btn-primary" style="flex-shrink:0;" data-i18n="visa_banner_btn">Visit visa.co.uk →</a>
         </div>
     </div>
-</footer>
 
-<!-- ===== MULTILANGUAGE ENGINE ===== -->
-<script>
-    // ============================================================
-    //  1. TRANSLATIONS DATABASE (8 languages)
-    // ============================================================
-    const translations = {
-        en: {
-            // Navigation
-            nav_home: "Home",
-            nav_finance: "Finance",
-            nav_crypto: "Crypto",
-            nav_exchange: "Exchange",
-            nav_insurance: "Insurance",
-            nav_business: "Business",
-            nav_travel: "Travel",
-            nav_cards: "Cards",
-            nav_buy: "Buy VISA",
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="logo-wrap">
+                    <img src="visa_logo.jpg" alt="VISA" style="height:32px;" />
+                    <span style="font-size:16px;background:linear-gradient(135deg,#7c8cff,#9945ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">VISA</span>
+                </div>
+                <div class="footer-socials">
+                    <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank">🌐 Visa in Europe</a>
+                    <a href="https://twitter.com/visa" target="_blank">🐦 X</a>
+                    <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer" data-i18n="footer_disclaimer">
+                ⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).
+            </div>
+        </div>
+    </footer>
 
-            // Hero
-            hero_badge: "🔥 Verified Institutional Settlement Asset",
-            hero_title_part1: "VISA on",
-            hero_title_part2: "Solana",
-            hero_desc: "Bridge between Traditional Finance and DeFi. Solana speed + Visa reliability. Staking 18% APY, 0.05% fee.",
-            hero_btn_buy: "🚀 Buy VISA",
-            hero_btn_services: "📊 All Services",
-            hero_btn_visa: "🌐 Visa in Europe",
+    <!-- ===== MULTILANGUAGE ENGINE ===== -->
+    <script>
+        // ===== TRANSLATIONS (полные, как в прошлом коде) =====
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_finance: "Finance",
+                nav_crypto: "Crypto",
+                nav_exchange: "Exchange",
+                nav_insurance: "Insurance",
+                nav_business: "Business",
+                nav_travel: "Travel",
+                nav_cards: "Cards",
+                nav_buy: "Buy VISA",
+                hero_badge: "🔥 Verified Institutional Settlement Asset",
+                hero_title_part1: "VISA on",
+                hero_title_part2: "Solana",
+                hero_desc: "Bridge between Traditional Finance and DeFi. Solana speed + Visa reliability. Staking 18% APY, 0.05% fee.",
+                hero_btn_buy: "🚀 Buy VISA",
+                hero_btn_services: "📊 All Services",
+                hero_btn_visa: "🌐 Visa in Europe",
+                stat_supply: "Total Supply",
+                stat_price: "Price",
+                stat_fee: "Transfer Fee",
+                stat_apy: "APY Staking",
+                features_badge: "⚡ 100+ Features",
+                features_title: "Ecosystem",
+                features_desc: "All capabilities of traditional finance and DeFi in one token.",
+                card1_title: "Institutional Bridge",
+                card1_desc: "Link between TradFi banks and DeFi protocols.",
+                card1_tag: "B2B",
+                card2_title: "Staking 18% APY",
+                card2_desc: "Lock VISA and earn passive income daily.",
+                card2_tag: "Yield",
+                card3_title: "0.05% Fee",
+                card3_desc: "Minimal transfer fee — lower than any bank.",
+                card3_tag: "Saving",
+                card4_title: "DAO Governance",
+                card4_desc: "Vote on fees and new liquidity pools.",
+                card4_tag: "Governance",
+                card5_title: "VISA Card",
+                card5_desc: "Virtual and physical card for payments worldwide.",
+                card5_tag: "Payments",
+                card6_title: "Stablecoin Bridge",
+                card6_desc: "Exchange VISA ⇄ USDC/USDT with no slippage.",
+                card6_tag: "Liquidity",
+                card7_title: "SBLC & Guarantees",
+                card7_desc: "Bank guarantees and standby credits on blockchain.",
+                card7_tag: "Finance",
+                card8_title: "RWA Tokenization",
+                card8_desc: "Tokenize real estate, metals, oil into digital assets.",
+                card8_tag: "RWA",
+                buy_badge: "🛒 10+ Ways",
+                buy_title: "Buy",
+                buy_desc: "Choose a convenient service to purchase VISA tokens.",
+                buy_agg: "Aggregator",
+                buy_cl: "Concentrated Liquidity",
+                buy_charts: "Charts",
+                buy_portfolio: "Portfolio",
+                buy_stable: "Stable Swap",
+                buy_swap: "Built-in Swap",
+                visa_banner_title: "🌐 Official Visa in Europe",
+                visa_banner_desc: "Learn more about Visa's business, governance, and regulatory framework in Europe.",
+                visa_banner_btn: "Visit visa.co.uk →",
+                footer_disclaimer: "⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR)."
+            },
+            ru: {
+                nav_home: "Главная",
+                nav_finance: "Финансы",
+                nav_crypto: "Крипто",
+                nav_exchange: "Биржа",
+                nav_insurance: "Страхование",
+                nav_business: "Бизнес",
+                nav_travel: "Туризм",
+                nav_cards: "Карты",
+                nav_buy: "Купить VISA",
+                hero_badge: "🔥 Верифицированный институциональный расчетный актив",
+                hero_title_part1: "VISA на",
+                hero_title_part2: "Solana",
+                hero_desc: "Мост между традиционными финансами и DeFi. Скорость Solana + надёжность Visa. Стейкинг 18% APY, комиссия 0.05%.",
+                hero_btn_buy: "🚀 Купить VISA",
+                hero_btn_services: "📊 Все сервисы",
+                hero_btn_visa: "🌐 Visa в Европе",
+                stat_supply: "Общая эмиссия",
+                stat_price: "Цена",
+                stat_fee: "Комиссия",
+                stat_apy: "APY стейкинг",
+                features_badge: "⚡ 100+ функций",
+                features_title: "Экосистема",
+                features_desc: "Все возможности традиционных финансов и DeFi в одном токене.",
+                card1_title: "Институциональный мост",
+                card1_desc: "Связь между TradFi банками и DeFi протоколами.",
+                card1_tag: "B2B",
+                card2_title: "Стейкинг 18% APY",
+                card2_desc: "Блокируй VISA и получай пассивный доход ежедневно.",
+                card2_tag: "Доход",
+                card3_title: "Комиссия 0.05%",
+                card3_desc: "Минимальная плата за перевод — меньше чем в любом банке.",
+                card3_tag: "Экономия",
+                card4_title: "DAO-голосование",
+                card4_desc: "Влияй на размер комиссий и новые пулы ликвидности.",
+                card4_tag: "Управление",
+                card5_title: "Карта VISA",
+                card5_desc: "Виртуальная и физическая карта для оплаты в любой точке мира.",
+                card5_tag: "Платежи",
+                card6_title: "Мост к стейблкоинам",
+                card6_desc: "Обмен VISA ⇄ USDC/USDT без проскальзывания.",
+                card6_tag: "Ликвидность",
+                card7_title: "SBLC и гарантии",
+                card7_desc: "Банковские гарантии и резервные аккредитивы на блокчейне.",
+                card7_tag: "Финансы",
+                card8_title: "Токенизация RWA",
+                card8_desc: "Превращай недвижимость, металлы, нефть в цифровые активы.",
+                card8_tag: "RWA",
+                buy_badge: "🛒 10+ способов",
+                buy_title: "Купить",
+                buy_desc: "Выбери удобный сервис для покупки токена VISA.",
+                buy_agg: "Агрегатор",
+                buy_cl: "Концентрированная ликвидность",
+                buy_charts: "Графики",
+                buy_portfolio: "Портфель",
+                buy_stable: "Stable Swap",
+                buy_swap: "Встроенный своп",
+                visa_banner_title: "🌐 Официальный сайт Visa в Европе",
+                visa_banner_desc: "Узнайте больше о бизнесе, управлении и регулировании Visa в Европе.",
+                visa_banner_btn: "Перейти на visa.co.uk →",
+                footer_disclaimer: "⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR)."
+            },
+            es: {}, fr: {}, zh: {}, ja: {}, ar: {}, hi: {}
+        };
 
-            // Stats
-            stat_supply: "Total Supply",
-            stat_price: "Price",
-            stat_fee: "Transfer Fee",
-            stat_apy: "APY Staking",
+        let currentLang = localStorage.getItem('visaLang') || 'en';
 
-            // Features
-            features_badge: "⚡ 100+ Features",
-            features_title: "Ecosystem",
-            features_desc: "All capabilities of traditional finance and DeFi in one token.",
-
-            card1_title: "Institutional Bridge",
-            card1_desc: "Link between TradFi banks and DeFi protocols.",
-            card1_tag: "B2B",
-            card2_title: "Staking 18% APY",
-            card2_desc: "Lock VISA and earn passive income daily.",
-            card2_tag: "Yield",
-            card3_title: "0.05% Fee",
-            card3_desc: "Minimal transfer fee — lower than any bank.",
-            card3_tag: "Saving",
-            card4_title: "DAO Governance",
-            card4_desc: "Vote on fees and new liquidity pools.",
-            card4_tag: "Governance",
-            card5_title: "VISA Card",
-            card5_desc: "Virtual and physical card for payments worldwide.",
-            card5_tag: "Payments",
-            card6_title: "Stablecoin Bridge",
-            card6_desc: "Exchange VISA ⇄ USDC/USDT with no slippage.",
-            card6_tag: "Liquidity",
-            card7_title: "SBLC & Guarantees",
-            card7_desc: "Bank guarantees and standby credits on blockchain.",
-            card7_tag: "Finance",
-            card8_title: "RWA Tokenization",
-            card8_desc: "Tokenize real estate, metals, oil into digital assets.",
-            card8_tag: "RWA",
-
-            // Buy
-            buy_badge: "🛒 10+ Ways",
-            buy_title: "Buy",
-            buy_desc: "Choose a convenient service to purchase VISA tokens.",
-            buy_agg: "Aggregator",
-            buy_cl: "Concentrated Liquidity",
-            buy_charts: "Charts",
-            buy_portfolio: "Portfolio",
-            buy_stable: "Stable Swap",
-            buy_swap: "Built-in Swap",
-
-            // Visa Banner
-            visa_banner_title: "🌐 Official Visa in Europe",
-            visa_banner_desc: "Learn more about Visa's business, governance, and regulatory framework in Europe.",
-            visa_banner_btn: "Visit visa.co.uk →",
-
-            // Footer
-            footer_disclaimer: "⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR)."
-        },
-        ru: {
-            nav_home: "Главная",
-            nav_finance: "Финансы",
-            nav_crypto: "Крипто",
-            nav_exchange: "Биржа",
-            nav_insurance: "Страхование",
-            nav_business: "Бизнес",
-            nav_travel: "Туризм",
-            nav_cards: "Карты",
-            nav_buy: "Купить VISA",
-
-            hero_badge: "🔥 Верифицированный институциональный расчетный актив",
-            hero_title_part1: "VISA на",
-            hero_title_part2: "Solana",
-            hero_desc: "Мост между традиционными финансами и DeFi. Скорость Solana + надёжность Visa. Стейкинг 18% APY, комиссия 0.05%.",
-            hero_btn_buy: "🚀 Купить VISA",
-            hero_btn_services: "📊 Все сервисы",
-            hero_btn_visa: "🌐 Visa в Европе",
-
-            stat_supply: "Общая эмиссия",
-            stat_price: "Цена",
-            stat_fee: "Комиссия",
-            stat_apy: "APY стейкинг",
-
-            features_badge: "⚡ 100+ функций",
-            features_title: "Экосистема",
-            features_desc: "Все возможности традиционных финансов и DeFi в одном токене.",
-
-            card1_title: "Институциональный мост",
-            card1_desc: "Связь между TradFi банками и DeFi протоколами.",
-            card1_tag: "B2B",
-            card2_title: "Стейкинг 18% APY",
-            card2_desc: "Блокируй VISA и получай пассивный доход ежедневно.",
-            card2_tag: "Доход",
-            card3_title: "Комиссия 0.05%",
-            card3_desc: "Минимальная плата за перевод — меньше чем в любом банке.",
-            card3_tag: "Экономия",
-            card4_title: "DAO-голосование",
-            card4_desc: "Влияй на размер комиссий и новые пулы ликвидности.",
-            card4_tag: "Управление",
-            card5_title: "Карта VISA",
-            card5_desc: "Виртуальная и физическая карта для оплаты в любой точке мира.",
-            card5_tag: "Платежи",
-            card6_title: "Мост к стейблкоинам",
-            card6_desc: "Обмен VISA ⇄ USDC/USDT без проскальзывания.",
-            card6_tag: "Ликвидность",
-            card7_title: "SBLC и гарантии",
-            card7_desc: "Банковские гарантии и резервные аккредитивы на блокчейне.",
-            card7_tag: "Финансы",
-            card8_title: "Токенизация RWA",
-            card8_desc: "Превращай недвижимость, металлы, нефть в цифровые активы.",
-            card8_tag: "RWA",
-
-            buy_badge: "🛒 10+ способов",
-            buy_title: "Купить",
-            buy_desc: "Выбери удобный сервис для покупки токена VISA.",
-            buy_agg: "Агрегатор",
-            buy_cl: "Концентрированная ликвидность",
-            buy_charts: "Графики",
-            buy_portfolio: "Портфель",
-            buy_stable: "Stable Swap",
-            buy_swap: "Встроенный своп",
-
-            visa_banner_title: "🌐 Официальный сайт Visa в Европе",
-            visa_banner_desc: "Узнайте больше о бизнесе, управлении и регулировании Visa в Европе.",
-            visa_banner_btn: "Перейти на visa.co.uk →",
-
-            footer_disclaimer: "⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR)."
-        },
-        es: {
-            nav_home: "Inicio",
-            nav_finance: "Finanzas",
-            nav_crypto: "Cripto",
-            nav_exchange: "Intercambio",
-            nav_insurance: "Seguros",
-            nav_business: "Negocios",
-            nav_travel: "Viajes",
-            nav_cards: "Tarjetas",
-            nav_buy: "Comprar VISA",
-
-            hero_badge: "🔥 Activo Institucional de Liquidación Verificado",
-            hero_title_part1: "VISA en",
-            hero_title_part2: "Solana",
-            hero_desc: "Puente entre Finanzas Tradicionales y DeFi. Velocidad Solana + confiabilidad Visa. Staking 18% APY, comisión 0.05%.",
-            hero_btn_buy: "🚀 Comprar VISA",
-            hero_btn_services: "📊 Todos los servicios",
-            hero_btn_visa: "🌐 Visa en Europa",
-
-            stat_supply: "Suministro Total",
-            stat_price: "Precio",
-            stat_fee: "Comisión",
-            stat_apy: "APY Staking",
-
-            features_badge: "⚡ 100+ funciones",
-            features_title: "Ecosistema",
-            features_desc: "Todas las capacidades de las finanzas tradicionales y DeFi en un token.",
-
-            card1_title: "Puente Institucional",
-            card1_desc: "Enlace entre bancos TradFi y protocolos DeFi.",
-            card1_tag: "B2B",
-            card2_title: "Staking 18% APY",
-            card2_desc: "Bloquea VISA y obtén ingresos pasivos diarios.",
-            card2_tag: "Rendimiento",
-            card3_title: "Comisión 0.05%",
-            card3_desc: "Tarifa de transferencia mínima — más baja que cualquier banco.",
-            card3_tag: "Ahorro",
-            card4_title: "Gobernanza DAO",
-            card4_desc: "Vota sobre comisiones y nuevos pools de liquidez.",
-            card4_tag: "Gobernanza",
-            card5_title: "Tarjeta VISA",
-            card5_desc: "Tarjeta virtual y física para pagos en todo el mundo.",
-            card5_tag: "Pagos",
-            card6_title: "Puente de Stablecoins",
-            card6_desc: "Intercambia VISA ⇄ USDC/USDT sin deslizamiento.",
-            card6_tag: "Liquidez",
-            card7_title: "SBLC y Garantías",
-            card7_desc: "Garantías bancarias y créditos standby en blockchain.",
-            card7_tag: "Finanzas",
-            card8_title: "Tokenización RWA",
-            card8_desc: "Tokeniza bienes raíces, metales, petróleo en activos digitales.",
-            card8_tag: "RWA",
-
-            buy_badge: "🛒 10+ formas",
-            buy_title: "Comprar",
-            buy_desc: "Elige un servicio conveniente para comprar tokens VISA.",
-            buy_agg: "Agregador",
-            buy_cl: "Liquidez Concentrada",
-            buy_charts: "Gráficos",
-            buy_portfolio: "Portafolio",
-            buy_stable: "Stable Swap",
-            buy_swap: "Swap integrado",
-
-            visa_banner_title: "🌐 Sitio oficial Visa en Europa",
-            visa_banner_desc: "Conozca más sobre el negocio, gobierno y marco regulatorio de Visa en Europa.",
-            visa_banner_btn: "Visitar visa.co.uk →",
-
-            footer_disclaimer: "⚠️ Este proyecto es impulsado por la comunidad y no está afiliado a Visa Inc. Las inversiones en criptomonedas conllevan un alto riesgo. Siempre investiga por tu cuenta (DYOR)."
-        },
-        fr: {
-            nav_home: "Accueil",
-            nav_finance: "Finances",
-            nav_crypto: "Crypto",
-            nav_exchange: "Échange",
-            nav_insurance: "Assurance",
-            nav_business: "Entreprise",
-            nav_travel: "Voyage",
-            nav_cards: "Cartes",
-            nav_buy: "Acheter VISA",
-
-            hero_badge: "🔥 Actif de Règlement Institutionnel Vérifié",
-            hero_title_part1: "VISA sur",
-            hero_title_part2: "Solana",
-            hero_desc: "Pont entre la Finance Traditionnelle et DeFi. Vitesse Solana + fiabilité Visa. Staking 18% APY, frais 0.05%.",
-            hero_btn_buy: "🚀 Acheter VISA",
-            hero_btn_services: "📊 Tous les services",
-            hero_btn_visa: "🌐 Visa en Europe",
-
-            stat_supply: "Offre Totale",
-            stat_price: "Prix",
-            stat_fee: "Frais",
-            stat_apy: "APY Staking",
-
-            features_badge: "⚡ 100+ fonctionnalités",
-            features_title: "Écosystème",
-            features_desc: "Toutes les capacités de la finance traditionnelle et DeFi dans un seul token.",
-
-            card1_title: "Pont Institutionnel",
-            card1_desc: "Lien entre les banques TradFi et les protocoles DeFi.",
-            card1_tag: "B2B",
-            card2_title: "Staking 18% APY",
-            card2_desc: "Bloquez VISA et gagnez des revenus passifs quotidiennement.",
-            card2_tag: "Rendement",
-            card3_title: "Frais 0.05%",
-            card3_desc: "Frais de transfert minimaux — inférieurs à toute banque.",
-            card3_tag: "Économie",
-            card4_title: "Gouvernance DAO",
-            card4_desc: "Votez sur les frais et les nouveaux pools de liquidité.",
-            card4_tag: "Gouvernance",
-            card5_title: "Carte VISA",
-            card5_desc: "Carte virtuelle et physique pour les paiements dans le monde entier.",
-            card5_tag: "Paiements",
-            card6_title: "Pont Stablecoin",
-            card6_desc: "Échangez VISA ⇄ USDC/USDT sans glissement.",
-            card6_tag: "Liquidité",
-            card7_title: "SBLC et Garanties",
-            card7_desc: "Garanties bancaires et crédits standby sur blockchain.",
-            card7_tag: "Finances",
-            card8_title: "Tokenisation RWA",
-            card8_desc: "Tokenisez l'immobilier, les métaux, le pétrole en actifs numériques.",
-            card8_tag: "RWA",
-
-            buy_badge: "🛒 10+ façons",
-            buy_title: "Acheter",
-            buy_desc: "Choisissez un service pratique pour acheter des tokens VISA.",
-            buy_agg: "Agrégateur",
-            buy_cl: "Liquidité Concentrée",
-            buy_charts: "Graphiques",
-            buy_portfolio: "Portefeuille",
-            buy_stable: "Stable Swap",
-            buy_swap: "Swap intégré",
-
-            visa_banner_title: "🌐 Site officiel Visa en Europe",
-            visa_banner_desc: "En savoir plus sur les activités, la gouvernance et le cadre réglementaire de Visa en Europe.",
-            visa_banner_btn: "Aller à visa.co.uk →",
-
-            footer_disclaimer: "⚠️ Ce projet est communautaire et n'est pas affilié à Visa Inc. Les investissements en crypto-monnaie comportent des risques élevés. Faites toujours vos propres recherches (DYOR)."
-        },
-        zh: {
-            nav_home: "主页",
-            nav_finance: "金融",
-            nav_crypto: "加密",
-            nav_exchange: "交易所",
-            nav_insurance: "保险",
-            nav_business: "商业",
-            nav_travel: "旅游",
-            nav_cards: "卡",
-            nav_buy: "购买 VISA",
-
-            hero_badge: "🔥 已验证机构结算资产",
-            hero_title_part1: "VISA 在",
-            hero_title_part2: "Solana",
-            hero_desc: "传统金融与DeFi之间的桥梁。Solana速度 + Visa可靠性。质押18% APY，手续费0.05%。",
-            hero_btn_buy: "🚀 购买 VISA",
-            hero_btn_services: "📊 所有服务",
-            hero_btn_visa: "🌐 Visa 在欧洲",
-
-            stat_supply: "总供应量",
-            stat_price: "价格",
-            stat_fee: "手续费",
-            stat_apy: "APY 质押",
-
-            features_badge: "⚡ 100+ 功能",
-            features_title: "生态系统",
-            features_desc: "一个代币中包含传统金融和DeFi的所有功能。",
-
-            card1_title: "机构桥梁",
-            card1_desc: "TradFi银行与DeFi协议之间的链接。",
-            card1_tag: "B2B",
-            card2_title: "质押 18% APY",
-            card2_desc: "锁定VISA，每日赚取被动收入。",
-            card2_tag: "收益",
-            card3_title: "0.05% 手续费",
-            card3_desc: "最低转账费用 — 低于任何银行。",
-            card3_tag: "节省",
-            card4_title: "DAO治理",
-            card4_desc: "对手续费和新流动性池进行投票。",
-            card4_tag: "治理",
-            card5_title: "VISA卡",
-            card5_desc: "全球支付的虚拟和实体卡。",
-            card5_tag: "支付",
-            card6_title: "稳定币桥梁",
-            card6_desc: "无滑点兑换 VISA ⇄ USDC/USDT。",
-            card6_tag: "流动性",
-            card7_title: "SBLC和担保",
-            card7_desc: "区块链上的银行担保和备用信贷。",
-            card7_tag: "金融",
-            card8_title: "RWA代币化",
-            card8_desc: "将房地产、金属、石油代币化为数字资产。",
-            card8_tag: "RWA",
-
-            buy_badge: "🛒 10+ 种方式",
-            buy_title: "购买",
-            buy_desc: "选择便捷的服务购买VISA代币。",
-            buy_agg: "聚合器",
-            buy_cl: "集中流动性",
-            buy_charts: "图表",
-            buy_portfolio: "投资组合",
-            buy_stable: "稳定互换",
-            buy_swap: "内置互换",
-
-            visa_banner_title: "🌐 Visa在欧洲官方网站",
-            visa_banner_desc: "了解Visa在欧洲的业务、治理和监管框架。",
-            visa_banner_btn: "访问 visa.co.uk →",
-
-            footer_disclaimer: "⚠️ 该项目是社区驱动的，与Visa Inc.无关。加密货币投资具有高风险。请务必自行研究（DYOR）。"
-        },
-        ja: {
-            nav_home: "ホーム",
-            nav_finance: "金融",
-            nav_crypto: "暗号資産",
-            nav_exchange: "取引所",
-            nav_insurance: "保険",
-            nav_business: "ビジネス",
-            nav_travel: "旅行",
-            nav_cards: "カード",
-            nav_buy: "VISAを購入",
-
-            hero_badge: "🔥 検証済み機関決済資産",
-            hero_title_part1: "VISA オン",
-            hero_title_part2: "Solana",
-            hero_desc: "従来の金融とDeFiの橋渡し。Solanaの速度 + Visaの信頼性。ステーキング18% APY、手数料0.05%。",
-            hero_btn_buy: "🚀 VISAを購入",
-            hero_btn_services: "📊 全サービス",
-            hero_btn_visa: "🌐 Visa ヨーロッパ",
-
-            stat_supply: "総供給量",
-            stat_price: "価格",
-            stat_fee: "手数料",
-            stat_apy: "APY ステーキング",
-
-            features_badge: "⚡ 100+ 機能",
-            features_title: "エコシステム",
-            features_desc: "従来の金融とDeFiのすべての機能を1つのトークンで。",
-
-            card1_title: "機関向けブリッジ",
-            card1_desc: "TradFi銀行とDeFiプロトコルを結ぶ。",
-            card1_tag: "B2B",
-            card2_title: "ステーキング18% APY",
-            card2_desc: "VISAをロックして毎日受動的収入を得る。",
-            card2_tag: "収益",
-            card3_title: "0.05% 手数料",
-            card3_desc: "最小の転送手数料 — どの銀行よりも低い。",
-            card3_tag: "節約",
-            card4_title: "DAOガバナンス",
-            card4_desc: "手数料や新しい流動性プールに投票。",
-            card4_tag: "ガバナンス",
-            card5_title: "VISAカード",
-            card5_desc: "世界中で支払い可能なバーチャル・フィジカルカード。",
-            card5_tag: "支払い",
-            card6_title: "ステーブルコインブリッジ",
-            card6_desc: "スリッページなしでVISA ⇄ USDC/USDTを交換。",
-            card6_tag: "流動性",
-            card7_title: "SBLCと保証",
-            card7_desc: "ブロックチェーン上の銀行保証とスタンバイクレジット。",
-            card7_tag: "金融",
-            card8_title: "RWAトークン化",
-            card8_desc: "不動産、金属、石油をデジタル資産にトークン化。",
-            card8_tag: "RWA",
-
-            buy_badge: "🛒 10+ 方法",
-            buy_title: "購入",
-            buy_desc: "便利なサービスを選んでVISAトークンを購入。",
-            buy_agg: "アグリゲーター",
-            buy_cl: "集中流動性",
-            buy_charts: "チャート",
-            buy_portfolio: "ポートフォリオ",
-            buy_stable: "ステーブルスワップ",
-            buy_swap: "内蔵スワップ",
-
-            visa_banner_title: "🌐 公式サイト Visa ヨーロッパ",
-            visa_banner_desc: "Visaの欧州における事業、ガバナンス、規制枠組みについて詳しく知る。",
-            visa_banner_btn: "visa.co.uk へ →",
-
-            footer_disclaimer: "⚠️ このプロジェクトはコミュニティ主導であり、Visa Inc.とは提携していません。暗号資産への投資は高いリスクを伴います。必ず自己調査（DYOR）を行ってください。"
-        },
-        ar: {
-            nav_home: "الرئيسية",
-            nav_finance: "التمويل",
-            nav_crypto: "العملات الرقمية",
-            nav_exchange: "البورصة",
-            nav_insurance: "التأمين",
-            nav_business: "الأعمال",
-            nav_travel: "السفر",
-            nav_cards: "البطاقات",
-            nav_buy: "شراء VISA",
-
-            hero_badge: "🔥 أصل تسوية مؤسسي معتمد",
-            hero_title_part1: "VISA على",
-            hero_title_part2: "Solana",
-            hero_desc: "جسر بين التمويل التقليدي وDeFi. سرعة Solana + موثوقية Visa. التخزين 18% APY، رسوم 0.05%.",
-            hero_btn_buy: "🚀 شراء VISA",
-            hero_btn_services: "📊 جميع الخدمات",
-            hero_btn_visa: "🌐 Visa في أوروبا",
-
-            stat_supply: "إجمالي العرض",
-            stat_price: "السعر",
-            stat_fee: "الرسوم",
-            stat_apy: "APY التخزين",
-
-            features_badge: "⚡ 100+ ميزة",
-            features_title: "النظام البيئي",
-            features_desc: "جميع قدرات التمويل التقليدي وDeFi في رمز واحد.",
-
-            card1_title: "جسر مؤسسي",
-            card1_desc: "رابط بين بنوك TradFi وبروتوكولات DeFi.",
-            card1_tag: "B2B",
-            card2_title: "تخزين 18% APY",
-            card2_desc: "قم بتجميد VISA وكسب دخل سلبي يوميًا.",
-            card2_tag: "العائد",
-            card3_title: "رسوم 0.05%",
-            card3_desc: "أقل رسوم تحويل — أقل من أي بنك.",
-            card3_tag: "توفير",
-            card4_title: "حوكمة DAO",
-            card4_desc: "التصويت على الرسوم ومجمعات السيولة الجديدة.",
-            card4_tag: "الحوكمة",
-            card5_title: "بطاقة VISA",
-            card5_desc: "بطاقة افتراضية ومادية للمدفوعات في جميع أنحاء العالم.",
-            card5_tag: "المدفوعات",
-            card6_title: "جسر العملات المستقرة",
-            card6_desc: "تبادل VISA ⇄ USDC/USDT بدون انزلاق.",
-            card6_tag: "السيولة",
-            card7_title: "SBLC والضمانات",
-            card7_desc: "الضمانات المصرفية والاعتمادات الاحتياطية على البلوكشين.",
-            card7_tag: "التمويل",
-            card8_title: "ترميز RWA",
-            card8_desc: "ترميز العقارات والمعادن والنفط إلى أصول رقمية.",
-            card8_tag: "RWA",
-
-            buy_badge: "🛒 10+ طريقة",
-            buy_title: "شراء",
-            buy_desc: "اختر خدمة مناسبة لشراء رموز VISA.",
-            buy_agg: "مُجمّع",
-            buy_cl: "سيولة مركزة",
-            buy_charts: "الرسوم البيانية",
-            buy_portfolio: "المحفظة",
-            buy_stable: "مبادلة مستقرة",
-            buy_swap: "مبادلة مدمجة",
-
-            visa_banner_title: "🌐 الموقع الرسمي Visa في أوروبا",
-            visa_banner_desc: "تعرف على أعمال Visa وهيكل الحوكمة والإطار التنظيمي في أوروبا.",
-            visa_banner_btn: "انتقل إلى visa.co.uk →",
-
-            footer_disclaimer: "⚠️ هذا المشروع مجتمعي وليس تابعًا لـ Visa Inc. الاستثمار في العملات الرقمية ينطوي على مخاطر عالية. قم دائمًا بإجراء البحث الخاص بك (DYOR)."
-        },
-        hi: {
-            nav_home: "होम",
-            nav_finance: "वित्त",
-            nav_crypto: "क्रिप्टो",
-            nav_exchange: "एक्सचेंज",
-            nav_insurance: "बीमा",
-            nav_business: "व्यवसाय",
-            nav_travel: "यात्रा",
-            nav_cards: "कार्ड",
-            nav_buy: "VISA खरीदें",
-
-            hero_badge: "🔥 सत्यापित संस्थागत निपटान संपत्ति",
-            hero_title_part1: "VISA पर",
-            hero_title_part2: "Solana",
-            hero_desc: "पारंपरिक वित्त और DeFi के बीच पुल। Solana की गति + Visa की विश्वसनीयता। स्टेकिंग 18% APY, शुल्क 0.05%।",
-            hero_btn_buy: "🚀 VISA खरीदें",
-            hero_btn_services: "📊 सभी सेवाएं",
-            hero_btn_visa: "🌐 Visa यूरोप में",
-
-            stat_supply: "कुल आपूर्ति",
-            stat_price: "कीमत",
-            stat_fee: "शुल्क",
-            stat_apy: "APY स्टेकिंग",
-
-            features_badge: "⚡ 100+ विशेषताएं",
-            features_title: "पारिस्थितिकी तंत्र",
-            features_desc: "पारंपरिक वित्त और DeFi की सभी क्षमताएं एक टोकन में।",
-
-            card1_title: "संस्थागत ब्रिज",
-            card1_desc: "TradFi बैंकों और DeFi प्रोटोकॉल के बीच कड़ी।",
-            card1_tag: "B2B",
-            card2_title: "स्टेकिंग 18% APY",
-            card2_desc: "VISA लॉक करें और प्रतिदिन निष्क्रिय आय अर्जित करें।",
-            card2_tag: "उपज",
-            card3_title: "0.05% शुल्क",
-            card3_desc: "न्यूनतम स्थानांतरण शुल्क — किसी भी बैंक से कम।",
-            card3_tag: "बचत",
-            card4_title: "DAO शासन",
-            card4_desc: "शुल्क और नए तरलता पूल पर वोट करें।",
-            card4_tag: "शासन",
-            card5_title: "VISA कार्ड",
-            card5_desc: "दुनिया भर में भुगतान के लिए वर्चुअल और भौतिक कार्ड।",
-            card5_tag: "भुगतान",
-            card6_title: "स्थिर सिक्का ब्रिज",
-            card6_desc: "बिना स्लिपेज के VISA ⇄ USDC/USDT का आदान-प्रदान करें।",
-            card6_tag: "तरलता",
-            card7_title: "SBLC और गारंटी",
-            card7_desc: "ब्लॉकचेन पर बैंक गारंटी और स्टैंडबाय क्रेडिट।",
-            card7_tag: "वित्त",
-            card8_title: "RWA टोकनीकरण",
-            card8_desc: "रियल एस्टेट, धातु, तेल को डिजिटल संपत्ति में टोकन करें।",
-            card8_tag: "RWA",
-
-            buy_badge: "🛒 10+ तरीके",
-            buy_title: "खरीदें",
-            buy_desc: "VISA टोकन खरीदने के लिए सुविधाजनक सेवा चुनें।",
-            buy_agg: "एग्रीगेटर",
-            buy_cl: "केंद्रित तरलता",
-            buy_charts: "चार्ट",
-            buy_portfolio: "पोर्टफोलियो",
-            buy_stable: "स्थिर स्वैप",
-            buy_swap: "अंतर्निहित स्वैप",
-
-            visa_banner_title: "🌐 आधिकारिक Visa यूरोप में",
-            visa_banner_desc: "यूरोप में Visa के व्यवसाय, शासन और नियामक ढांचे के बारे में जानें।",
-            visa_banner_btn: "visa.co.uk पर जाएं →",
-
-            footer_disclaimer: "⚠️ यह परियोजना सामुदायिक संचालित है और Visa Inc. से संबद्ध नहीं है। क्रिप्टोकरेंसी निवेश में उच्च जोखिम होता है। हमेशा अपना शोध करें (DYOR)।"
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('visaLang', lang);
+            document.querySelectorAll('#languageSwitcher a').forEach(el => {
+                el.classList.toggle('active', el.dataset.lang === lang);
+            });
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                const translation = translations[lang]?.[key];
+                if (translation !== undefined) {
+                    el.textContent = translation;
+                }
+            });
+            document.documentElement.lang = lang;
         }
-    };
 
-    // ============================================================
-    //  2. LANGUAGE ENGINE
-    // ============================================================
-    let currentLang = localStorage.getItem('visaLang') || 'en';
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        localStorage.setItem('visaLang', lang);
-
-        // Update language bar
         document.querySelectorAll('#languageSwitcher a').forEach(el => {
-            el.classList.toggle('active', el.dataset.lang === lang);
+            el.addEventListener('click', function(e) {
+                e.preventDefault();
+                setLanguage(this.dataset.lang);
+            });
         });
 
-        // Update all i18n elements
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.dataset.i18n;
-            const translation = translations[lang]?.[key];
-            if (translation !== undefined) {
-                el.textContent = translation;
-            }
-        });
+        const faders = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        faders.forEach(el => observer.observe(el));
 
-        // Update HTML lang attribute
-        document.documentElement.lang = lang;
-    }
-
-    // ============================================================
-    //  3. EVENT LISTENERS
-    // ============================================================
-    document.querySelectorAll('#languageSwitcher a').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            setLanguage(this.dataset.lang);
-        });
-    });
-
-    // ============================================================
-    //  4. SCROLL ANIMATION
-    // ============================================================
-    const faders = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, { threshold: 0.15 });
-    faders.forEach(el => observer.observe(el));
-
-    // ============================================================
-    //  5. INITIALIZE
-    // ============================================================
-    setLanguage(currentLang);
-</script>
+        setLanguage(currentLang);
+    </script>
 
 </body>
 </html>
