@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>VISA – Крипто-операции | RWA, токенизация, стейкинг, кредиты</title>
+    <title>VISA – Crypto Operations | RWA, Tokenization, Staking, Loans</title>
     <link rel="icon" href="favicon.ico" />
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #fff; line-height: 1.6; }
-        a { color: #7c8cff; text-decoration: none; }
+        a { color: #00c8ff; text-decoration: none; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
         
         .lang-bar {
@@ -22,9 +22,9 @@
             backdrop-filter: blur(12px);
         }
         .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
-        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 4px 12px; border-radius: 4px; cursor: pointer; }
         .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .lang-bar a.active { color: #00c8ff; background: rgba(0,200,255,0.12); }
 
         .bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
@@ -33,15 +33,15 @@
         }
         .bg-canvas::before {
             content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
-            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 40%, rgba(0,200,255,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(120,80,255,0.06) 0%, transparent 50%);
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
         @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
         .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
-        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
-        .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
-        .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        .orb-1 { width: 500px; height: 500px; background: #00c8ff; top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #9945ff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-3 { width: 300px; height: 300px; background: #4a3aff; top: 50%; left: 50%; animation-delay: -12s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
 
         header {
@@ -55,28 +55,25 @@
         .logo-wrap img { height: 44px; width: auto; }
         .logo-wrap span {
             font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            background: linear-gradient(135deg, #00c8ff, #9945ff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .nav-links a {
-            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s;
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s, background 0.3s;
             padding: 6px 12px; border-radius: 8px;
         }
         .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
-        .nav-links a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .nav-links a.active { color: #00c8ff; background: rgba(0,200,255,0.1); }
         .btn-header {
-            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            background: linear-gradient(135deg, #00c8ff, #9945ff);
             padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
             color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 20px rgba(121,68,255,0.3);
+            box-shadow: 0 4px 20px rgba(0,200,255,0.3);
         }
-        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
+        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(0,200,255,0.5); }
 
-        .page-hero {
-            position: relative; z-index: 5; padding: 40px 0 30px;
-            text-align: center;
-        }
+        .page-hero { position: relative; z-index: 5; padding: 40px 0 30px; text-align: center; }
         .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
         .page-hero h1 span { background: linear-gradient(135deg, #00c8ff, #9945ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
@@ -174,15 +171,15 @@
 <body>
 
 <div class="lang-bar">
-    <div class="container">
-        <a href="#" class="active" data-lang="en">English</a>
-        <a href="#" data-lang="ru">Русский</a>
-        <a href="#" data-lang="es">Español</a>
-        <a href="#" data-lang="fr">Français</a>
-        <a href="#" data-lang="zh">中文</a>
-        <a href="#" data-lang="ja">日本語</a>
-        <a href="#" data-lang="ar">العربية</a>
-        <a href="#" data-lang="hi">हिन्दी</a>
+    <div class="container" id="languageSwitcher">
+        <a data-lang="en" class="active">English</a>
+        <a data-lang="ru">Русский</a>
+        <a data-lang="es">Español</a>
+        <a data-lang="fr">Français</a>
+        <a data-lang="zh">中文</a>
+        <a data-lang="ja">日本語</a>
+        <a data-lang="ar">العربية</a>
+        <a data-lang="hi">हिन्दी</a>
     </div>
 </div>
 
@@ -195,130 +192,130 @@
             <span>VISA</span>
         </div>
         <nav class="nav-links">
-            <a href="index.html">Главная</a>
-            <a href="page2.html">Финансы</a>
-            <a href="page3.html" class="active">Крипто</a>
-            <a href="page4.html">Биржа</a>
-            <a href="page5.html">Страхование</a>
-            <a href="page6.html">Бизнес</a>
-            <a href="page7.html">Туризм</a>
-            <a href="page8.html">Карты</a>
-            <a href="index.html#buy" class="btn-header">🚀 Купить VISA</a>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="page2.html" data-i18n="nav_finance">Finance</a>
+            <a href="page3.html" class="active" data-i18n="nav_crypto">Crypto</a>
+            <a href="page4.html" data-i18n="nav_exchange">Exchange</a>
+            <a href="page5.html" data-i18n="nav_insurance">Insurance</a>
+            <a href="page6.html" data-i18n="nav_business">Business</a>
+            <a href="page7.html" data-i18n="nav_travel">Travel</a>
+            <a href="page8.html" data-i18n="nav_cards">Cards</a>
+            <a href="index.html#buy" class="btn-header" data-i18n="nav_buy">Buy VISA</a>
         </nav>
     </div>
 </header>
 
 <section class="page-hero">
     <div class="container">
-        <div class="badge">⛓️ 100+ крипто-операций</div>
-        <h1>Крипто <span>операции</span></h1>
-        <p>RWA, токенизация, стейкинг, криптокредиты, деривативы, фьючерсы и более 100 продуктов через VISA.</p>
+        <div class="badge" data-i18n="p3_badge">⛓️ 100+ Crypto Operations</div>
+        <h1><span data-i18n="p3_title">Crypto</span> <span data-i18n="p3_title2">Operations</span></h1>
+        <p data-i18n="p3_desc">RWA, tokenization, staking, crypto loans, derivatives, futures and more than 100 products through VISA.</p>
     </div>
 </section>
 
-<!-- ===== КАЛЬКУЛЯТОР СТЕЙКИНГА ===== -->
+<!-- ===== STAKING CALCULATOR ===== -->
 <div class="container">
     <div class="calculator-section fade-in">
-        <h3>⚡ Калькулятор стейкинга (APY 18%)</h3>
+        <h3 data-i18n="p3_calc_title">⚡ Staking Calculator (APY 18%)</h3>
         <div class="calc-row">
-            <label>Сумма VISA ($)<input type="number" id="stakeAmount" value="1000" /></label>
-            <label>Период (мес)<input type="number" id="stakeMonths" value="12" /></label>
-            <button class="btn-primary" onclick="calcStake()">Рассчитать</button>
+            <label data-i18n="p3_calc_amount">VISA Amount ($)<input type="number" id="stakeAmount" value="1000" /></label>
+            <label data-i18n="p3_calc_term">Period (months)<input type="number" id="stakeMonths" value="12" /></label>
+            <button class="btn-primary" onclick="calcStake()" data-i18n="p3_calc_btn">Calculate</button>
         </div>
-        <div class="calc-result" id="stakeResult">Итоговая сумма: $1,180.00 | Доход: $180.00</div>
+        <div class="calc-result" id="stakeResult">Final amount: $1,180.00 | Profit: $180.00</div>
     </div>
 </div>
 
-<!-- ===== 100+ ФУНКЦИЙ ===== -->
+<!-- ===== 100+ FEATURES ===== -->
 <div class="container">
     <div class="section-title fade-in">
-        <h2>Все <span style="color:#00c8ff;">крипто-продукты</span></h2>
-        <p>Более 100 инструментов для работы с криптовалютами и цифровыми активами.</p>
+        <h2><span data-i18n="p3_sec_title">All</span> <span style="color:#00c8ff;" data-i18n="p3_sec_title2">Crypto Products</span></h2>
+        <p data-i18n="p3_sec_desc">More than 100 tools for crypto and digital assets.</p>
     </div>
     <div class="cards-grid">
-        <!-- RWA ТОКЕНИЗАЦИЯ -->
-        <div class="card fade-in"><span class="icon">🏠</span><h4>Токенизация недвижимости</h4><p>Дробные доли в объектах</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🥇</span><h4>Токенизация золота</h4><p>Цифровое золото</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🛢️</span><h4>Токенизация нефти</h4><p>Цифровые баррели</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4>Токенизация зерна</h4><p>Цифровые тонны</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">💎</span><h4>Токенизация алмазов</h4><p>Цифровые драгкамни</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🌳</span><h4>Токенизация леса</h4><p>Цифровые гектары</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🏭</span><h4>Токенизация заводов</h4><p>Промышленные активы</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🎨</span><h4>Токенизация искусства</h4><p>Картины, скульптуры</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🏛️</span><h4>Токенизация музеев</h4><p>Коллекции</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📜</span><h4>Токенизация прав</h4><p>Интеллектуальная собственность</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4>Токенизация автопарка</h4><p>Автомобили</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">✈️</span><h4>Токенизация авиакомпаний</h4><p>Самолёты</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <!-- RWA TOKENIZATION -->
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p3_rwa1">Real Estate Tokenization</h4><p data-i18n="p3_rwa1_desc">Fractional property ownership</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🥇</span><h4 data-i18n="p3_rwa2">Gold Tokenization</h4><p data-i18n="p3_rwa2_desc">Digital gold</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p3_rwa3">Oil Tokenization</h4><p data-i18n="p3_rwa3_desc">Digital barrels</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p3_rwa4">Grain Tokenization</h4><p data-i18n="p3_rwa4_desc">Digital tons</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💎</span><h4 data-i18n="p3_rwa5">Diamond Tokenization</h4><p data-i18n="p3_rwa5_desc">Digital gems</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🌳</span><h4 data-i18n="p3_rwa6">Forest Tokenization</h4><p data-i18n="p3_rwa6_desc">Digital hectares</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🏭</span><h4 data-i18n="p3_rwa7">Factory Tokenization</h4><p data-i18n="p3_rwa7_desc">Industrial assets</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🎨</span><h4 data-i18n="p3_rwa8">Art Tokenization</h4><p data-i18n="p3_rwa8_desc">Paintings, sculptures</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🏛️</span><h4 data-i18n="p3_rwa9">Museum Tokenization</h4><p data-i18n="p3_rwa9_desc">Collections</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📜</span><h4 data-i18n="p3_rwa10">IP Tokenization</h4><p data-i18n="p3_rwa10_desc">Intellectual property</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p3_rwa11">Fleet Tokenization</h4><p data-i18n="p3_rwa11_desc">Vehicles</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p3_rwa12">Airline Tokenization</h4><p data-i18n="p3_rwa12_desc">Aircraft</p><span class="tag">RWA</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
 
-        <!-- СТЕЙКИНГ И ФАРМИНГ -->
-        <div class="card fade-in"><span class="icon">💰</span><h4>Стейкинг VISA</h4><p>18% APY</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4>Yield Farming</h4><p>Фарминг с LP-токенами</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Локинг токенов</h4><p>Блокировка на срок</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Ре-стейкинг</h4><p>Повторная блокировка</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4>Стейкинг в пулах</h4><p>Коллективный стейкинг</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">⚡</span><h4>Лид-стейкинг</h4><p>Повышенная APY</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🧊</span><h4>Холодный стейкинг</h4><p>В офлайн-кошельке</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔥</span><h4>Горячий стейкинг</h4><p>В онлайн-кошельке</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🎯</span><h4>Стейкинг с бонусом</h4><p>Ранние птицы</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Стейкинг-деривативы</h4><p>Торговля позициями</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">🔒</span><h4>Временная блокировка</h4><p>На 3, 6, 12 мес</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
-        <div class="card fade-in"><span class="icon">💸</span><h4>Авто-стейкинг</h4><p>Автоматическая блокировка</p><span class="tag">Стейкинг</span><a href="https://cis.visa.com" class="link" target="_blank">Начать →</a></div>
+        <!-- STAKING -->
+        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p3_stake1">VISA Staking</h4><p data-i18n="p3_stake1_desc">18% APY</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p3_stake2">Yield Farming</h4><p data-i18n="p3_stake2_desc">With LP tokens</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p3_stake3">Token Locking</h4><p data-i18n="p3_stake3_desc">Lock for period</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p3_stake4">Re-staking</h4><p data-i18n="p3_stake4_desc">Re-lock rewards</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p3_stake5">Pool Staking</h4><p data-i18n="p3_stake5_desc">Collective staking</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p3_stake6">Liquid Staking</h4><p data-i18n="p3_stake6_desc">Boosted APY</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🧊</span><h4 data-i18n="p3_stake7">Cold Staking</h4><p data-i18n="p3_stake7_desc">Offline wallet</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p3_stake8">Hot Staking</h4><p data-i18n="p3_stake8_desc">Online wallet</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🎯</span><h4 data-i18n="p3_stake9">Bonus Staking</h4><p data-i18n="p3_stake9_desc">Early birds</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p3_stake10">Staking Derivatives</h4><p data-i18n="p3_stake10_desc">Trade positions</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">🔒</span><h4 data-i18n="p3_stake11">Fixed Lock</h4><p data-i18n="p3_stake11_desc">3, 6, 12 months</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
+        <div class="card fade-in"><span class="icon">💸</span><h4 data-i18n="p3_stake12">Auto-Staking</h4><p data-i18n="p3_stake12_desc">Automatic lock</p><span class="tag" data-i18n="p3_tag_stake">Staking</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_start">Start →</a></div>
 
-        <!-- КРИПТОКРЕДИТЫ -->
-        <div class="card fade-in"><span class="icon">🏦</span><h4>Кредит под залог BTC</h4><p>До 70% от стоимости</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🪙</span><h4>Кредит под ETH</h4><p>До 60% LTV</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💎</span><h4>Кредит под стейблкоины</h4><p>USDC, USDT</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4>Кредит под токены RWA</h4><p>Золото, нефть, недвижимость</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Кредит под портфель</h4><p>Корзина активов</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">⚡</span><h4>Флеш-кредит</h4><p>Без залога на 1 блок</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Перекредитование</h4><p>Рефинансирование позиции</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🏛️</span><h4>Синдицированный кредит</h4><p>Консорциум кредиторов</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4>Кредит с фиксированной ставкой</h4><p>На весь срок</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Кредит с плавающей ставкой</h4><p>Привязан к рынку</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4>Кредит с страховкой</h4><p>Защита от ликвидации</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4>Крипто-кредитная карта</h4><p>VISA с лимитом</p><span class="tag">Кредит</span><a href="https://cis.visa.com" class="link" target="_blank">Оформить →</a></div>
+        <!-- CRYPTO LOANS -->
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p3_loan1">BTC-Backed Loan</h4><p data-i18n="p3_loan1_desc">Up to 70% LTV</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🪙</span><h4 data-i18n="p3_loan2">ETH-Backed Loan</h4><p data-i18n="p3_loan2_desc">Up to 60% LTV</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💎</span><h4 data-i18n="p3_loan3">Stablecoin Loan</h4><p data-i18n="p3_loan3_desc">USDC, USDT</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p3_loan4">RWA Token Loan</h4><p data-i18n="p3_loan4_desc">Gold, oil, real estate</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p3_loan5">Portfolio Loan</h4><p data-i18n="p3_loan5_desc">Asset basket</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p3_loan6">Flash Loan</h4><p data-i18n="p3_loan6_desc">No collateral, 1 block</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p3_loan7">Refinancing</h4><p data-i18n="p3_loan7_desc">Position refinance</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏛️</span><h4 data-i18n="p3_loan8">Syndicated Loan</h4><p data-i18n="p3_loan8_desc">Lender consortium</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p3_loan9">Fixed Rate Loan</h4><p data-i18n="p3_loan9_desc">Throughout term</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p3_loan10">Floating Rate Loan</h4><p data-i18n="p3_loan10_desc">Market-linked</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p3_loan11">Insured Loan</h4><p data-i18n="p3_loan11_desc">Liquidation protection</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p3_loan12">Crypto Credit Card</h4><p data-i18n="p3_loan12_desc">VISA with limit</p><span class="tag" data-i18n="p3_tag_loan">Loan</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_apply">Apply →</a></div>
 
-        <!-- ДЕРИВАТИВЫ И ФЬЮЧЕРСЫ -->
-        <div class="card fade-in"><span class="icon">📊</span><h4>Фьючерсы на BTC</h4><p>Квадратные контракты</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4>Фьючерсы на VISA</h4><p>Хеджирование</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Бессрочные фьючерсы</h4><p>Perpetual</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔮</span><h4>Опционы CALL/PUT</h4><p>На токены</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4>Индексные фьючерсы</h4><p>На корзину токенов</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">⚡</span><h4>Вечные опционы</h4><p>Без экспирации</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4>Свопы на токены</h4><p>Обмен потоками</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">📉</span><h4>Хеджирование</h4><p>Страхование позиций</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧊</span><h4>Арбитраж</h4><p>Разница между биржами</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">📋</span><h4>Структурные продукты</h4><p>Кастомизация риска</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Кредитные дефолтные свопы</h4><p>CDS на токены</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🎯</span><h4>Токенизированные фьючерсы</h4><p>NFT-фьючерсы</p><span class="tag">Дериватив</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <!-- DERIVATIVES -->
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p3_der1">BTC Futures</h4><p data-i18n="p3_der1_desc">Square contracts</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p3_der2">VISA Futures</h4><p data-i18n="p3_der2_desc">Hedging</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p3_der3">Perpetual Futures</h4><p data-i18n="p3_der3_desc">Perpetual</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔮</span><h4 data-i18n="p3_der4">Options CALL/PUT</h4><p data-i18n="p3_der4_desc">On tokens</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p3_der5">Index Futures</h4><p data-i18n="p3_der5_desc">Token basket</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p3_der6">Perpetual Options</h4><p data-i18n="p3_der6_desc">No expiry</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p3_der7">Token Swaps</h4><p data-i18n="p3_der7_desc">Stream exchange</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">📉</span><h4 data-i18n="p3_der8">Hedging</h4><p data-i18n="p3_der8_desc">Position insurance</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧊</span><h4 data-i18n="p3_der9">Arbitrage</h4><p data-i18n="p3_der9_desc">Exchange spread</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4 data-i18n="p3_der10">Structured Products</h4><p data-i18n="p3_der10_desc">Custom risk</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p3_der11">CDS</h4><p data-i18n="p3_der11_desc">Credit default swaps</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🎯</span><h4 data-i18n="p3_der12">NFT Futures</h4><p data-i18n="p3_der12_desc">NFT-based futures</p><span class="tag" data-i18n="p3_tag_deriv">Derivative</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_trade">Trade →</a></div>
 
         <!-- NFT -->
-        <div class="card fade-in"><span class="icon">🖼️</span><h4>NFT-коллекции</h4><p>Цифровое искусство</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🎮</span><h4>GameFi NFT</h4><p>Игровые активы</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4>NFT недвижимости</h4><p>Метавселенные</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🎫</span><h4>NFT-билеты</h4><p>На мероприятия</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">📜</span><h4>NFT-сертификаты</h4><p>Дипломы, лицензии</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🎵</span><h4>NFT-музыка</h4><p>Альбомы, треки</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🏆</span><h4>NFT-трофеи</h4><p>Достижения</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4>NFT-домены</h4><p>Цифровые имена</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4>NFT-страхование</h4><p>Защита коллекций</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>NFT-индексы</h4><p>Портфель NFT</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🔮</span><h4>NFT-фьючерсы</h4><p>Спекуляция</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
-        <div class="card fade-in"><span class="icon">🎁</span><h4>NFT-подарки</h4><p>Цифровые подарки</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank">Купить →</a></div>
+        <div class="card fade-in"><span class="icon">🖼️</span><h4 data-i18n="p3_nft1">NFT Collections</h4><p data-i18n="p3_nft1_desc">Digital art</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🎮</span><h4 data-i18n="p3_nft2">GameFi NFT</h4><p data-i18n="p3_nft2_desc">Gaming assets</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p3_nft3">Metaverse NFT</h4><p data-i18n="p3_nft3_desc">Virtual land</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🎫</span><h4 data-i18n="p3_nft4">Event NFT</h4><p data-i18n="p3_nft4_desc">Tickets</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">📜</span><h4 data-i18n="p3_nft5">Certificate NFT</h4><p data-i18n="p3_nft5_desc">Diplomas, licenses</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🎵</span><h4 data-i18n="p3_nft6">Music NFT</h4><p data-i18n="p3_nft6_desc">Albums, tracks</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🏆</span><h4 data-i18n="p3_nft7">Achievement NFT</h4><p data-i18n="p3_nft7_desc">Trophies</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p3_nft8">NFT Domains</h4><p data-i18n="p3_nft8_desc">Digital names</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p3_nft9">NFT Insurance</h4><p data-i18n="p3_nft9_desc">Collection protection</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p3_nft10">NFT Index</h4><p data-i18n="p3_nft10_desc">NFT portfolio</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🔮</span><h4 data-i18n="p3_nft11">NFT Futures</h4><p data-i18n="p3_nft11_desc">Speculation</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🎁</span><h4 data-i18n="p3_nft12">NFT Gifts</h4><p data-i18n="p3_nft12_desc">Digital gifts</p><span class="tag">NFT</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_buy">Buy →</a></div>
 
-        <!-- ИНСТРУМЕНТЫ -->
-        <div class="card fade-in"><span class="icon">🔄</span><h4>Своп токенов</h4><p>Обмен 50+ валют</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Агрегатор ликвидности</h4><p>Лучшая цена</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4>Ончейн-аналитика</h4><p>Отслеживание транзакций</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4>Анти-мошенничество</h4><p>Защита токенов</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">📋</span><h4>Смарт-контракты</h4><p>Создание и деплой</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4>Мультиподпись</h4><p>Безопасность</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4>Кросс-чейн мосты</h4><p>Перевод между сетями</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4>Мобильный кошелёк</h4><p>VISA Wallet</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">💻</span><h4>Десктопный кошелёк</h4><p>VISA Desktop</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">🔍</span><h4>Сканер токенов</h4><p>Проверка контрактов</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4>Калькулятор газа</h4><p>Оптимизация комиссий</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
-        <div class="card fade-in"><span class="icon">🧠</span><h4>AI-аналитика</h4><p>Прогнозы цен</p><span class="tag">Инструмент</span><a href="https://cis.visa.com" class="link" target="_blank">Использовать →</a></div>
+        <!-- TOOLS -->
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p3_tool1">Token Swap</h4><p data-i18n="p3_tool1_desc">50+ currencies</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p3_tool2">Liquidity Aggregator</h4><p data-i18n="p3_tool2_desc">Best price</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p3_tool3">On-chain Analytics</h4><p data-i18n="p3_tool3_desc">Transaction tracking</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p3_tool4">Anti-fraud</h4><p data-i18n="p3_tool4_desc">Token protection</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">📋</span><h4 data-i18n="p3_tool5">Smart Contracts</h4><p data-i18n="p3_tool5_desc">Create and deploy</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p3_tool6">Multi-sig</h4><p data-i18n="p3_tool6_desc">Security</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p3_tool7">Cross-chain Bridges</h4><p data-i18n="p3_tool7_desc">Transfer between networks</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p3_tool8">Mobile Wallet</h4><p data-i18n="p3_tool8_desc">VISA Wallet</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p3_tool9">Desktop Wallet</h4><p data-i18n="p3_tool9_desc">VISA Desktop</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">🔍</span><h4 data-i18n="p3_tool10">Token Scanner</h4><p data-i18n="p3_tool10_desc">Contract check</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p3_tool11">Gas Calculator</h4><p data-i18n="p3_tool11_desc">Fee optimization</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p3_tool12">AI Analytics</h4><p data-i18n="p3_tool12_desc">Price forecasts</p><span class="tag" data-i18n="p3_tag_tool">Tool</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p3_link_use">Use →</a></div>
     </div>
 </div>
 
@@ -332,37 +329,231 @@
                 <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
             </div>
         </div>
-        <div class="footer-disclaimer">⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).</div>
+        <div class="footer-disclaimer" data-i18n="footer_disclaimer">⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).</div>
     </div>
 </footer>
 
 <script>
-    // ===== КАЛЬКУЛЯТОР СТЕЙКИНГА =====
     function calcStake() {
         const amount = parseFloat(document.getElementById('stakeAmount').value);
         const months = parseFloat(document.getElementById('stakeMonths').value);
         const rate = 0.18;
-        if (!amount || !months) { document.getElementById('stakeResult').textContent = 'Заполните все поля'; return; }
+        if (!amount || !months) { document.getElementById('stakeResult').textContent = 'Fill in all fields'; return; }
         const total = amount * Math.pow(1 + rate / 12, months);
-        document.getElementById('stakeResult').textContent = `Итоговая сумма: $${total.toFixed(2)} | Доход: $${(total - amount).toFixed(2)}`;
+        document.getElementById('stakeResult').textContent = `Final amount: $${total.toFixed(2)} | Profit: $${(total - amount).toFixed(2)}`;
     }
     calcStake();
 
-    // ===== АНИМАЦИЯ =====
+    // ===== MULTILANGUAGE ENGINE (compact) =====
+    const translations = {
+        en: {
+            nav_home: "Home", nav_finance: "Finance", nav_crypto: "Crypto", nav_exchange: "Exchange",
+            nav_insurance: "Insurance", nav_business: "Business", nav_travel: "Travel", nav_cards: "Cards", nav_buy: "Buy VISA",
+            footer_disclaimer: "⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).",
+            p3_badge: "⛓️ 100+ Crypto Operations",
+            p3_title: "Crypto", p3_title2: "Operations",
+            p3_desc: "RWA, tokenization, staking, crypto loans, derivatives, futures and more than 100 products through VISA.",
+            p3_calc_title: "⚡ Staking Calculator (APY 18%)",
+            p3_calc_amount: "VISA Amount ($)", p3_calc_term: "Period (months)", p3_calc_btn: "Calculate",
+            p3_sec_title: "All", p3_sec_title2: "Crypto Products", p3_sec_desc: "More than 100 tools for crypto and digital assets.",
+            p3_link_start: "Start →", p3_link_apply: "Apply →", p3_link_trade: "Trade →", p3_link_buy: "Buy →", p3_link_use: "Use →",
+            p3_tag_stake: "Staking", p3_tag_loan: "Loan", p3_tag_deriv: "Derivative", p3_tag_tool: "Tool",
+            p3_rwa1: "Real Estate Tokenization", p3_rwa1_desc: "Fractional property ownership",
+            p3_rwa2: "Gold Tokenization", p3_rwa2_desc: "Digital gold",
+            p3_rwa3: "Oil Tokenization", p3_rwa3_desc: "Digital barrels",
+            p3_rwa4: "Grain Tokenization", p3_rwa4_desc: "Digital tons",
+            p3_rwa5: "Diamond Tokenization", p3_rwa5_desc: "Digital gems",
+            p3_rwa6: "Forest Tokenization", p3_rwa6_desc: "Digital hectares",
+            p3_rwa7: "Factory Tokenization", p3_rwa7_desc: "Industrial assets",
+            p3_rwa8: "Art Tokenization", p3_rwa8_desc: "Paintings, sculptures",
+            p3_rwa9: "Museum Tokenization", p3_rwa9_desc: "Collections",
+            p3_rwa10: "IP Tokenization", p3_rwa10_desc: "Intellectual property",
+            p3_rwa11: "Fleet Tokenization", p3_rwa11_desc: "Vehicles",
+            p3_rwa12: "Airline Tokenization", p3_rwa12_desc: "Aircraft",
+            p3_stake1: "VISA Staking", p3_stake1_desc: "18% APY",
+            p3_stake2: "Yield Farming", p3_stake2_desc: "With LP tokens",
+            p3_stake3: "Token Locking", p3_stake3_desc: "Lock for period",
+            p3_stake4: "Re-staking", p3_stake4_desc: "Re-lock rewards",
+            p3_stake5: "Pool Staking", p3_stake5_desc: "Collective staking",
+            p3_stake6: "Liquid Staking", p3_stake6_desc: "Boosted APY",
+            p3_stake7: "Cold Staking", p3_stake7_desc: "Offline wallet",
+            p3_stake8: "Hot Staking", p3_stake8_desc: "Online wallet",
+            p3_stake9: "Bonus Staking", p3_stake9_desc: "Early birds",
+            p3_stake10: "Staking Derivatives", p3_stake10_desc: "Trade positions",
+            p3_stake11: "Fixed Lock", p3_stake11_desc: "3, 6, 12 months",
+            p3_stake12: "Auto-Staking", p3_stake12_desc: "Automatic lock",
+            p3_loan1: "BTC-Backed Loan", p3_loan1_desc: "Up to 70% LTV",
+            p3_loan2: "ETH-Backed Loan", p3_loan2_desc: "Up to 60% LTV",
+            p3_loan3: "Stablecoin Loan", p3_loan3_desc: "USDC, USDT",
+            p3_loan4: "RWA Token Loan", p3_loan4_desc: "Gold, oil, real estate",
+            p3_loan5: "Portfolio Loan", p3_loan5_desc: "Asset basket",
+            p3_loan6: "Flash Loan", p3_loan6_desc: "No collateral, 1 block",
+            p3_loan7: "Refinancing", p3_loan7_desc: "Position refinance",
+            p3_loan8: "Syndicated Loan", p3_loan8_desc: "Lender consortium",
+            p3_loan9: "Fixed Rate Loan", p3_loan9_desc: "Throughout term",
+            p3_loan10: "Floating Rate Loan", p3_loan10_desc: "Market-linked",
+            p3_loan11: "Insured Loan", p3_loan11_desc: "Liquidation protection",
+            p3_loan12: "Crypto Credit Card", p3_loan12_desc: "VISA with limit",
+            p3_der1: "BTC Futures", p3_der1_desc: "Square contracts",
+            p3_der2: "VISA Futures", p3_der2_desc: "Hedging",
+            p3_der3: "Perpetual Futures", p3_der3_desc: "Perpetual",
+            p3_der4: "Options CALL/PUT", p3_der4_desc: "On tokens",
+            p3_der5: "Index Futures", p3_der5_desc: "Token basket",
+            p3_der6: "Perpetual Options", p3_der6_desc: "No expiry",
+            p3_der7: "Token Swaps", p3_der7_desc: "Stream exchange",
+            p3_der8: "Hedging", p3_der8_desc: "Position insurance",
+            p3_der9: "Arbitrage", p3_der9_desc: "Exchange spread",
+            p3_der10: "Structured Products", p3_der10_desc: "Custom risk",
+            p3_der11: "CDS", p3_der11_desc: "Credit default swaps",
+            p3_der12: "NFT Futures", p3_der12_desc: "NFT-based futures",
+            p3_nft1: "NFT Collections", p3_nft1_desc: "Digital art",
+            p3_nft2: "GameFi NFT", p3_nft2_desc: "Gaming assets",
+            p3_nft3: "Metaverse NFT", p3_nft3_desc: "Virtual land",
+            p3_nft4: "Event NFT", p3_nft4_desc: "Tickets",
+            p3_nft5: "Certificate NFT", p3_nft5_desc: "Diplomas, licenses",
+            p3_nft6: "Music NFT", p3_nft6_desc: "Albums, tracks",
+            p3_nft7: "Achievement NFT", p3_nft7_desc: "Trophies",
+            p3_nft8: "NFT Domains", p3_nft8_desc: "Digital names",
+            p3_nft9: "NFT Insurance", p3_nft9_desc: "Collection protection",
+            p3_nft10: "NFT Index", p3_nft10_desc: "NFT portfolio",
+            p3_nft11: "NFT Futures", p3_nft11_desc: "Speculation",
+            p3_nft12: "NFT Gifts", p3_nft12_desc: "Digital gifts",
+            p3_tool1: "Token Swap", p3_tool1_desc: "50+ currencies",
+            p3_tool2: "Liquidity Aggregator", p3_tool2_desc: "Best price",
+            p3_tool3: "On-chain Analytics", p3_tool3_desc: "Transaction tracking",
+            p3_tool4: "Anti-fraud", p3_tool4_desc: "Token protection",
+            p3_tool5: "Smart Contracts", p3_tool5_desc: "Create and deploy",
+            p3_tool6: "Multi-sig", p3_tool6_desc: "Security",
+            p3_tool7: "Cross-chain Bridges", p3_tool7_desc: "Transfer between networks",
+            p3_tool8: "Mobile Wallet", p3_tool8_desc: "VISA Wallet",
+            p3_tool9: "Desktop Wallet", p3_tool9_desc: "VISA Desktop",
+            p3_tool10: "Token Scanner", p3_tool10_desc: "Contract check",
+            p3_tool11: "Gas Calculator", p3_tool11_desc: "Fee optimization",
+            p3_tool12: "AI Analytics", p3_tool12_desc: "Price forecasts"
+        },
+        ru: {
+            nav_home: "Главная", nav_finance: "Финансы", nav_crypto: "Крипто", nav_exchange: "Биржа",
+            nav_insurance: "Страхование", nav_business: "Бизнес", nav_travel: "Туризм", nav_cards: "Карты", nav_buy: "Купить VISA",
+            footer_disclaimer: "⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).",
+            p3_badge: "⛓️ 100+ крипто-операций",
+            p3_title: "Крипто", p3_title2: "операции",
+            p3_desc: "RWA, токенизация, стейкинг, криптокредиты, деривативы, фьючерсы и более 100 продуктов через VISA.",
+            p3_calc_title: "⚡ Калькулятор стейкинга (APY 18%)",
+            p3_calc_amount: "Сумма VISA ($)", p3_calc_term: "Период (мес)", p3_calc_btn: "Рассчитать",
+            p3_sec_title: "Все", p3_sec_title2: "крипто-продукты", p3_sec_desc: "Более 100 инструментов для работы с криптовалютами и цифровыми активами.",
+            p3_link_start: "Начать →", p3_link_apply: "Оформить →", p3_link_trade: "Торговать →", p3_link_buy: "Купить →", p3_link_use: "Использовать →",
+            p3_tag_stake: "Стейкинг", p3_tag_loan: "Кредит", p3_tag_deriv: "Дериватив", p3_tag_tool: "Инструмент",
+            p3_rwa1: "Токенизация недвижимости", p3_rwa1_desc: "Дробные доли в объектах",
+            p3_rwa2: "Токенизация золота", p3_rwa2_desc: "Цифровое золото",
+            p3_rwa3: "Токенизация нефти", p3_rwa3_desc: "Цифровые баррели",
+            p3_rwa4: "Токенизация зерна", p3_rwa4_desc: "Цифровые тонны",
+            p3_rwa5: "Токенизация алмазов", p3_rwa5_desc: "Цифровые драгкамни",
+            p3_rwa6: "Токенизация леса", p3_rwa6_desc: "Цифровые гектары",
+            p3_rwa7: "Токенизация заводов", p3_rwa7_desc: "Промышленные активы",
+            p3_rwa8: "Токенизация искусства", p3_rwa8_desc: "Картины, скульптуры",
+            p3_rwa9: "Токенизация музеев", p3_rwa9_desc: "Коллекции",
+            p3_rwa10: "Токенизация прав", p3_rwa10_desc: "Интеллектуальная собственность",
+            p3_rwa11: "Токенизация автопарка", p3_rwa11_desc: "Автомобили",
+            p3_rwa12: "Токенизация авиакомпаний", p3_rwa12_desc: "Самолёты",
+            p3_stake1: "Стейкинг VISA", p3_stake1_desc: "18% APY",
+            p3_stake2: "Yield Farming", p3_stake2_desc: "Фарминг с LP-токенами",
+            p3_stake3: "Локинг токенов", p3_stake3_desc: "Блокировка на срок",
+            p3_stake4: "Ре-стейкинг", p3_stake4_desc: "Повторная блокировка",
+            p3_stake5: "Стейкинг в пулах", p3_stake5_desc: "Коллективный стейкинг",
+            p3_stake6: "Лид-стейкинг", p3_stake6_desc: "Повышенная APY",
+            p3_stake7: "Холодный стейкинг", p3_stake7_desc: "В офлайн-кошельке",
+            p3_stake8: "Горячий стейкинг", p3_stake8_desc: "В онлайн-кошельке",
+            p3_stake9: "Стейкинг с бонусом", p3_stake9_desc: "Ранние птицы",
+            p3_stake10: "Стейкинг-деривативы", p3_stake10_desc: "Торговля позициями",
+            p3_stake11: "Временная блокировка", p3_stake11_desc: "На 3, 6, 12 мес",
+            p3_stake12: "Авто-стейкинг", p3_stake12_desc: "Автоматическая блокировка",
+            p3_loan1: "Кредит под залог BTC", p3_loan1_desc: "До 70% от стоимости",
+            p3_loan2: "Кредит под ETH", p3_loan2_desc: "До 60% LTV",
+            p3_loan3: "Кредит под стейблкоины", p3_loan3_desc: "USDC, USDT",
+            p3_loan4: "Кредит под токены RWA", p3_loan4_desc: "Золото, нефть, недвижимость",
+            p3_loan5: "Кредит под портфель", p3_loan5_desc: "Корзина активов",
+            p3_loan6: "Флеш-кредит", p3_loan6_desc: "Без залога на 1 блок",
+            p3_loan7: "Перекредитование", p3_loan7_desc: "Рефинансирование позиции",
+            p3_loan8: "Синдицированный кредит", p3_loan8_desc: "Консорциум кредиторов",
+            p3_loan9: "Кредит с фиксированной ставкой", p3_loan9_desc: "На весь срок",
+            p3_loan10: "Кредит с плавающей ставкой", p3_loan10_desc: "Привязан к рынку",
+            p3_loan11: "Кредит с страховкой", p3_loan11_desc: "Защита от ликвидации",
+            p3_loan12: "Крипто-кредитная карта", p3_loan12_desc: "VISA с лимитом",
+            p3_der1: "Фьючерсы на BTC", p3_der1_desc: "Квадратные контракты",
+            p3_der2: "Фьючерсы на VISA", p3_der2_desc: "Хеджирование",
+            p3_der3: "Бессрочные фьючерсы", p3_der3_desc: "Perpetual",
+            p3_der4: "Опционы CALL/PUT", p3_der4_desc: "На токены",
+            p3_der5: "Индексные фьючерсы", p3_der5_desc: "На корзину токенов",
+            p3_der6: "Вечные опционы", p3_der6_desc: "Без экспирации",
+            p3_der7: "Свопы на токены", p3_der7_desc: "Обмен потоками",
+            p3_der8: "Хеджирование", p3_der8_desc: "Страхование позиций",
+            p3_der9: "Арбитраж", p3_der9_desc: "Разница между биржами",
+            p3_der10: "Структурные продукты", p3_der10_desc: "Кастомизация риска",
+            p3_der11: "CDS", p3_der11_desc: "Кредитные дефолтные свопы",
+            p3_der12: "NFT-фьючерсы", p3_der12_desc: "NFT-фьючерсы",
+            p3_nft1: "NFT-коллекции", p3_nft1_desc: "Цифровое искусство",
+            p3_nft2: "GameFi NFT", p3_nft2_desc: "Игровые активы",
+            p3_nft3: "NFT недвижимости", p3_nft3_desc: "Метавселенные",
+            p3_nft4: "NFT-билеты", p3_nft4_desc: "На мероприятия",
+            p3_nft5: "NFT-сертификаты", p3_nft5_desc: "Дипломы, лицензии",
+            p3_nft6: "NFT-музыка", p3_nft6_desc: "Альбомы, треки",
+            p3_nft7: "NFT-трофеи", p3_nft7_desc: "Достижения",
+            p3_nft8: "NFT-домены", p3_nft8_desc: "Цифровые имена",
+            p3_nft9: "NFT-страхование", p3_nft9_desc: "Защита коллекций",
+            p3_nft10: "NFT-индексы", p3_nft10_desc: "Портфель NFT",
+            p3_nft11: "NFT-фьючерсы", p3_nft11_desc: "Спекуляция",
+            p3_nft12: "NFT-подарки", p3_nft12_desc: "Цифровые подарки",
+            p3_tool1: "Своп токенов", p3_tool1_desc: "Обмен 50+ валют",
+            p3_tool2: "Агрегатор ликвидности", p3_tool2_desc: "Лучшая цена",
+            p3_tool3: "Ончейн-аналитика", p3_tool3_desc: "Отслеживание транзакций",
+            p3_tool4: "Анти-мошенничество", p3_tool4_desc: "Защита токенов",
+            p3_tool5: "Смарт-контракты", p3_tool5_desc: "Создание и деплой",
+            p3_tool6: "Мультиподпись", p3_tool6_desc: "Безопасность",
+            p3_tool7: "Кросс-чейн мосты", p3_tool7_desc: "Перевод между сетями",
+            p3_tool8: "Мобильный кошелёк", p3_tool8_desc: "VISA Wallet",
+            p3_tool9: "Десктопный кошелёк", p3_tool9_desc: "VISA Desktop",
+            p3_tool10: "Сканер токенов", p3_tool10_desc: "Проверка контрактов",
+            p3_tool11: "Калькулятор газа", p3_tool11_desc: "Оптимизация комиссий",
+            p3_tool12: "AI-аналитика", p3_tool12_desc: "Прогнозы цен"
+        },
+        es: { /* similar structure */ },
+        fr: { /* similar structure */ },
+        zh: { /* similar structure */ },
+        ja: { /* similar structure */ },
+        ar: { /* similar structure */ },
+        hi: { /* similar structure */ }
+    };
+
+    let currentLang = localStorage.getItem('visaLang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('visaLang', lang);
+        document.querySelectorAll('#languageSwitcher a').forEach(el => {
+            el.classList.toggle('active', el.dataset.lang === lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            const translation = translations[lang]?.[key];
+            if (translation !== undefined) el.textContent = translation;
+        });
+        document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('#languageSwitcher a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            setLanguage(this.dataset.lang);
+        });
+    });
+
     const faders = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     faders.forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.lang-bar a').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.lang-bar a').forEach(x => x.classList.remove('active'));
-            this.classList.add('active');
-            alert('🌍 Язык изменён на: ' + this.textContent.trim());
-        });
-    });
+    setLanguage(currentLang);
 </script>
 </body>
-  </html>
+</html>
