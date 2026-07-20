@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>VISA – Биржевые торги | Акции, нефтехимия, металлы, товары</title>
+    <title>VISA – Exchange Trading | Stocks, Oil, Metals, Commodities</title>
     <link rel="icon" href="favicon.ico" />
     <style>
+        /* Same base styles as page3, with orange accent #f7931a */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #fff; line-height: 1.6; }
-        a { color: #7c8cff; text-decoration: none; }
+        a { color: #f7931a; text-decoration: none; }
         .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
         
         .lang-bar {
@@ -22,9 +23,9 @@
             backdrop-filter: blur(12px);
         }
         .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
-        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 2px 8px; border-radius: 4px; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 4px 12px; border-radius: 4px; cursor: pointer; }
         .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-        .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .lang-bar a.active { color: #f7931a; background: rgba(247,147,26,0.12); }
 
         .bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
@@ -33,14 +34,14 @@
         }
         .bg-canvas::before {
             content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
-            background: radial-gradient(circle at 30% 40%, rgba(120,80,255,0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(0,200,255,0.06) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 40%, rgba(247,147,26,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(255,107,0,0.06) 0%, transparent 50%);
             animation: bgPulse 12s ease-in-out infinite alternate;
         }
         @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
         .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
-        .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
-        .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-1 { width: 500px; height: 500px; background: #f7931a; top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #ff6b00; bottom: -10%; right: -5%; animation-delay: -6s; }
         .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
 
@@ -55,28 +56,25 @@
         .logo-wrap img { height: 44px; width: auto; }
         .logo-wrap span {
             font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            background: linear-gradient(135deg, #f7931a, #ff6b00);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
         .nav-links a {
-            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s;
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s, background 0.3s;
             padding: 6px 12px; border-radius: 8px;
         }
         .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
-        .nav-links a.active { color: #7c8cff; background: rgba(124,140,255,0.1); }
+        .nav-links a.active { color: #f7931a; background: rgba(247,147,26,0.1); }
         .btn-header {
-            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            background: linear-gradient(135deg, #f7931a, #ff6b00);
             padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
             color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 20px rgba(121,68,255,0.3);
+            box-shadow: 0 4px 20px rgba(247,147,26,0.3);
         }
-        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(121,68,255,0.5); }
+        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(247,147,26,0.5); }
 
-        .page-hero {
-            position: relative; z-index: 5; padding: 40px 0 30px;
-            text-align: center;
-        }
+        .page-hero { position: relative; z-index: 5; padding: 40px 0 30px; text-align: center; }
         .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
         .page-hero h1 span { background: linear-gradient(135deg, #f7931a, #ff6b00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
@@ -174,15 +172,15 @@
 <body>
 
 <div class="lang-bar">
-    <div class="container">
-        <a href="#" class="active" data-lang="en">English</a>
-        <a href="#" data-lang="ru">Русский</a>
-        <a href="#" data-lang="es">Español</a>
-        <a href="#" data-lang="fr">Français</a>
-        <a href="#" data-lang="zh">中文</a>
-        <a href="#" data-lang="ja">日本語</a>
-        <a href="#" data-lang="ar">العربية</a>
-        <a href="#" data-lang="hi">हिन्दी</a>
+    <div class="container" id="languageSwitcher">
+        <a data-lang="en" class="active">English</a>
+        <a data-lang="ru">Русский</a>
+        <a data-lang="es">Español</a>
+        <a data-lang="fr">Français</a>
+        <a data-lang="zh">中文</a>
+        <a data-lang="ja">日本語</a>
+        <a data-lang="ar">العربية</a>
+        <a data-lang="hi">हिन्दी</a>
     </div>
 </div>
 
@@ -195,117 +193,117 @@
             <span>VISA</span>
         </div>
         <nav class="nav-links">
-            <a href="index.html">Главная</a>
-            <a href="page2.html">Финансы</a>
-            <a href="page3.html">Крипто</a>
-            <a href="page4.html" class="active">Биржа</a>
-            <a href="page5.html">Страхование</a>
-            <a href="page6.html">Бизнес</a>
-            <a href="page7.html">Туризм</a>
-            <a href="page8.html">Карты</a>
-            <a href="index.html#buy" class="btn-header">🚀 Купить VISA</a>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="page2.html" data-i18n="nav_finance">Finance</a>
+            <a href="page3.html" data-i18n="nav_crypto">Crypto</a>
+            <a href="page4.html" class="active" data-i18n="nav_exchange">Exchange</a>
+            <a href="page5.html" data-i18n="nav_insurance">Insurance</a>
+            <a href="page6.html" data-i18n="nav_business">Business</a>
+            <a href="page7.html" data-i18n="nav_travel">Travel</a>
+            <a href="page8.html" data-i18n="nav_cards">Cards</a>
+            <a href="index.html#buy" class="btn-header" data-i18n="nav_buy">Buy VISA</a>
         </nav>
     </div>
 </header>
 
 <section class="page-hero">
     <div class="container">
-        <div class="badge">📈 100+ биржевых продуктов</div>
-        <h1>Биржевые <span>торги</span></h1>
-        <p>Акции, нефтехимия, металлы, зерно, лес, уголь, газ, электроэнергия и всё через VISA.</p>
+        <div class="badge" data-i18n="p4_badge">📈 100+ Trading Products</div>
+        <h1><span data-i18n="p4_title">Exchange</span> <span data-i18n="p4_title2">Trading</span></h1>
+        <p data-i18n="p4_desc">Stocks, oil, gas, metals, grain, timber, coal, electricity and more than 100 products through VISA.</p>
     </div>
 </section>
 
-<!-- ===== КАЛЬКУЛЯТОР ПРИБЫЛИ ===== -->
+<!-- ===== TRADE CALCULATOR ===== -->
 <div class="container">
     <div class="calculator-section fade-in">
-        <h3>📊 Калькулятор прибыли от торговли</h3>
+        <h3 data-i18n="p4_calc_title">📊 Trading Profit Calculator</h3>
         <div class="calc-row">
-            <label>Сумма инвестиций ($)<input type="number" id="tradeAmount" value="10000" /></label>
-            <label>Цена входа ($)<input type="number" id="entryPrice" value="100" /></label>
-            <label>Цена выхода ($)<input type="number" id="exitPrice" value="120" /></label>
-            <button class="btn-primary" onclick="calcTrade()">Рассчитать</button>
+            <label data-i18n="p4_calc_amount">Investment ($)<input type="number" id="tradeAmount" value="10000" /></label>
+            <label data-i18n="p4_calc_entry">Entry Price ($)<input type="number" id="entryPrice" value="100" /></label>
+            <label data-i18n="p4_calc_exit">Exit Price ($)<input type="number" id="exitPrice" value="120" /></label>
+            <button class="btn-primary" onclick="calcTrade()" data-i18n="p4_calc_btn">Calculate</button>
         </div>
-        <div class="calc-result" id="tradeResult">Прибыль: $2,000.00 | ROI: 20.00%</div>
+        <div class="calc-result" id="tradeResult">Profit: $2,000.00 | ROI: 20.00%</div>
     </div>
 </div>
 
-<!-- ===== 100+ ФУНКЦИЙ ===== -->
+<!-- ===== 100+ FEATURES ===== -->
 <div class="container">
     <div class="section-title fade-in">
-        <h2>Все <span style="color:#f7931a;">биржевые товары</span></h2>
-        <p>Акции, сырьё, энергия и более 100 инструментов через VISA.</p>
+        <h2><span data-i18n="p4_sec_title">All</span> <span style="color:#f7931a;" data-i18n="p4_sec_title2">Trading Products</span></h2>
+        <p data-i18n="p4_sec_desc">Stocks, commodities, energy and more than 100 instruments through VISA.</p>
     </div>
     <div class="cards-grid">
-        <!-- АКЦИИ -->
-        <div class="card fade-in"><span class="icon">🏦</span><h4>Акции S&P 500</h4><p>США</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🏛️</span><h4>Акции Nasdaq</h4><p>Технологии</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4>Акции МосБиржи</h4><p>Россия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🏯</span><h4>Акции Токио</h4><p>Япония</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🐉</span><h4>Акции Шанхая</h4><p>Китай</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🇪🇺</span><h4>Акции Евро</h4><p>EURO STOXX 50</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🇬🇧</span><h4>Акции FTSE 100</h4><p>Великобритания</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🇩🇪</span><h4>Акции DAX 40</h4><p>Германия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🇫🇷</span><h4>Акции CAC 40</h4><p>Франция</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🇮🇳</span><h4>Акции NIFTY 50</h4><p>Индия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🇦🇺</span><h4>Акции ASX 200</h4><p>Австралия</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🇨🇦</span><h4>Акции TSX 60</h4><p>Канада</p><span class="tag">Акции</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <!-- STOCKS -->
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p4_stock1">S&P 500 Stocks</h4><p data-i18n="p4_stock1_desc">USA</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🏛️</span><h4 data-i18n="p4_stock2">NASDAQ Stocks</h4><p data-i18n="p4_stock2_desc">Technology</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p4_stock3">MOEX Stocks</h4><p data-i18n="p4_stock3_desc">Russia</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🏯</span><h4 data-i18n="p4_stock4">Tokyo Stocks</h4><p data-i18n="p4_stock4_desc">Japan</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🐉</span><h4 data-i18n="p4_stock5">Shanghai Stocks</h4><p data-i18n="p4_stock5_desc">China</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇪🇺</span><h4 data-i18n="p4_stock6">Euro Stocks</h4><p data-i18n="p4_stock6_desc">EURO STOXX 50</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇬🇧</span><h4 data-i18n="p4_stock7">FTSE 100 Stocks</h4><p data-i18n="p4_stock7_desc">UK</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇩🇪</span><h4 data-i18n="p4_stock8">DAX 40 Stocks</h4><p data-i18n="p4_stock8_desc">Germany</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇫🇷</span><h4 data-i18n="p4_stock9">CAC 40 Stocks</h4><p data-i18n="p4_stock9_desc">France</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇮🇳</span><h4 data-i18n="p4_stock10">NIFTY 50 Stocks</h4><p data-i18n="p4_stock10_desc">India</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇦🇺</span><h4 data-i18n="p4_stock11">ASX 200 Stocks</h4><p data-i18n="p4_stock11_desc">Australia</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇨🇦</span><h4 data-i18n="p4_stock12">TSX 60 Stocks</h4><p data-i18n="p4_stock12_desc">Canada</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
-        <!-- НЕФТЕХИМИЯ -->
-        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть Brent</h4><p>Сорт Brent</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть WTI</h4><p>Сорт WTI</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть Urals</h4><p>Россия</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🛢️</span><h4>Нефть Dubai</h4><p>ОАЭ</p><span class="tag">Нефть</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔥</span><h4>Природный газ</h4><p>Henry Hub</p><span class="tag">Газ</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔥</span><h4>СПГ</h4><p>Сжиженный газ</p><span class="tag">Газ</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4>Бензин</h4><p>Rbob Gasoline</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4>Дизель</h4><p>Heating Oil</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4>Пропан</h4><p>Сжиженный газ</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4>Этилен</h4><p>Сырьё для пластика</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4>Полипропилен</h4><p>Пластик</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4>Полиэтилен</h4><p>Пластик</p><span class="tag">Нефтехимия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <!-- OIL & GAS -->
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil1">Brent Oil</h4><p data-i18n="p4_oil1_desc">Brent crude</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil2">WTI Oil</h4><p data-i18n="p4_oil2_desc">WTI crude</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil3">Urals Oil</h4><p data-i18n="p4_oil3_desc">Russia</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil4">Dubai Oil</h4><p data-i18n="p4_oil4_desc">UAE</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p4_gas1">Natural Gas</h4><p data-i18n="p4_gas1_desc">Henry Hub</p><span class="tag" data-i18n="p4_tag_gas">Gas</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p4_gas2">LNG</h4><p data-i18n="p4_gas2_desc">Liquefied gas</p><span class="tag" data-i18n="p4_tag_gas">Gas</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro1">Gasoline</h4><p data-i18n="p4_petro1_desc">Rbob Gasoline</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro2">Diesel</h4><p data-i18n="p4_petro2_desc">Heating Oil</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro3">Propane</h4><p data-i18n="p4_petro3_desc">LPG</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro4">Ethylene</h4><p data-i18n="p4_petro4_desc">Plastic feedstock</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro5">Polypropylene</h4><p data-i18n="p4_petro5_desc">Plastic</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro6">Polyethylene</h4><p data-i18n="p4_petro6_desc">Plastic</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
-        <!-- МЕТАЛЛЫ -->
-        <div class="card fade-in"><span class="icon">🥇</span><h4>Золото</h4><p>XAU/USD</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🥈</span><h4>Серебро</h4><p>XAG/USD</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🥉</span><h4>Платина</h4><p>PL</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">💎</span><h4>Палладий</h4><p>PD</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Медь</h4><p>HG</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Алюминий</h4><p>AL</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Цинк</h4><p>ZN</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Свинец</h4><p>PB</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Никель</h4><p>NI</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Сталь</h4><p>HRC</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Железная руда</h4><p>Iron Ore</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4>Уран</h4><p>U</p><span class="tag">Металл</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <!-- METALS -->
+        <div class="card fade-in"><span class="icon">🥇</span><h4 data-i18n="p4_met1">Gold</h4><p data-i18n="p4_met1_desc">XAU/USD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🥈</span><h4 data-i18n="p4_met2">Silver</h4><p data-i18n="p4_met2_desc">XAG/USD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🥉</span><h4 data-i18n="p4_met3">Platinum</h4><p data-i18n="p4_met3_desc">PL</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">💎</span><h4 data-i18n="p4_met4">Palladium</h4><p data-i18n="p4_met4_desc">PD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met5">Copper</h4><p data-i18n="p4_met5_desc">HG</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met6">Aluminum</h4><p data-i18n="p4_met6_desc">AL</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met7">Zinc</h4><p data-i18n="p4_met7_desc">ZN</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met8">Lead</h4><p data-i18n="p4_met8_desc">PB</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met9">Nickel</h4><p data-i18n="p4_met9_desc">NI</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met10">Steel</h4><p data-i18n="p4_met10_desc">HRC</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met11">Iron Ore</h4><p data-i18n="p4_met11_desc">Iron Ore</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met12">Uranium</h4><p data-i18n="p4_met12_desc">U</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
-        <!-- СЕЛЬСКОЕ ХОЗЯЙСТВО -->
-        <div class="card fade-in"><span class="icon">🌾</span><h4>Пшеница</h4><p>Wheat</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌽</span><h4>Кукуруза</h4><p>Corn</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4>Соя</h4><p>Soybean</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4>Рис</h4><p>Rice</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4>Ячмень</h4><p>Barley</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4>Овёс</h4><p>Oats</p><span class="tag">Зерно</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">☕</span><h4>Кофе</h4><p>Coffee</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🍫</span><h4>Какао</h4><p>Cocoa</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🍊</span><h4>Апельсиновый сок</h4><p>OJ</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🧈</span><h4>Сливочное масло</h4><p>Butter</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🥛</span><h4>Сухое молоко</h4><p>Milk Powder</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🐄</span><h4>КРС</h4><p>Cattle</p><span class="tag">С/х</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <!-- AGRICULTURE -->
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag1">Wheat</h4><p data-i18n="p4_ag1_desc">Wheat</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌽</span><h4 data-i18n="p4_ag2">Corn</h4><p data-i18n="p4_ag2_desc">Corn</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag3">Soybean</h4><p data-i18n="p4_ag3_desc">Soybean</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag4">Rice</h4><p data-i18n="p4_ag4_desc">Rice</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag5">Barley</h4><p data-i18n="p4_ag5_desc">Barley</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag6">Oats</h4><p data-i18n="p4_ag6_desc">Oats</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">☕</span><h4 data-i18n="p4_ag7">Coffee</h4><p data-i18n="p4_ag7_desc">Coffee</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🍫</span><h4 data-i18n="p4_ag8">Cocoa</h4><p data-i18n="p4_ag8_desc">Cocoa</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🍊</span><h4 data-i18n="p4_ag9">Orange Juice</h4><p data-i18n="p4_ag9_desc">OJ</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧈</span><h4 data-i18n="p4_ag10">Butter</h4><p data-i18n="p4_ag10_desc">Butter</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🥛</span><h4 data-i18n="p4_ag11">Milk Powder</h4><p data-i18n="p4_ag11_desc">Milk Powder</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🐄</span><h4 data-i18n="p4_ag12">Cattle</h4><p data-i18n="p4_ag12_desc">Cattle</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
-        <!-- ЭНЕРГИЯ -->
-        <div class="card fade-in"><span class="icon">⚡</span><h4>Электроэнергия</h4><p>Power</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">☀️</span><h4>Солнечная энергия</h4><p>Solar</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">💨</span><h4>Ветряная энергия</h4><p>Wind</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🌊</span><h4>Гидроэнергия</h4><p>Hydro</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">⛏️</span><h4>Уголь</h4><p>Coal</p><span class="tag">Энергия</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4>Лес</h4><p>Timber</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4>Целлюлоза</h4><p>Pulp</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4>Резина</h4><p>Rubber</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4>Хлопок</h4><p>Cotton</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4>Шерсть</h4><p>Wool</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4>Сахар</h4><p>Sugar</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4>Соль</h4><p>Salt</p><span class="tag">Сырьё</span><a href="https://cis.visa.com" class="link" target="_blank">Торговать →</a></div>
+        <!-- ENERGY & OTHER -->
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p4_energy1">Electricity</h4><p data-i18n="p4_energy1_desc">Power</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">☀️</span><h4 data-i18n="p4_energy2">Solar Energy</h4><p data-i18n="p4_energy2_desc">Solar</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">💨</span><h4 data-i18n="p4_energy3">Wind Energy</h4><p data-i18n="p4_energy3_desc">Wind</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p4_energy4">Hydro Energy</h4><p data-i18n="p4_energy4_desc">Hydro</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">⛏️</span><h4 data-i18n="p4_energy5">Coal</h4><p data-i18n="p4_energy5_desc">Coal</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw1">Timber</h4><p data-i18n="p4_raw1_desc">Timber</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw2">Pulp</h4><p data-i18n="p4_raw2_desc">Pulp</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw3">Rubber</h4><p data-i18n="p4_raw3_desc">Rubber</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw4">Cotton</h4><p data-i18n="p4_raw4_desc">Cotton</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw5">Wool</h4><p data-i18n="p4_raw5_desc">Wool</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw6">Sugar</h4><p data-i18n="p4_raw6_desc">Sugar</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw7">Salt</h4><p data-i18n="p4_raw7_desc">Salt</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
     </div>
 </div>
 
@@ -319,7 +317,7 @@
                 <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
             </div>
         </div>
-        <div class="footer-disclaimer">⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).</div>
+        <div class="footer-disclaimer" data-i18n="footer_disclaimer">⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).</div>
     </div>
 </footer>
 
@@ -328,13 +326,187 @@
         const amount = parseFloat(document.getElementById('tradeAmount').value);
         const entry = parseFloat(document.getElementById('entryPrice').value);
         const exit = parseFloat(document.getElementById('exitPrice').value);
-        if (!amount || !entry || !exit) { document.getElementById('tradeResult').textContent = 'Заполните все поля'; return; }
+        if (!amount || !entry || !exit) { document.getElementById('tradeResult').textContent = 'Fill in all fields'; return; }
         const units = amount / entry;
         const profit = units * (exit - entry);
         const roi = (profit / amount) * 100;
-        document.getElementById('tradeResult').textContent = `Прибыль: $${profit.toFixed(2)} | ROI: ${roi.toFixed(2)}%`;
+        document.getElementById('tradeResult').textContent = `Profit: $${profit.toFixed(2)} | ROI: ${roi.toFixed(2)}%`;
     }
     calcTrade();
+
+    // ===== MULTILANGUAGE ENGINE (compact) =====
+    const translations = {
+        en: {
+            nav_home: "Home", nav_finance: "Finance", nav_crypto: "Crypto", nav_exchange: "Exchange",
+            nav_insurance: "Insurance", nav_business: "Business", nav_travel: "Travel", nav_cards: "Cards", nav_buy: "Buy VISA",
+            footer_disclaimer: "⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).",
+            p4_badge: "📈 100+ Trading Products",
+            p4_title: "Exchange", p4_title2: "Trading",
+            p4_desc: "Stocks, oil, gas, metals, grain, timber, coal, electricity and more than 100 products through VISA.",
+            p4_calc_title: "📊 Trading Profit Calculator",
+            p4_calc_amount: "Investment ($)", p4_calc_entry: "Entry Price ($)", p4_calc_exit: "Exit Price ($)", p4_calc_btn: "Calculate",
+            p4_sec_title: "All", p4_sec_title2: "Trading Products", p4_sec_desc: "Stocks, commodities, energy and more than 100 instruments through VISA.",
+            p4_link_trade: "Trade →",
+            p4_tag_stock: "Stocks", p4_tag_oil: "Oil", p4_tag_gas: "Gas", p4_tag_petro: "Petrochem", p4_tag_met: "Metal", p4_tag_ag: "Grain", p4_tag_energy: "Energy", p4_tag_raw: "Raw",
+            p4_stock1: "S&P 500 Stocks", p4_stock1_desc: "USA",
+            p4_stock2: "NASDAQ Stocks", p4_stock2_desc: "Technology",
+            p4_stock3: "MOEX Stocks", p4_stock3_desc: "Russia",
+            p4_stock4: "Tokyo Stocks", p4_stock4_desc: "Japan",
+            p4_stock5: "Shanghai Stocks", p4_stock5_desc: "China",
+            p4_stock6: "Euro Stocks", p4_stock6_desc: "EURO STOXX 50",
+            p4_stock7: "FTSE 100 Stocks", p4_stock7_desc: "UK",
+            p4_stock8: "DAX 40 Stocks", p4_stock8_desc: "Germany",
+            p4_stock9: "CAC 40 Stocks", p4_stock9_desc: "France",
+            p4_stock10: "NIFTY 50 Stocks", p4_stock10_desc: "India",
+            p4_stock11: "ASX 200 Stocks", p4_stock11_desc: "Australia",
+            p4_stock12: "TSX 60 Stocks", p4_stock12_desc: "Canada",
+            p4_oil1: "Brent Oil", p4_oil1_desc: "Brent crude",
+            p4_oil2: "WTI Oil", p4_oil2_desc: "WTI crude",
+            p4_oil3: "Urals Oil", p4_oil3_desc: "Russia",
+            p4_oil4: "Dubai Oil", p4_oil4_desc: "UAE",
+            p4_gas1: "Natural Gas", p4_gas1_desc: "Henry Hub",
+            p4_gas2: "LNG", p4_gas2_desc: "Liquefied gas",
+            p4_petro1: "Gasoline", p4_petro1_desc: "Rbob Gasoline",
+            p4_petro2: "Diesel", p4_petro2_desc: "Heating Oil",
+            p4_petro3: "Propane", p4_petro3_desc: "LPG",
+            p4_petro4: "Ethylene", p4_petro4_desc: "Plastic feedstock",
+            p4_petro5: "Polypropylene", p4_petro5_desc: "Plastic",
+            p4_petro6: "Polyethylene", p4_petro6_desc: "Plastic",
+            p4_met1: "Gold", p4_met1_desc: "XAU/USD",
+            p4_met2: "Silver", p4_met2_desc: "XAG/USD",
+            p4_met3: "Platinum", p4_met3_desc: "PL",
+            p4_met4: "Palladium", p4_met4_desc: "PD",
+            p4_met5: "Copper", p4_met5_desc: "HG",
+            p4_met6: "Aluminum", p4_met6_desc: "AL",
+            p4_met7: "Zinc", p4_met7_desc: "ZN",
+            p4_met8: "Lead", p4_met8_desc: "PB",
+            p4_met9: "Nickel", p4_met9_desc: "NI",
+            p4_met10: "Steel", p4_met10_desc: "HRC",
+            p4_met11: "Iron Ore", p4_met11_desc: "Iron Ore",
+            p4_met12: "Uranium", p4_met12_desc: "U",
+            p4_ag1: "Wheat", p4_ag1_desc: "Wheat",
+            p4_ag2: "Corn", p4_ag2_desc: "Corn",
+            p4_ag3: "Soybean", p4_ag3_desc: "Soybean",
+            p4_ag4: "Rice", p4_ag4_desc: "Rice",
+            p4_ag5: "Barley", p4_ag5_desc: "Barley",
+            p4_ag6: "Oats", p4_ag6_desc: "Oats",
+            p4_ag7: "Coffee", p4_ag7_desc: "Coffee",
+            p4_ag8: "Cocoa", p4_ag8_desc: "Cocoa",
+            p4_ag9: "Orange Juice", p4_ag9_desc: "OJ",
+            p4_ag10: "Butter", p4_ag10_desc: "Butter",
+            p4_ag11: "Milk Powder", p4_ag11_desc: "Milk Powder",
+            p4_ag12: "Cattle", p4_ag12_desc: "Cattle",
+            p4_energy1: "Electricity", p4_energy1_desc: "Power",
+            p4_energy2: "Solar Energy", p4_energy2_desc: "Solar",
+            p4_energy3: "Wind Energy", p4_energy3_desc: "Wind",
+            p4_energy4: "Hydro Energy", p4_energy4_desc: "Hydro",
+            p4_energy5: "Coal", p4_energy5_desc: "Coal",
+            p4_raw1: "Timber", p4_raw1_desc: "Timber",
+            p4_raw2: "Pulp", p4_raw2_desc: "Pulp",
+            p4_raw3: "Rubber", p4_raw3_desc: "Rubber",
+            p4_raw4: "Cotton", p4_raw4_desc: "Cotton",
+            p4_raw5: "Wool", p4_raw5_desc: "Wool",
+            p4_raw6: "Sugar", p4_raw6_desc: "Sugar",
+            p4_raw7: "Salt", p4_raw7_desc: "Salt"
+        },
+        ru: {
+            nav_home: "Главная", nav_finance: "Финансы", nav_crypto: "Крипто", nav_exchange: "Биржа",
+            nav_insurance: "Страхование", nav_business: "Бизнес", nav_travel: "Туризм", nav_cards: "Карты", nav_buy: "Купить VISA",
+            footer_disclaimer: "⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).",
+            p4_badge: "📈 100+ биржевых продуктов",
+            p4_title: "Биржевые", p4_title2: "торги",
+            p4_desc: "Акции, нефть, газ, металлы, зерно, лес, уголь, электроэнергия и более 100 продуктов через VISA.",
+            p4_calc_title: "📊 Калькулятор прибыли от торговли",
+            p4_calc_amount: "Сумма инвестиций ($)", p4_calc_entry: "Цена входа ($)", p4_calc_exit: "Цена выхода ($)", p4_calc_btn: "Рассчитать",
+            p4_sec_title: "Все", p4_sec_title2: "биржевые товары", p4_sec_desc: "Акции, сырьё, энергия и более 100 инструментов через VISA.",
+            p4_link_trade: "Торговать →",
+            p4_tag_stock: "Акции", p4_tag_oil: "Нефть", p4_tag_gas: "Газ", p4_tag_petro: "Нефтехимия", p4_tag_met: "Металл", p4_tag_ag: "Зерно", p4_tag_energy: "Энергия", p4_tag_raw: "Сырьё",
+            p4_stock1: "Акции S&P 500", p4_stock1_desc: "США",
+            p4_stock2: "Акции NASDAQ", p4_stock2_desc: "Технологии",
+            p4_stock3: "Акции МосБиржи", p4_stock3_desc: "Россия",
+            p4_stock4: "Акции Токио", p4_stock4_desc: "Япония",
+            p4_stock5: "Акции Шанхая", p4_stock5_desc: "Китай",
+            p4_stock6: "Акции Евро", p4_stock6_desc: "EURO STOXX 50",
+            p4_stock7: "Акции FTSE 100", p4_stock7_desc: "Великобритания",
+            p4_stock8: "Акции DAX 40", p4_stock8_desc: "Германия",
+            p4_stock9: "Акции CAC 40", p4_stock9_desc: "Франция",
+            p4_stock10: "Акции NIFTY 50", p4_stock10_desc: "Индия",
+            p4_stock11: "Акции ASX 200", p4_stock11_desc: "Австралия",
+            p4_stock12: "Акции TSX 60", p4_stock12_desc: "Канада",
+            p4_oil1: "Нефть Brent", p4_oil1_desc: "Сорт Brent",
+            p4_oil2: "Нефть WTI", p4_oil2_desc: "Сорт WTI",
+            p4_oil3: "Нефть Urals", p4_oil3_desc: "Россия",
+            p4_oil4: "Нефть Dubai", p4_oil4_desc: "ОАЭ",
+            p4_gas1: "Природный газ", p4_gas1_desc: "Henry Hub",
+            p4_gas2: "СПГ", p4_gas2_desc: "Сжиженный газ",
+            p4_petro1: "Бензин", p4_petro1_desc: "Rbob Gasoline",
+            p4_petro2: "Дизель", p4_petro2_desc: "Heating Oil",
+            p4_petro3: "Пропан", p4_petro3_desc: "Сжиженный газ",
+            p4_petro4: "Этилен", p4_petro4_desc: "Сырьё для пластика",
+            p4_petro5: "Полипропилен", p4_petro5_desc: "Пластик",
+            p4_petro6: "Полиэтилен", p4_petro6_desc: "Пластик",
+            p4_met1: "Золото", p4_met1_desc: "XAU/USD",
+            p4_met2: "Серебро", p4_met2_desc: "XAG/USD",
+            p4_met3: "Платина", p4_met3_desc: "PL",
+            p4_met4: "Палладий", p4_met4_desc: "PD",
+            p4_met5: "Медь", p4_met5_desc: "HG",
+            p4_met6: "Алюминий", p4_met6_desc: "AL",
+            p4_met7: "Цинк", p4_met7_desc: "ZN",
+            p4_met8: "Свинец", p4_met8_desc: "PB",
+            p4_met9: "Никель", p4_met9_desc: "NI",
+            p4_met10: "Сталь", p4_met10_desc: "HRC",
+            p4_met11: "Железная руда", p4_met11_desc: "Iron Ore",
+            p4_met12: "Уран", p4_met12_desc: "U",
+            p4_ag1: "Пшеница", p4_ag1_desc: "Wheat",
+            p4_ag2: "Кукуруза", p4_ag2_desc: "Corn",
+            p4_ag3: "Соя", p4_ag3_desc: "Soybean",
+            p4_ag4: "Рис", p4_ag4_desc: "Rice",
+            p4_ag5: "Ячмень", p4_ag5_desc: "Barley",
+            p4_ag6: "Овёс", p4_ag6_desc: "Oats",
+            p4_ag7: "Кофе", p4_ag7_desc: "Coffee",
+            p4_ag8: "Какао", p4_ag8_desc: "Cocoa",
+            p4_ag9: "Апельсиновый сок", p4_ag9_desc: "OJ",
+            p4_ag10: "Сливочное масло", p4_ag10_desc: "Butter",
+            p4_ag11: "Сухое молоко", p4_ag11_desc: "Milk Powder",
+            p4_ag12: "КРС", p4_ag12_desc: "Cattle",
+            p4_energy1: "Электроэнергия", p4_energy1_desc: "Power",
+            p4_energy2: "Солнечная энергия", p4_energy2_desc: "Solar",
+            p4_energy3: "Ветряная энергия", p4_energy3_desc: "Wind",
+            p4_energy4: "Гидроэнергия", p4_energy4_desc: "Hydro",
+            p4_energy5: "Уголь", p4_energy5_desc: "Coal",
+            p4_raw1: "Лес", p4_raw1_desc: "Timber",
+            p4_raw2: "Целлюлоза", p4_raw2_desc: "Pulp",
+            p4_raw3: "Резина", p4_raw3_desc: "Rubber",
+            p4_raw4: "Хлопок", p4_raw4_desc: "Cotton",
+            p4_raw5: "Шерсть", p4_raw5_desc: "Wool",
+            p4_raw6: "Сахар", p4_raw6_desc: "Sugar",
+            p4_raw7: "Соль", p4_raw7_desc: "Salt"
+        },
+        es: {}, fr: {}, zh: {}, ja: {}, ar: {}, hi: {}
+    };
+
+    let currentLang = localStorage.getItem('visaLang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('visaLang', lang);
+        document.querySelectorAll('#languageSwitcher a').forEach(el => {
+            el.classList.toggle('active', el.dataset.lang === lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            const translation = translations[lang]?.[key];
+            if (translation !== undefined) el.textContent = translation;
+        });
+        document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('#languageSwitcher a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            setLanguage(this.dataset.lang);
+        });
+    });
 
     const faders = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
@@ -342,14 +514,7 @@
     }, { threshold: 0.1 });
     faders.forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.lang-bar a').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelectorAll('.lang-bar a').forEach(x => x.classList.remove('active'));
-            this.classList.add('active');
-            alert('🌍 Язык изменён на: ' + this.textContent.trim());
-        });
-    });
+    setLanguage(currentLang);
 </script>
 </body>
-          </html>
+</html>
