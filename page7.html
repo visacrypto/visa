@@ -1,1 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>VISA – Travel | Hotels, Flights, Trains, Tours</title>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+        /* Same base as page5, with teal accent #00c8ff */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #fff; line-height: 1.6; }
+        a { color: #00c8ff; text-decoration: none; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+        
+        .lang-bar {
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 8px 0;
+            font-size: 13px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .lang-bar .container { display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+        .lang-bar a { color: #7a84a3; transition: color 0.3s; font-weight: 500; padding: 4px 12px; border-radius: 4px; cursor: pointer; }
+        .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .lang-bar a.active { color: #00c8ff; background: rgba(0,200,255,0.12); }
 
+        .bg-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+            background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
+            overflow: hidden;
+        }
+        .bg-canvas::before {
+            content: ''; position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(0,200,255,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(120,80,255,0.06) 0%, transparent 50%);
+            animation: bgPulse 12s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-5%,-3%) scale(1.1); } }
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: orbFloat 18s infinite alternate ease-in-out; }
+        .orb-1 { width: 500px; height: 500px; background: #00c8ff; top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #7c8cff; bottom: -10%; right: -5%; animation-delay: -6s; }
+        .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+
+        header {
+            position: relative; z-index: 10; padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            background: rgba(10,10,26,0.6);
+        }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; }
+        .logo-wrap img { height: 44px; width: auto; }
+        .logo-wrap span {
+            font-weight: 700; font-size: 22px; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #00c8ff, #7c8cff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .nav-links a {
+            font-size: 13px; font-weight: 500; color: #b0b8d1; transition: color 0.3s, background 0.3s;
+            padding: 6px 12px; border-radius: 8px;
+        }
+        .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .nav-links a.active { color: #00c8ff; background: rgba(0,200,255,0.1); }
+        .btn-header {
+            background: linear-gradient(135deg, #00c8ff, #7c8cff);
+            padding: 10px 28px; border-radius: 40px; font-weight: 600; font-size: 14px;
+            color: #fff !important; transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(0,200,255,0.3);
+        }
+        .btn-header:hover { transform: scale(1.04); box-shadow: 0 6px 30px rgba(0,200,255,0.5); }
+
+        .page-hero { position: relative; z-index: 5; padding: 40px 0 30px; text-align: center; }
+        .page-hero h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 700; }
+        .page-hero h1 span { background: linear-gradient(135deg, #00c8ff, #7c8cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-hero p { color: #b0b8d1; max-width: 600px; margin: 12px auto 0; }
+
+        .badge {
+            display: inline-block; background: rgba(0,200,255,0.12); color: #00c8ff;
+            padding: 4px 18px; border-radius: 40px; font-size: 13px; font-weight: 600;
+            letter-spacing: 0.5px; margin-bottom: 14px; border: 1px solid rgba(0,200,255,0.15);
+        }
+
+        .section-title { text-align: center; margin: 40px 0 32px; }
+        .section-title h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 700; }
+        .section-title p { color: #b0b8d1; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+            position: relative; z-index: 5;
+        }
+        .card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 20px 18px;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .card:hover { transform: translateY(-4px); border-color: rgba(0,200,255,0.25); }
+        .card .icon { font-size: 28px; margin-bottom: 8px; display: block; }
+        .card h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .card p { color: #b0b8d1; font-size: 13px; }
+        .card .tag {
+            display: inline-block; background: rgba(0,200,255,0.08); color: #00c8ff;
+            padding: 2px 12px; border-radius: 40px; font-size: 11px; font-weight: 600;
+            margin-top: 8px; border: 1px solid rgba(0,200,255,0.08);
+        }
+        .card .link { display: block; margin-top: 10px; font-size: 13px; font-weight: 600; color: #00c8ff; }
+        .card .link:hover { text-decoration: underline; }
+
+        footer {
+            position: relative; z-index: 5; padding: 40px 0 24px;
+            border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;
+        }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-inner p { color: #5a6380; font-size: 14px; }
+        .footer-socials { display: flex; gap: 20px; }
+        .footer-socials a { color: #5a6380; font-size: 18px; transition: color 0.3s; }
+        .footer-socials a:hover { color: #fff; }
+        .footer-disclaimer { text-align: center; margin-top: 20px; font-size: 12px; color: #3a4360; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        @media (max-width: 600px) {
+            .nav-links { gap: 8px; }
+            .nav-links a { font-size: 12px; padding: 4px 8px; }
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <div class="container" id="languageSwitcher">
+        <a data-lang="en" class="active">English</a>
+        <a data-lang="ru">Русский</a>
+        <a data-lang="es">Español</a>
+        <a data-lang="fr">Français</a>
+        <a data-lang="zh">中文</a>
+        <a data-lang="ja">日本語</a>
+        <a data-lang="ar">العربية</a>
+        <a data-lang="hi">हिन्दी</a>
+    </div>
+</div>
+
+<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo-wrap">
+            <img src="visa_logo.jpg" alt="VISA" />
+            <span>VISA</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="page2.html" data-i18n="nav_finance">Finance</a>
+            <a href="page3.html" data-i18n="nav_crypto">Crypto</a>
+            <a href="page4.html" data-i18n="nav_exchange">Exchange</a>
+            <a href="page5.html" data-i18n="nav_insurance">Insurance</a>
+            <a href="page6.html" data-i18n="nav_business">Business</a>
+            <a href="page7.html" class="active" data-i18n="nav_travel">Travel</a>
+            <a href="page8.html" data-i18n="nav_cards">Cards</a>
+            <a href="index.html#buy" class="btn-header" data-i18n="nav_buy">Buy VISA</a>
+        </nav>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <div class="badge" data-i18n="p7_badge">✈️ 100+ Travel Services</div>
+        <h1><span data-i18n="p7_title">Travel</span> <span data-i18n="p7_title2">& Tours</span></h1>
+        <p data-i18n="p7_desc">Hotels, flights, trains, buses, tours, cruises and more than 100 products through VISA.</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="section-title fade-in">
+        <h2><span data-i18n="p7_sec_title">All</span> <span style="color:#00c8ff;" data-i18n="p7_sec_title2">Travel Products</span></h2>
+        <p data-i18n="p7_sec_desc">More than 100 tools for travel around the world.</p>
+    </div>
+    <div class="cards-grid">
+        <!-- HOTELS -->
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel1">Hotel Booking</h4><p data-i18n="p7_hotel1_desc">Worldwide</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel2">5-Star Hotels</h4><p data-i18n="p7_hotel2_desc">Luxury</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel3">Boutique Hotels</h4><p data-i18n="p7_hotel3_desc">Unique</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p7_hotel4">Apartments</h4><p data-i18n="p7_hotel4_desc">With kitchen</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p7_hotel5">Villas</h4><p data-i18n="p7_hotel5_desc">With pool</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p7_hotel6">Hostels</h4><p data-i18n="p7_hotel6_desc">Budget</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel7">Resorts</h4><p data-i18n="p7_hotel7_desc">All inclusive</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel8">Spa Hotels</h4><p data-i18n="p7_hotel8_desc">Wellness</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel9">Business Hotels</h4><p data-i18n="p7_hotel9_desc">Conference rooms</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel10">Beach Hotels</h4><p data-i18n="p7_hotel10_desc">Seaside</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel11">Mountain Hotels</h4><p data-i18n="p7_hotel11_desc">Ski</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏨</span><h4 data-i18n="p7_hotel12">City Center Hotels</h4><p data-i18n="p7_hotel12_desc">Central</p><span class="tag" data-i18n="p7_tag_hotel">Hotels</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+
+        <!-- FLIGHTS -->
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight1">Flights</h4><p data-i18n="p7_flight1_desc">All destinations</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight2">Business Class</h4><p data-i18n="p7_flight2_desc">Comfort</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight3">Economy Class</h4><p data-i18n="p7_flight3_desc">Affordable</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight4">Low-Cost</h4><p data-i18n="p7_flight4_desc">Discounts</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight5">Charters</h4><p data-i18n="p7_flight5_desc">Special flights</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight6">Connecting Flights</h4><p data-i18n="p7_flight6_desc">Transfers</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight7">Direct Flights</h4><p data-i18n="p7_flight7_desc">Non-stop</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight8">International Flights</h4><p data-i18n="p7_flight8_desc">Abroad</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight9">Domestic Flights</h4><p data-i18n="p7_flight9_desc">Within country</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight10">Flexible Cancellation</h4><p data-i18n="p7_flight10_desc">Refund options</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight11">Flight Insurance</h4><p data-i18n="p7_flight11_desc">Protection</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p7_flight12">Bonus Miles</h4><p data-i18n="p7_flight12_desc">Accumulation</p><span class="tag" data-i18n="p7_tag_flight">Flights</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+
+        <!-- TRAINS & BUSES -->
+        <div class="card fade-in"><span class="icon">🚄</span><h4 data-i18n="p7_train1">Train Tickets</h4><p data-i18n="p7_train1_desc">Trains</p><span class="tag" data-i18n="p7_tag_train">Trains</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚄</span><h4 data-i18n="p7_train2">High-Speed Trains</h4><p data-i18n="p7_train2_desc">Sapsan</p><span class="tag" data-i18n="p7_tag_train">Trains</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚄</span><h4 data-i18n="p7_train3">Sleeping Car</h4><p data-i18n="p7_train3_desc">Coupe</p><span class="tag" data-i18n="p7_tag_train">Trains</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚄</span><h4 data-i18n="p7_train4">Economy Train</h4><p data-i18n="p7_train4_desc">Platzkart</p><span class="tag" data-i18n="p7_tag_train">Trains</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚄</span><h4 data-i18n="p7_train5">Luxury Train</h4><p data-i18n="p7_train5_desc">SV</p><span class="tag" data-i18n="p7_tag_train">Trains</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚌</span><h4 data-i18n="p7_bus1">Buses</h4><p data-i18n="p7_bus1_desc">Intercity</p><span class="tag" data-i18n="p7_tag_bus">Buses</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚌</span><h4 data-i18n="p7_bus2">Tour Buses</h4><p data-i18n="p7_bus2_desc">Excursions</p><span class="tag" data-i18n="p7_tag_bus">Buses</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚌</span><h4 data-i18n="p7_bus3">Airport Shuttle</h4><p data-i18n="p7_bus3_desc">Transfers</p><span class="tag" data-i18n="p7_tag_bus">Buses</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚌</span><h4 data-i18n="p7_bus4">City Shuttle</h4><p data-i18n="p7_bus4_desc">Within city</p><span class="tag" data-i18n="p7_tag_bus">Buses</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚍</span><h4 data-i18n="p7_bus5">Group Bus Tours</h4><p data-i18n="p7_bus5_desc">Group</p><span class="tag" data-i18n="p7_tag_bus">Buses</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚍</span><h4 data-i18n="p7_bus6">Night Buses</h4><p data-i18n="p7_bus6_desc">Sleeper</p><span class="tag" data-i18n="p7_tag_bus">Buses</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+        <div class="card fade-in"><span class="icon">🚍</span><h4 data-i18n="p7_bus7">Bus Rental</h4><p data-i18n="p7_bus7_desc">With driver</p><span class="tag" data-i18n="p7_tag_bus">Buses</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_buy">Buy →</a></div>
+
+        <!-- TOURS -->
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p7_tour1">Last Minute Tours</h4><p data-i18n="p7_tour1_desc">Discounts</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏖️</span><h4 data-i18n="p7_tour2">Beach Tours</h4><p data-i18n="p7_tour2_desc">Sea</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">⛰️</span><h4 data-i18n="p7_tour3">Mountain Tours</h4><p data-i18n="p7_tour3_desc">Trekking</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏙️</span><h4 data-i18n="p7_tour4">City Tours</h4><p data-i18n="p7_tour4_desc">Urban</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏛️</span><h4 data-i18n="p7_tour5">Historical Tours</h4><p data-i18n="p7_tour5_desc">Sightseeing</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🥾</span><h4 data-i18n="p7_tour6">Hiking Tours</h4><p data-i18n="p7_tour6_desc">Nature</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">⛷️</span><h4 data-i18n="p7_tour7">Ski Tours</h4><p data-i18n="p7_tour7_desc">Winter</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🛳️</span><h4 data-i18n="p7_tour8">Cruises</h4><p data-i18n="p7_tour8_desc">Sea</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🛳️</span><h4 data-i18n="p7_tour9">River Cruises</h4><p data-i18n="p7_tour9_desc">Rivers</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚢</span><h4 data-i18n="p7_tour10">Yacht Tours</h4><p data-i18n="p7_tour10_desc">Yachting</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p7_tour11">Road Trips</h4><p data-i18n="p7_tour11_desc">By car</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚲</span><h4 data-i18n="p7_tour12">Bike Tours</h4><p data-i18n="p7_tour12_desc">Cycling</p><span class="tag" data-i18n="p7_tag_tour">Tours</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+
+        <!-- RENTALS -->
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p7_rent1">Car Rental</h4><p data-i18n="p7_rent1_desc">Worldwide</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p7_rent2">Luxury Car Rental</h4><p data-i18n="p7_rent2_desc">Porsche, Ferrari</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p7_rent3">SUV Rental</h4><p data-i18n="p7_rent3_desc">4x4</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p7_rent4">EV Rental</h4><p data-i18n="p7_rent4_desc">Electric</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚐</span><h4 data-i18n="p7_rent5">Camper Rental</h4><p data-i18n="p7_rent5_desc">Motorhome</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🛵</span><h4 data-i18n="p7_rent6">Scooter Rental</h4><p data-i18n="p7_rent6_desc">Mopeds</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🚲</span><h4 data-i18n="p7_rent7">Bike Rental</h4><p data-i18n="p7_rent7_desc">City</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p7_rent8">Long-Term Rentals</h4><p data-i18n="p7_rent8_desc">Extended stay</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p7_rent9">Room Rentals</h4><p data-i18n="p7_rent9_desc">Budget</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">⛵</span><h4 data-i18n="p7_rent10">Boat Rental</h4><p data-i18n="p7_rent10_desc">Water</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🏄</span><h4 data-i18n="p7_rent11">Sports Equipment Rental</h4><p data-i18n="p7_rent11_desc">Sports</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+        <div class="card fade-in"><span class="icon">🎒</span><h4 data-i18n="p7_rent12">Backpack Rental</h4><p data-i18n="p7_rent12_desc">Hiking</p><span class="tag" data-i18n="p7_tag_rent">Rental</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_find">Find →</a></div>
+
+        <!-- SERVICES -->
+        <div class="card fade-in"><span class="icon">🛂</span><h4 data-i18n="p7_svc1">Visa Services</h4><p data-i18n="p7_svc1_desc">Visa processing</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p7_svc2">Travel Insurance</h4><p data-i18n="p7_svc2_desc">Protection</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💱</span><h4 data-i18n="p7_svc3">Currency Exchange</h4><p data-i18n="p7_svc3_desc">Best rates</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p7_svc4">eSIM</h4><p data-i18n="p7_svc4_desc">For travel</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p7_svc5">Translators</h4><p data-i18n="p7_svc5_desc">Audioguides</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧳</span><h4 data-i18n="p7_svc6">Luggage Storage</h4><p data-i18n="p7_svc6_desc">At airports</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚖</span><h4 data-i18n="p7_svc7">Taxi</h4><p data-i18n="p7_svc7_desc">City rides</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏛️</span><h4 data-i18n="p7_svc8">Excursions</h4><p data-i18n="p7_svc8_desc">With guide</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🍽️</span><h4 data-i18n="p7_svc9">Restaurant Booking</h4><p data-i18n="p7_svc9_desc">Dining</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🎭</span><h4 data-i18n="p7_svc10">Event Tickets</h4><p data-i18n="p7_svc10_desc">Theater, concerts</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏟️</span><h4 data-i18n="p7_svc11">Sports Tickets</h4><p data-i18n="p7_svc11_desc">Matches, football</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🎡</span><h4 data-i18n="p7_svc12">Amusement Parks</h4><p data-i18n="p7_svc12_desc">Attractions</p><span class="tag" data-i18n="p7_tag_svc">Services</span><a href="https://cis.visa.com" class="link" target="_blank" data-i18n="p7_link_apply">Apply →</a></div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <div class="logo-wrap"><img src="visa_logo.jpg" alt="VISA" style="height:32px;" /><span style="font-size:16px;background:linear-gradient(135deg,#00c8ff,#7c8cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;">VISA</span></div>
+            <div class="footer-socials">
+                <a href="https://cis.visa.com" target="_blank">🌐 Visa CIS</a>
+                <a href="https://twitter.com/visa" target="_blank">🐦 X</a>
+                <a href="https://t.me/visa_official" target="_blank">💬 Telegram</a>
+            </div>
+        </div>
+        <div class="footer-disclaimer" data-i18n="footer_disclaimer">⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).</div>
+    </div>
+</footer>
+
+<script>
+    const translations = {
+        en: {
+            nav_home: "Home", nav_finance: "Finance", nav_crypto: "Crypto", nav_exchange: "Exchange",
+            nav_insurance: "Insurance", nav_business: "Business", nav_travel: "Travel", nav_cards: "Cards", nav_buy: "Buy VISA",
+            footer_disclaimer: "⚠️ This project is community-driven and not affiliated with Visa Inc. Cryptocurrency investments carry high risk. Always do your own research (DYOR).",
+            p7_badge: "✈️ 100+ Travel Services",
+            p7_title: "Travel", p7_title2: "& Tours",
+            p7_desc: "Hotels, flights, trains, buses, tours, cruises and more than 100 products through VISA.",
+            p7_sec_title: "All", p7_sec_title2: "Travel Products", p7_sec_desc: "More than 100 tools for travel around the world.",
+            p7_link_find: "Find →", p7_link_buy: "Buy →", p7_link_apply: "Apply →",
+            p7_tag_hotel: "Hotels", p7_tag_flight: "Flights", p7_tag_train: "Trains", p7_tag_bus: "Buses", p7_tag_tour: "Tours", p7_tag_rent: "Rental", p7_tag_svc: "Services",
+            p7_hotel1: "Hotel Booking", p7_hotel1_desc: "Worldwide",
+            p7_hotel2: "5-Star Hotels", p7_hotel2_desc: "Luxury",
+            p7_hotel3: "Boutique Hotels", p7_hotel3_desc: "Unique",
+            p7_hotel4: "Apartments", p7_hotel4_desc: "With kitchen",
+            p7_hotel5: "Villas", p7_hotel5_desc: "With pool",
+            p7_hotel6: "Hostels", p7_hotel6_desc: "Budget",
+            p7_hotel7: "Resorts", p7_hotel7_desc: "All inclusive",
+            p7_hotel8: "Spa Hotels", p7_hotel8_desc: "Wellness",
+            p7_hotel9: "Business Hotels", p7_hotel9_desc: "Conference rooms",
+            p7_hotel10: "Beach Hotels", p7_hotel10_desc: "Seaside",
+            p7_hotel11: "Mountain Hotels", p7_hotel11_desc: "Ski",
+            p7_hotel12: "City Center Hotels", p7_hotel12_desc: "Central",
+            p7_flight1: "Flights", p7_flight1_desc: "All destinations",
+            p7_flight2: "Business Class", p7_flight2_desc: "Comfort",
+            p7_flight3: "Economy Class", p7_flight3_desc: "Affordable",
+            p7_flight4: "Low-Cost", p7_flight4_desc: "Discounts",
+            p7_flight5: "Charters", p7_flight5_desc: "Special flights",
+            p7_flight6: "Connecting Flights", p7_flight6_desc: "Transfers",
+            p7_flight7: "Direct Flights", p7_flight7_desc: "Non-stop",
+            p7_flight8: "International Flights", p7_flight8_desc: "Abroad",
+            p7_flight9: "Domestic Flights", p7_flight9_desc: "Within country",
+            p7_flight10: "Flexible Cancellation", p7_flight10_desc: "Refund options",
+            p7_flight11: "Flight Insurance", p7_flight11_desc: "Protection",
+            p7_flight12: "Bonus Miles", p7_flight12_desc: "Accumulation",
+            p7_train1: "Train Tickets", p7_train1_desc: "Trains",
+            p7_train2: "High-Speed Trains", p7_train2_desc: "Sapsan",
+            p7_train3: "Sleeping Car", p7_train3_desc: "Coupe",
+            p7_train4: "Economy Train", p7_train4_desc: "Platzkart",
+            p7_train5: "Luxury Train", p7_train5_desc: "SV",
+            p7_bus1: "Buses", p7_bus1_desc: "Intercity",
+            p7_bus2: "Tour Buses", p7_bus2_desc: "Excursions",
+            p7_bus3: "Airport Shuttle", p7_bus3_desc: "Transfers",
+            p7_bus4: "City Shuttle", p7_bus4_desc: "Within city",
+            p7_bus5: "Group Bus Tours", p7_bus5_desc: "Group",
+            p7_bus6: "Night Buses", p7_bus6_desc: "Sleeper",
+            p7_bus7: "Bus Rental", p7_bus7_desc: "With driver",
+            p7_tour1: "Last Minute Tours", p7_tour1_desc: "Discounts",
+            p7_tour2: "Beach Tours", p7_tour2_desc: "Sea",
+            p7_tour3: "Mountain Tours", p7_tour3_desc: "Trekking",
+            p7_tour4: "City Tours", p7_tour4_desc: "Urban",
+            p7_tour5: "Historical Tours", p7_tour5_desc: "Sightseeing",
+            p7_tour6: "Hiking Tours", p7_tour6_desc: "Nature",
+            p7_tour7: "Ski Tours", p7_tour7_desc: "Winter",
+            p7_tour8: "Cruises", p7_tour8_desc: "Sea",
+            p7_tour9: "River Cruises", p7_tour9_desc: "Rivers",
+            p7_tour10: "Yacht Tours", p7_tour10_desc: "Yachting",
+            p7_tour11: "Road Trips", p7_tour11_desc: "By car",
+            p7_tour12: "Bike Tours", p7_tour12_desc: "Cycling",
+            p7_rent1: "Car Rental", p7_rent1_desc: "Worldwide",
+            p7_rent2: "Luxury Car Rental", p7_rent2_desc: "Porsche, Ferrari",
+            p7_rent3: "SUV Rental", p7_rent3_desc: "4x4",
+            p7_rent4: "EV Rental", p7_rent4_desc: "Electric",
+            p7_rent5: "Camper Rental", p7_rent5_desc: "Motorhome",
+            p7_rent6: "Scooter Rental", p7_rent6_desc: "Mopeds",
+            p7_rent7: "Bike Rental", p7_rent7_desc: "City",
+            p7_rent8: "Long-Term Rentals", p7_rent8_desc: "Extended stay",
+            p7_rent9: "Room Rentals", p7_rent9_desc: "Budget",
+            p7_rent10: "Boat Rental", p7_rent10_desc: "Water",
+            p7_rent11: "Sports Equipment Rental", p7_rent11_desc: "Sports",
+            p7_rent12: "Backpack Rental", p7_rent12_desc: "Hiking",
+            p7_svc1: "Visa Services", p7_svc1_desc: "Visa processing",
+            p7_svc2: "Travel Insurance", p7_svc2_desc: "Protection",
+            p7_svc3: "Currency Exchange", p7_svc3_desc: "Best rates",
+            p7_svc4: "eSIM", p7_svc4_desc: "For travel",
+            p7_svc5: "Translators", p7_svc5_desc: "Audioguides",
+            p7_svc6: "Luggage Storage", p7_svc6_desc: "At airports",
+            p7_svc7: "Taxi", p7_svc7_desc: "City rides",
+            p7_svc8: "Excursions", p7_svc8_desc: "With guide",
+            p7_svc9: "Restaurant Booking", p7_svc9_desc: "Dining",
+            p7_svc10: "Event Tickets", p7_svc10_desc: "Theater, concerts",
+            p7_svc11: "Sports Tickets", p7_svc11_desc: "Matches, football",
+            p7_svc12: "Amusement Parks", p7_svc12_desc: "Attractions"
+        },
+        ru: {
+            nav_home: "Главная", nav_finance: "Финансы", nav_crypto: "Крипто", nav_exchange: "Биржа",
+            nav_insurance: "Страхование", nav_business: "Бизнес", nav_travel: "Туризм", nav_cards: "Карты", nav_buy: "Купить VISA",
+            footer_disclaimer: "⚠️ Данный проект является сообщественным и не аффилирован с Visa Inc. Криптовалютные инвестиции сопряжены с высоким риском. Всегда проводите собственное исследование (DYOR).",
+            p7_badge: "✈️ 100+ туристических услуг",
+            p7_title: "Туризм", p7_title2: "и путешествия",
+            p7_desc: "Отели, авиабилеты, поезда, автобусы, туры, круизы и более 100 продуктов через VISA.",
+            p7_sec_title: "Все", p7_sec_title2: "туристические продукты", p7_sec_desc: "Более 100 инструментов для путешествий по всему миру.",
+            p7_link_find: "Найти →", p7_link_buy: "Купить →", p7_link_apply: "Оформить →",
+            p7_tag_hotel: "Отели", p7_tag_flight: "Авиа", p7_tag_train: "Поезда", p7_tag_bus: "Автобусы", p7_tag_tour: "Туры", p7_tag_rent: "Аренда", p7_tag_svc: "Услуги",
+            p7_hotel1: "Бронирование отелей", p7_hotel1_desc: "По всему миру",
+            p7_hotel2: "Отели 5 звёзд", p7_hotel2_desc: "Люкс",
+            p7_hotel3: "Бутик-отели", p7_hotel3_desc: "Уникальные",
+            p7_hotel4: "Апартаменты", p7_hotel4_desc: "С кухней",
+            p7_hotel5: "Виллы", p7_hotel5_desc: "С бассейном",
+            p7_hotel6: "Хостелы", p7_hotel6_desc: "Эконом",
+            p7_hotel7: "Курорты", p7_hotel7_desc: "All inclusive",
+            p7_hotel8: "Спа-отели", p7_hotel8_desc: "Здоровье",
+            p7_hotel9: "Отели для бизнеса", p7_hotel9_desc: "Конференц-залы",
+            p7_hotel10: "Отели у моря", p7_hotel10_desc: "Пляж",
+            p7_hotel11: "Отели в горах", p7_hotel11_desc: "Лыжи",
+            p7_hotel12: "Отели в центре", p7_hotel12_desc: "Центр",
+            p7_flight1: "Авиабилеты", p7_flight1_desc: "Все направления",
+            p7_flight2: "Бизнес-класс", p7_flight2_desc: "Комфорт",
+            p7_flight3: "Эконом-класс", p7_flight3_desc: "Доступно",
+            p7_flight4: "Лоукостеры", p7_flight4_desc: "Скидки",
+            p7_flight5: "Чартеры", p7_flight5_desc: "Спецрейсы",
+            p7_flight6: "Стыковочные рейсы", p7_flight6_desc: "Пересадки",
+            p7_flight7: "Прямые рейсы", p7_flight7_desc: "Без пересадок",
+            p7_flight8: "Международные рейсы", p7_flight8_desc: "За границу",
+            p7_flight9: "Внутренние рейсы", p7_flight9_desc: "По стране",
+            p7_flight10: "Гибкая отмена", p7_flight10_desc: "Возврат",
+            p7_flight11: "Страхование полётов", p7_flight11_desc: "Защита",
+            p7_flight12: "Бонусные мили", p7_flight12_desc: "Накопление",
+            p7_train1: "ЖД билеты", p7_train1_desc: "Поезда",
+            p7_train2: "Сапсаны", p7_train2_desc: "Скоростные",
+            p7_train3: "Купе", p7_train3_desc: "В поезде",
+            p7_train4: "Плацкарт", p7_train4_desc: "Эконом",
+            p7_train5: "СВ", p7_train5_desc: "Люкс",
+            p7_bus1: "Автобусы", p7_bus1_desc: "Междугородние",
+            p7_bus2: "Экскурсионные автобусы", p7_bus2_desc: "Туры",
+            p7_bus3: "Трансферы", p7_bus3_desc: "Из аэропорта",
+            p7_bus4: "Шаттлы", p7_bus4_desc: "По городу",
+            p7_bus5: "Групповые автобусы", p7_bus5_desc: "Групповые",
+            p7_bus6: "Ночные автобусы", p7_bus6_desc: "Спальные",
+            p7_bus7: "Аренда автобуса", p7_bus7_desc: "С водителем",
+            p7_tour1: "Горячие туры", p7_tour1_desc: "Скидки",
+            p7_tour2: "Пляжные туры", p7_tour2_desc: "Море",
+            p7_tour3: "Горные туры", p7_tour3_desc: "Треккинг",
+            p7_tour4: "Экскурсионные туры", p7_tour4_desc: "Города",
+            p7_tour5: "Исторические туры", p7_tour5_desc: "Достопримечательности",
+            p7_tour6: "Походные туры", p7_tour6_desc: "Природа",
+            p7_tour7: "Горнолыжные туры", p7_tour7_desc: "Зима",
+            p7_tour8: "Круизы", p7_tour8_desc: "Морские",
+            p7_tour9: "Речные круизы", p7_tour9_desc: "По рекам",
+            p7_tour10: "Яхт-туры", p7_tour10_desc: "На яхтах",
+            p7_tour11: "Автотуры", p7_tour11_desc: "На машине",
+            p7_tour12: "Велотуры", p7_tour12_desc: "На велосипедах",
+            p7_rent1: "Аренда автомобилей", p7_rent1_desc: "По всему миру",
+            p7_rent2: "Аренда эксклюзивных авто", p7_rent2_desc: "Porsche, Ferrari",
+            p7_rent3: "Аренда внедорожников", p7_rent3_desc: "4x4",
+            p7_rent4: "Аренда электромобилей", p7_rent4_desc: "Эко",
+            p7_rent5: "Аренда кемперов", p7_rent5_desc: "Дом на колёсах",
+            p7_rent6: "Аренда скутеров", p7_rent6_desc: "Мопеды",
+            p7_rent7: "Прокат велосипедов", p7_rent7_desc: "Города",
+            p7_rent8: "Долгосрочная аренда", p7_rent8_desc: "На длительный срок",
+            p7_rent9: "Аренда комнат", p7_rent9_desc: "Эконом",
+            p7_rent10: "Аренда лодок", p7_rent10_desc: "На воде",
+            p7_rent11: "Аренда спортоборудования", p7_rent11_desc: "Спорт",
+            p7_rent12: "Аренда рюкзаков", p7_rent12_desc: "Походы",
+            p7_svc1: "Визы", p7_svc1_desc: "Оформление",
+            p7_svc2: "Страховка", p7_svc2_desc: "Для путешествий",
+            p7_svc3: "Обмен валют", p7_svc3_desc: "Лучший курс",
+            p7_svc4: "eSIM", p7_svc4_desc: "Для путешествий",
+            p7_svc5: "Переводчики", p7_svc5_desc: "Аудиогиды",
+            p7_svc6: "Хранение багажа", p7_svc6_desc: "В аэропортах",
+            p7_svc7: "Такси", p7_svc7_desc: "По городу",
+            p7_svc8: "Экскурсии", p7_svc8_desc: "С гидом",
+            p7_svc9: "Рестораны", p7_svc9_desc: "Бронирование",
+            p7_svc10: "Билеты на мероприятия", p7_svc10_desc: "Театры, концерты",
+            p7_svc11: "Спортивные билеты", p7_svc11_desc: "Матчи, футбол",
+            p7_svc12: "Парки аттракционов", p7_svc12_desc: "Аттракционы"
+        },
+        es: {}, fr: {}, zh: {}, ja: {}, ar: {}, hi: {}
+    };
+
+    let currentLang = localStorage.getItem('visaLang') || 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('visaLang', lang);
+        document.querySelectorAll('#languageSwitcher a').forEach(el => {
+            el.classList.toggle('active', el.dataset.lang === lang);
+        });
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            const translation = translations[lang]?.[key];
+            if (translation !== undefined) el.textContent = translation;
+        });
+        document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('#languageSwitcher a').forEach(el => {
+        el.addEventListener('click', function(e) {
+            e.preventDefault();
+            setLanguage(this.dataset.lang);
+        });
+    });
+
+    const faders = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    faders.forEach(el => observer.observe(el));
+
+    setLanguage(currentLang);
+</script>
+</body>
+</html>
