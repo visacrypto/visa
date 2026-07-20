@@ -26,6 +26,7 @@
         .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
         .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.12); }
 
+        /* ===== ANIMATED BACKGROUND (MOVING SUBSTRATE) ===== */
         .bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
             background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
@@ -42,7 +43,32 @@
         .orb-1 { width: 500px; height: 500px; background: #4a3aff; top: -10%; left: -5%; }
         .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
         .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        .orb-4 { width: 350px; height: 350px; background: #ff6b6b; top: 20%; right: 10%; animation-delay: -4s; }
+        .orb-5 { width: 250px; height: 250px; background: #ffd93d; bottom: 20%; left: 10%; animation-delay: -9s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+
+        /* ===== TICKER (БЕГУЩАЯ СТРОКА) ===== */
+        .ticker-wrap {
+            position: relative; z-index: 5; width: 100%; overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 0;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerScroll 30s linear infinite;
+            font-size: 14px;
+            font-weight: 500;
+            color: #b0b8d1;
+        }
+        .ticker span { margin: 0 40px; color: #7c8cff; }
+        .ticker .highlight { color: #00c8ff; }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
         header {
             position: relative; z-index: 10; padding: 18px 0;
@@ -156,6 +182,64 @@
         .visa-europe-banner h3 { font-size: 22px; }
         .visa-europe-banner p { color: #b0b8d1; max-width: 500px; }
 
+        /* ===== POOL INFO CARDS ===== */
+        .pool-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin: 32px 0;
+            position: relative;
+            z-index: 5;
+        }
+        .pool-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 24px 20px;
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .pool-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(124, 140, 255, 0.25);
+        }
+        .pool-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .pool-card p {
+            color: #b0b8d1;
+            font-size: 14px;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+        .pool-card .tag {
+            display: inline-block;
+            background: rgba(124, 140, 255, 0.08);
+            color: #7c8cff;
+            padding: 2px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(124, 140, 255, 0.08);
+        }
+        .pool-card .link-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #7c8cff, #9945ff);
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+        .pool-card .link-btn:hover {
+            transform: scale(1.04);
+        }
+
         footer {
             position: relative; z-index: 5; padding: 40px 0 24px;
             border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px;
@@ -173,6 +257,8 @@
             .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .calc-row { flex-direction: column; }
             .visa-europe-banner { flex-direction: column; text-align: center; }
+            .pool-grid { grid-template-columns: 1fr; }
+            .ticker { font-size: 12px; }
         }
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -193,7 +279,34 @@
     </div>
 </div>
 
-<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<!-- ===== ANIMATED BACKGROUND (MOVING SUBSTRATE) ===== -->
+<div class="bg-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+</div>
+
+<!-- ===== TICKER (БЕГУЩАЯ СТРОКА) ===== -->
+<div class="ticker-wrap">
+    <div class="ticker">
+        <span>🚀 VISA Token — Verified Institutional Settlement Asset</span>
+        <span>💰 Price: $0.02</span>
+        <span>📊 Total Supply: 184,000,000,000</span>
+        <span>⚡ Staking APY: 18%</span>
+        <span>🔄 Fee: 0.05%</span>
+        <span>🏦 Pools: Visa/MasterCard · Visa/USDC</span>
+        <span>🌐 Visa in Europe: <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" style="color:#7c8cff;">visa.co.uk</a></span>
+        <span>🚀 VISA Token — Verified Institutional Settlement Asset</span>
+        <span>💰 Price: $0.02</span>
+        <span>📊 Total Supply: 184,000,000,000</span>
+        <span>⚡ Staking APY: 18%</span>
+        <span>🔄 Fee: 0.05%</span>
+        <span>🏦 Pools: Visa/MasterCard · Visa/USDC</span>
+        <span>🌐 Visa in Europe: <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" style="color:#7c8cff;">visa.co.uk</a></span>
+    </div>
+</div>
 
 <header>
     <div class="container header-inner">
@@ -222,6 +335,35 @@
         <p data-i18n="p2_desc">Loans, deposits, bank guarantees, SBLC, letters of credit, leasing, factoring and more than 100 products through VISA.</p>
         <div style="margin-top:16px;">
             <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" class="btn-secondary" data-i18n="hero_btn_visa" style="display:inline-block;">🌐 Visa in Europe</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== POOL INFO (ЛИКВИДНОСТЬ + ПОКУПКА) ===== -->
+<section class="container" style="position:relative;z-index:5;padding:20px 0;">
+    <div class="section-title fade-in">
+        <span class="badge">💧 Liquidity Pools</span>
+        <h2>Trade <span style="color:#7c8cff;">VISA</span></h2>
+        <p>Two pools for liquidity and easy buying.</p>
+    </div>
+    <div class="pool-grid">
+        <!-- Пул ликвидности (Visa/MasterCard) -->
+        <div class="pool-card fade-in">
+            <h4>🌊 Liquidity Pool <span style="color:#7c8cff;">(Public)</span></h4>
+            <p><strong>Pair:</strong> VISA / MasterCard</p>
+            <p><strong>Address:</strong> <span style="font-size:12px;color:#b0b8d1;">4LBo5HKyDxWKDqj1bySktvPqCrafyshqcyuAjnc4qTe8</span></p>
+            <p><strong>Exchange:</strong> Meteora DAMM V2</p>
+            <span class="tag">🔗 Liquidity</span>
+            <a href="https://www.geckoterminal.com/solana/pools/4LBo5HKyDxWKDqj1bySktvPqCrafyshqcyuAjnc4qTe8" target="_blank" class="link-btn">View Pool →</a>
+        </div>
+        <!-- Пул для покупки (Visa/USDC) -->
+        <div class="pool-card fade-in">
+            <h4>🛒 Buy Pool <span style="color:#00c8ff;">(USDC)</span></h4>
+            <p><strong>Pair:</strong> VISA / USDC</p>
+            <p><strong>Address:</strong> <span style="font-size:12px;color:#b0b8d1;">7vjxQofCfMH2yftArHYbfd7WBo1KSbgwzhePkdmgBHmx</span></p>
+            <p><strong>Exchange:</strong> Meteora DAMM V2</p>
+            <span class="tag">🛒 Buy VISA</span>
+            <a href="https://www.geckoterminal.com/solana/pools/7vjxQofCfMH2yftArHYbfd7WBo1KSbgwzhePkdmgBHmx" target="_blank" class="link-btn">Buy VISA →</a>
         </div>
     </div>
 </section>
