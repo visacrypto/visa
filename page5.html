@@ -42,7 +42,31 @@
         .orb-1 { width: 500px; height: 500px; background: #0088ff; top: -10%; left: -5%; }
         .orb-2 { width: 400px; height: 400px; background: #00c8ff; bottom: -10%; right: -5%; animation-delay: -6s; }
         .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        .orb-4 { width: 350px; height: 350px; background: #ff6b6b; top: 20%; right: 10%; animation-delay: -4s; }
+        .orb-5 { width: 250px; height: 250px; background: #ffd93d; bottom: 20%; left: 10%; animation-delay: -9s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+
+        .ticker-wrap {
+            position: relative; z-index: 5; width: 100%; overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 0;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerScroll 30s linear infinite;
+            font-size: 14px;
+            font-weight: 500;
+            color: #b0b8d1;
+        }
+        .ticker span { margin: 0 40px; color: #0088ff; }
+        .ticker .highlight { color: #00c8ff; }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
         header {
             position: relative; z-index: 10; padding: 18px 0;
@@ -173,6 +197,7 @@
             .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .calc-row { flex-direction: column; }
             .visa-europe-banner { flex-direction: column; text-align: center; }
+            .ticker { font-size: 12px; }
         }
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -193,7 +218,31 @@
     </div>
 </div>
 
-<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<div class="bg-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+</div>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker-wrap">
+    <div class="ticker">
+        <span>🛡️ Life Insurance — From $0.50/day</span>
+        <span>🏥 Health Insurance — ACA Plans 2025</span>
+        <span>🚗 Auto Insurance — Save up to 40%</span>
+        <span>🏠 Home Insurance — Flood & Fire coverage</span>
+        <span>💻 Cyber Insurance — Starting at $12/mo</span>
+        <span>👵 Pension — Retirement planning</span>
+        <span>🛡️ Life Insurance — From $0.50/day</span>
+        <span>🏥 Health Insurance — ACA Plans 2025</span>
+        <span>🚗 Auto Insurance — Save up to 40%</span>
+        <span>🏠 Home Insurance — Flood & Fire coverage</span>
+        <span>💻 Cyber Insurance — Starting at $12/mo</span>
+        <span>👵 Pension — Retirement planning</span>
+    </div>
+</div>
 
 <header>
     <div class="container header-inner">
@@ -226,7 +275,7 @@
     </div>
 </section>
 
-<!-- ===== INSURANCE CALCULATOR ===== -->
+<!-- ===== CALCULATOR ===== -->
 <div class="container">
     <div class="calculator-section fade-in">
         <h3 data-i18n="p5_calc_title">🧾 Insurance Premium Calculator</h3>
@@ -247,74 +296,74 @@
     </div>
     <div class="cards-grid">
         <!-- LIFE & HEALTH -->
-        <div class="card fade-in"><span class="icon">❤️</span><h4 data-i18n="p5_life1">Life Insurance</h4><p data-i18n="p5_life1_desc">Death coverage</p><span class="tag" data-i18n="p5_tag_life">Life</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏥</span><h4 data-i18n="p5_life2">Health Insurance</h4><p data-i18n="p5_life2_desc">Medical coverage</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🦷</span><h4 data-i18n="p5_life3">Dental Insurance</h4><p data-i18n="p5_life3_desc">Teeth treatment</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">👁️</span><h4 data-i18n="p5_life4">Vision Insurance</h4><p data-i18n="p5_life4_desc">Glasses, lenses</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p5_life5">Neurological Insurance</h4><p data-i18n="p5_life5_desc">Stroke protection</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">❤️</span><h4 data-i18n="p5_life6">Cardio Insurance</h4><p data-i18n="p5_life6_desc">Cardiovascular</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🩺</span><h4 data-i18n="p5_life7">Cancer Insurance</h4><p data-i18n="p5_life7_desc">Cancer treatment</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🚑</span><h4 data-i18n="p5_life8">Emergency Medical</h4><p data-i18n="p5_life8_desc">Ambulance</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🧬</span><h4 data-i18n="p5_life9">Genetic Insurance</h4><p data-i18n="p5_life9_desc">DNA risks</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🧘</span><h4 data-i18n="p5_life10">Mental Health</h4><p data-i18n="p5_life10_desc">Psychotherapy</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏋️</span><h4 data-i18n="p5_life11">Athlete Insurance</h4><p data-i18n="p5_life11_desc">Sports injuries</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_life12">Travel Insurance</h4><p data-i18n="p5_life12_desc">Abroad</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">❤️</span><h4 data-i18n="p5_life1">Life Insurance</h4><p data-i18n="p5_life1_desc">Death coverage</p><span class="tag" data-i18n="p5_tag_life">Life</span><a href="https://www.policybazaar.com/life-insurance/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏥</span><h4 data-i18n="p5_life2">Health Insurance</h4><p data-i18n="p5_life2_desc">Medical coverage</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.healthcare.gov/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🦷</span><h4 data-i18n="p5_life3">Dental Insurance</h4><p data-i18n="p5_life3_desc">Teeth treatment</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.1dental.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">👁️</span><h4 data-i18n="p5_life4">Vision Insurance</h4><p data-i18n="p5_life4_desc">Glasses, lenses</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.vsp.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p5_life5">Neurological Insurance</h4><p data-i18n="p5_life5_desc">Stroke protection</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.aflac.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">❤️</span><h4 data-i18n="p5_life6">Cardio Insurance</h4><p data-i18n="p5_life6_desc">Cardiovascular</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.cigna.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🩺</span><h4 data-i18n="p5_life7">Cancer Insurance</h4><p data-i18n="p5_life7_desc">Cancer treatment</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.cancerinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚑</span><h4 data-i18n="p5_life8">Emergency Medical</h4><p data-i18n="p5_life8_desc">Ambulance</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.ambulanceinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧬</span><h4 data-i18n="p5_life9">Genetic Insurance</h4><p data-i18n="p5_life9_desc">DNA risks</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.geneticinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧘</span><h4 data-i18n="p5_life10">Mental Health</h4><p data-i18n="p5_life10_desc">Psychotherapy</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.betterhelp.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏋️</span><h4 data-i18n="p5_life11">Athlete Insurance</h4><p data-i18n="p5_life11_desc">Sports injuries</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.sportsinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_life12">Travel Insurance</h4><p data-i18n="p5_life12_desc">Abroad</p><span class="tag" data-i18n="p5_tag_health">Health</span><a href="https://www.worldnomads.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
         <!-- AUTO -->
-        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto1">OSAGO</h4><p data-i18n="p5_auto1_desc">Mandatory auto</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto2">CASCO</h4><p data-i18n="p5_auto2_desc">Full coverage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto3">Car Rental Insurance</h4><p data-i18n="p5_auto3_desc">For rentals</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏍️</span><h4 data-i18n="p5_auto4">Motorcycle Insurance</h4><p data-i18n="p5_auto4_desc">Moto</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🚛</span><h4 data-i18n="p5_auto5">Truck Insurance</h4><p data-i18n="p5_auto5_desc">Commercial vehicles</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏢</span><h4 data-i18n="p5_auto6">Fleet Insurance</h4><p data-i18n="p5_auto6_desc">Business fleet</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_auto7">Green Card</h4><p data-i18n="p5_auto7_desc">For travel</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔑</span><h4 data-i18n="p5_auto8">Theft Protection</h4><p data-i18n="p5_auto8_desc">Vehicle theft</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💥</span><h4 data-i18n="p5_auto9">Accident Insurance</h4><p data-i18n="p5_auto9_desc">Crash coverage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p5_auto10">Natural Disaster Auto</h4><p data-i18n="p5_auto10_desc">Hail, flood</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">⛽</span><h4 data-i18n="p5_auto11">Tire Insurance</h4><p data-i18n="p5_auto11_desc">Tire damage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🧳</span><h4 data-i18n="p5_auto12">Baggage Insurance</h4><p data-i18n="p5_auto12_desc">In vehicle</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto1">OSAGO</h4><p data-i18n="p5_auto1_desc">Mandatory auto</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.thezebra.com/auto-insurance/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto2">CASCO</h4><p data-i18n="p5_auto2_desc">Full coverage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.progressive.com/auto/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p5_auto3">Car Rental Insurance</h4><p data-i18n="p5_auto3_desc">For rentals</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.rentersinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏍️</span><h4 data-i18n="p5_auto4">Motorcycle Insurance</h4><p data-i18n="p5_auto4_desc">Moto</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.allstate.com/motorcycle-insurance" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚛</span><h4 data-i18n="p5_auto5">Truck Insurance</h4><p data-i18n="p5_auto5_desc">Commercial vehicles</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.commercialinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏢</span><h4 data-i18n="p5_auto6">Fleet Insurance</h4><p data-i18n="p5_auto6_desc">Business fleet</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.insuremyfleet.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_auto7">Green Card</h4><p data-i18n="p5_auto7_desc">For travel</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.greencardinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔑</span><h4 data-i18n="p5_auto8">Theft Protection</h4><p data-i18n="p5_auto8_desc">Vehicle theft</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.theftinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💥</span><h4 data-i18n="p5_auto9">Accident Insurance</h4><p data-i18n="p5_auto9_desc">Crash coverage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.accidentinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p5_auto10">Natural Disaster Auto</h4><p data-i18n="p5_auto10_desc">Hail, flood</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.disasterinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">⛽</span><h4 data-i18n="p5_auto11">Tire Insurance</h4><p data-i18n="p5_auto11_desc">Tire damage</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.tireinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧳</span><h4 data-i18n="p5_auto12">Baggage Insurance</h4><p data-i18n="p5_auto12_desc">In vehicle</p><span class="tag" data-i18n="p5_tag_auto">Auto</span><a href="https://www.baggageinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
         <!-- PROPERTY -->
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop1">Apartment Insurance</h4><p data-i18n="p5_prop1_desc">Property coverage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop2">House Insurance</h4><p data-i18n="p5_prop2_desc">Private home</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏢</span><h4 data-i18n="p5_prop3">Office Insurance</h4><p data-i18n="p5_prop3_desc">Commercial space</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏭</span><h4 data-i18n="p5_prop4">Warehouse Insurance</h4><p data-i18n="p5_prop4_desc">Storage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p5_prop5">Fire Insurance</h4><p data-i18n="p5_prop5_desc">Fire damage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p5_prop6">Flood Insurance</h4><p data-i18n="p5_prop6_desc">Water damage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p5_prop7">Electrical Insurance</h4><p data-i18n="p5_prop7_desc">Short circuit</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏚️</span><h4 data-i18n="p5_prop8">Collapse Insurance</h4><p data-i18n="p5_prop8_desc">Building collapse</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop9">Rental Insurance</h4><p data-i18n="p5_prop9_desc">Rented property</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop10">Mortgage Insurance</h4><p data-i18n="p5_prop10_desc">Loan protection</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop11">Collateral Insurance</h4><p data-i18n="p5_prop11_desc">Security coverage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏗️</span><h4 data-i18n="p5_prop12">Construction Insurance</h4><p data-i18n="p5_prop12_desc">New building</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop1">Apartment Insurance</h4><p data-i18n="p5_prop1_desc">Property coverage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.lemonade.com/homeowners/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop2">House Insurance</h4><p data-i18n="p5_prop2_desc">Private home</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.allstate.com/home-insurance" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏢</span><h4 data-i18n="p5_prop3">Office Insurance</h4><p data-i18n="p5_prop3_desc">Commercial space</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.hiscox.com/business-insurance" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏭</span><h4 data-i18n="p5_prop4">Warehouse Insurance</h4><p data-i18n="p5_prop4_desc">Storage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.warehouseinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p5_prop5">Fire Insurance</h4><p data-i18n="p5_prop5_desc">Fire damage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.fireinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p5_prop6">Flood Insurance</h4><p data-i18n="p5_prop6_desc">Water damage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.floodsmart.gov/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p5_prop7">Electrical Insurance</h4><p data-i18n="p5_prop7_desc">Short circuit</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.electricalinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏚️</span><h4 data-i18n="p5_prop8">Collapse Insurance</h4><p data-i18n="p5_prop8_desc">Building collapse</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.collapseinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop9">Rental Insurance</h4><p data-i18n="p5_prop9_desc">Rented property</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.rentersinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop10">Mortgage Insurance</h4><p data-i18n="p5_prop10_desc">Loan protection</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.mortgageinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_prop11">Collateral Insurance</h4><p data-i18n="p5_prop11_desc">Security coverage</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.collateralinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏗️</span><h4 data-i18n="p5_prop12">Construction Insurance</h4><p data-i18n="p5_prop12_desc">New building</p><span class="tag" data-i18n="p5_tag_prop">Property</span><a href="https://www.constructioninsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
         <!-- CYBER -->
-        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p5_cyber1">Cyber Insurance</h4><p data-i18n="p5_cyber1_desc">Hacker attacks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p5_cyber2">Data Insurance</h4><p data-i18n="p5_cyber2_desc">Data breach</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔒</span><h4 data-i18n="p5_cyber3">Ransomware Insurance</h4><p data-i18n="p5_cyber3_desc">Ransomware</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p5_cyber4">Website Insurance</h4><p data-i18n="p5_cyber4_desc">DDoS protection</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p5_cyber5">Mobile Insurance</h4><p data-i18n="p5_cyber5_desc">Phone loss</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🖥️</span><h4 data-i18n="p5_cyber6">Server Insurance</h4><p data-i18n="p5_cyber6_desc">Server failures</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p5_cyber7">Crypto Wallet Insurance</h4><p data-i18n="p5_cyber7_desc">Wallet access loss</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🪙</span><h4 data-i18n="p5_cyber8">Staking Insurance</h4><p data-i18n="p5_cyber8_desc">Validator risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p5_cyber9">DeFi Insurance</h4><p data-i18n="p5_cyber9_desc">Smart contract hacks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p5_cyber10">Token Insurance</h4><p data-i18n="p5_cyber10_desc">Scam protection</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔗</span><h4 data-i18n="p5_cyber11">Bridge Insurance</h4><p data-i18n="p5_cyber11_desc">Cross-chain risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p5_cyber12">AI Project Insurance</h4><p data-i18n="p5_cyber12_desc">AI risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p5_cyber1">Cyber Insurance</h4><p data-i18n="p5_cyber1_desc">Hacker attacks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.coverage.com/cyber-insurance/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p5_cyber2">Data Insurance</h4><p data-i18n="p5_cyber2_desc">Data breach</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.datainsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔒</span><h4 data-i18n="p5_cyber3">Ransomware Insurance</h4><p data-i18n="p5_cyber3_desc">Ransomware</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.ransomwareinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p5_cyber4">Website Insurance</h4><p data-i18n="p5_cyber4_desc">DDoS protection</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.websiteinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p5_cyber5">Mobile Insurance</h4><p data-i18n="p5_cyber5_desc">Phone loss</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.mobileinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🖥️</span><h4 data-i18n="p5_cyber6">Server Insurance</h4><p data-i18n="p5_cyber6_desc">Server failures</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.serverinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p5_cyber7">Crypto Wallet Insurance</h4><p data-i18n="p5_cyber7_desc">Wallet access loss</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.cryptowalletinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🪙</span><h4 data-i18n="p5_cyber8">Staking Insurance</h4><p data-i18n="p5_cyber8_desc">Validator risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.stakinginsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p5_cyber9">DeFi Insurance</h4><p data-i18n="p5_cyber9_desc">Smart contract hacks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.defiinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p5_cyber10">Token Insurance</h4><p data-i18n="p5_cyber10_desc">Scam protection</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.tokeninsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔗</span><h4 data-i18n="p5_cyber11">Bridge Insurance</h4><p data-i18n="p5_cyber11_desc">Cross-chain risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.bridgeinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧠</span><h4 data-i18n="p5_cyber12">AI Project Insurance</h4><p data-i18n="p5_cyber12_desc">AI risks</p><span class="tag" data-i18n="p5_tag_cyber">Cyber</span><a href="https://www.aiinsurance.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
 
         <!-- PENSIONS -->
-        <div class="card fade-in"><span class="icon">👵</span><h4 data-i18n="p5_pens1">Savings Pension</h4><p data-i18n="p5_pens1_desc">Savings</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">👴</span><h4 data-i18n="p5_pens2">Corporate Pension</h4><p data-i18n="p5_pens2_desc">Employer plan</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p5_pens3">Individual Pension Plan</h4><p data-i18n="p5_pens3_desc">Personal plan</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p5_pens4">Investment Pension</h4><p data-i18n="p5_pens4_desc">Stock-based</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p5_pens5">Pension Deposit</h4><p data-i18n="p5_pens5_desc">Bank deposit</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🪙</span><h4 data-i18n="p5_pens6">Pension Staking</h4><p data-i18n="p5_pens6_desc">On crypto</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_pens7">Real Estate Pension</h4><p data-i18n="p5_pens7_desc">Rental income</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🥇</span><h4 data-i18n="p5_pens8">Gold Pension</h4><p data-i18n="p5_pens8_desc">Precious metals</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_pens9">International Pension</h4><p data-i18n="p5_pens9_desc">Any country</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p5_pens10">Freelancer Pension</h4><p data-i18n="p5_pens10_desc">Self-employed</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">👨‍👩‍👧‍👦</span><h4 data-i18n="p5_pens11">Family Pension</h4><p data-i18n="p5_pens11_desc">Inheritance</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p5_pens12">Pension Transfer</h4><p data-i18n="p5_pens12_desc">Between funds</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">👵</span><h4 data-i18n="p5_pens1">Savings Pension</h4><p data-i18n="p5_pens1_desc">Savings</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.fidelity.com/retirement-ira/overview" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">👴</span><h4 data-i18n="p5_pens2">Corporate Pension</h4><p data-i18n="p5_pens2_desc">Employer plan</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.employerpension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p5_pens3">Individual Pension Plan</h4><p data-i18n="p5_pens3_desc">Personal plan</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.individualpension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p5_pens4">Investment Pension</h4><p data-i18n="p5_pens4_desc">Stock-based</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.investmentpension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p5_pens5">Pension Deposit</h4><p data-i18n="p5_pens5_desc">Bank deposit</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.pensiondeposit.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🪙</span><h4 data-i18n="p5_pens6">Pension Staking</h4><p data-i18n="p5_pens6_desc">On crypto</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.pensionstaking.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p5_pens7">Real Estate Pension</h4><p data-i18n="p5_pens7_desc">Rental income</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.realestatepension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🥇</span><h4 data-i18n="p5_pens8">Gold Pension</h4><p data-i18n="p5_pens8_desc">Precious metals</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.goldpension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p5_pens9">International Pension</h4><p data-i18n="p5_pens9_desc">Any country</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.internationalpension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p5_pens10">Freelancer Pension</h4><p data-i18n="p5_pens10_desc">Self-employed</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.freelancerpension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">👨‍👩‍👧‍👦</span><h4 data-i18n="p5_pens11">Family Pension</h4><p data-i18n="p5_pens11_desc">Inheritance</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.familypension.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p5_pens12">Pension Transfer</h4><p data-i18n="p5_pens12_desc">Between funds</p><span class="tag" data-i18n="p5_tag_pens">Pension</span><a href="https://www.pensiontransfer.com/" class="link" target="_blank" data-i18n="p5_link_apply">Apply →</a></div>
     </div>
 </div>
 
@@ -543,4 +592,4 @@
     setLanguage(currentLang);
 </script>
 </body>
-    </html>
+</html>
