@@ -26,7 +26,6 @@
         .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
         .lang-bar a.active { color: #7c8cff; background: rgba(124,140,255,0.12); }
 
-        /* ===== ANIMATED BACKGROUND (MOVING SUBSTRATE) ===== */
         .bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
             background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
@@ -47,7 +46,6 @@
         .orb-5 { width: 250px; height: 250px; background: #ffd93d; bottom: 20%; left: 10%; animation-delay: -9s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
 
-        /* ===== TICKER (БЕГУЩАЯ СТРОКА) ===== */
         .ticker-wrap {
             position: relative; z-index: 5; width: 100%; overflow: hidden;
             background: rgba(255,255,255,0.03);
@@ -182,7 +180,6 @@
         .visa-europe-banner h3 { font-size: 22px; }
         .visa-europe-banner p { color: #b0b8d1; max-width: 500px; }
 
-        /* ===== POOL INFO CARDS ===== */
         .pool-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -279,7 +276,6 @@
     </div>
 </div>
 
-<!-- ===== ANIMATED BACKGROUND (MOVING SUBSTRATE) ===== -->
 <div class="bg-canvas">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -288,23 +284,21 @@
     <div class="orb orb-5"></div>
 </div>
 
-<!-- ===== TICKER (БЕГУЩАЯ СТРОКА) ===== -->
+<!-- ===== TICKER ===== -->
 <div class="ticker-wrap">
     <div class="ticker">
-        <span>🚀 VISA Token — Verified Institutional Settlement Asset</span>
-        <span>💰 Price: $0.02</span>
-        <span>📊 Total Supply: 184,000,000,000</span>
-        <span>⚡ Staking APY: 18%</span>
-        <span>🔄 Fee: 0.05%</span>
-        <span>🏦 Pools: Visa/MasterCard · Visa/USDC</span>
-        <span>🌐 Visa in Europe: <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" style="color:#7c8cff;">visa.co.uk</a></span>
-        <span>🚀 VISA Token — Verified Institutional Settlement Asset</span>
-        <span>💰 Price: $0.02</span>
-        <span>📊 Total Supply: 184,000,000,000</span>
-        <span>⚡ Staking APY: 18%</span>
-        <span>🔄 Fee: 0.05%</span>
-        <span>🏦 Pools: Visa/MasterCard · Visa/USDC</span>
-        <span>🌐 Visa in Europe: <a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" target="_blank" style="color:#7c8cff;">visa.co.uk</a></span>
+        <span>🏦 Loans — NerdWallet</span>
+        <span>💰 Deposits — DepositAccounts</span>
+        <span>🛡️ Guarantees — BankGuarantee.com</span>
+        <span>🚛 Leasing — LeaseGuide</span>
+        <span>📄 Factoring — Factoring.org</span>
+        <span>💱 Derivatives — Investopedia</span>
+        <span>🏦 Loans — NerdWallet</span>
+        <span>💰 Deposits — DepositAccounts</span>
+        <span>🛡️ Guarantees — BankGuarantee.com</span>
+        <span>🚛 Leasing — LeaseGuide</span>
+        <span>📄 Factoring — Factoring.org</span>
+        <span>💱 Derivatives — Investopedia</span>
     </div>
 </div>
 
@@ -339,7 +333,7 @@
     </div>
 </section>
 
-<!-- ===== POOL INFO (ЛИКВИДНОСТЬ + ПОКУПКА) ===== -->
+<!-- ===== POOL INFO ===== -->
 <section class="container" style="position:relative;z-index:5;padding:20px 0;">
     <div class="section-title fade-in">
         <span class="badge">💧 Liquidity Pools</span>
@@ -347,7 +341,6 @@
         <p>Two pools for liquidity and easy buying.</p>
     </div>
     <div class="pool-grid">
-        <!-- Пул ликвидности (Visa/MasterCard) -->
         <div class="pool-card fade-in">
             <h4>🌊 Liquidity Pool <span style="color:#7c8cff;">(Public)</span></h4>
             <p><strong>Pair:</strong> VISA / MasterCard</p>
@@ -356,7 +349,6 @@
             <span class="tag">🔗 Liquidity</span>
             <a href="https://www.geckoterminal.com/solana/pools/4LBo5HKyDxWKDqj1bySktvPqCrafyshqcyuAjnc4qTe8" target="_blank" class="link-btn">View Pool →</a>
         </div>
-        <!-- Пул для покупки (Visa/USDC) -->
         <div class="pool-card fade-in">
             <h4>🛒 Buy Pool <span style="color:#00c8ff;">(USDC)</span></h4>
             <p><strong>Pair:</strong> VISA / USDC</p>
@@ -389,75 +381,81 @@
         <p data-i18n="p2_sec_desc">More than 100 tools for individuals and businesses.</p>
     </div>
     <div class="cards-grid">
-        <!-- LOANS -->
-        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_loan1">Consumer Loan</h4><p data-i18n="p2_loan1_desc">Up to $1M without collateral</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p2_loan2">Mortgage</h4><p data-i18n="p2_loan2_desc">For housing up to 30 years</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p2_loan3">Auto Loan</h4><p data-i18n="p2_loan3_desc">For new or used cars</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🎓</span><h4 data-i18n="p2_loan4">Education Loan</h4><p data-i18n="p2_loan4_desc">With deferment</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🩺</span><h4 data-i18n="p2_loan5">Medical Loan</h4><p data-i18n="p2_loan5_desc">For healthcare services</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏪</span><h4 data-i18n="p2_loan6">Retail Loan</h4><p data-i18n="p2_loan6_desc">Installment purchase</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p2_loan7">Agricultural Loan</h4><p data-i18n="p2_loan7_desc">For farming equipment</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏭</span><h4 data-i18n="p2_loan8">Investment Loan</h4><p data-i18n="p2_loan8_desc">For business and startups</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p2_loan9">VISA Credit Card</h4><p data-i18n="p2_loan9_desc">Grace period up to 100 days</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p2_loan10">Credit Line</h4><p data-i18n="p2_loan10_desc">Overdraft facility</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p2_loan11">Securities-Backed Loan</h4><p data-i18n="p2_loan11_desc">Against securities</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💎</span><h4 data-i18n="p2_loan12">Precious Metals Loan</h4><p data-i18n="p2_loan12_desc">Gold, silver, platinum</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <!-- LOANS (уникальные ссылки на NerdWallet) -->
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_loan1">Consumer Loan</h4><p data-i18n="p2_loan1_desc">Up to $1M without collateral</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.nerdwallet.com/loans/personal-loans" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p2_loan2">Mortgage</h4><p data-i18n="p2_loan2_desc">For housing up to 30 years</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.nerdwallet.com/mortgages" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚗</span><h4 data-i18n="p2_loan3">Auto Loan</h4><p data-i18n="p2_loan3_desc">For new or used cars</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.carsdirect.com/auto-loans" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🎓</span><h4 data-i18n="p2_loan4">Education Loan</h4><p data-i18n="p2_loan4_desc">With deferment</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.nerdwallet.com/loans/student-loans" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🩺</span><h4 data-i18n="p2_loan5">Medical Loan</h4><p data-i18n="p2_loan5_desc">For healthcare services</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.nerdwallet.com/loans/personal-loans" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏪</span><h4 data-i18n="p2_loan6">Retail Loan</h4><p data-i18n="p2_loan6_desc">Installment purchase</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.affirm.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p2_loan7">Agricultural Loan</h4><p data-i18n="p2_loan7_desc">For farming equipment</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.farmermac.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏭</span><h4 data-i18n="p2_loan8">Investment Loan</h4><p data-i18n="p2_loan8_desc">For business and startups</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.fundera.com/business-loans" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p2_loan9">VISA Credit Card</h4><p data-i18n="p2_loan9_desc">Grace period up to 100 days</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.creditcards.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p2_loan10">Credit Line</h4><p data-i18n="p2_loan10_desc">Overdraft facility</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.nerdwallet.com/loans/personal-loans" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p2_loan11">Securities-Backed Loan</h4><p data-i18n="p2_loan11_desc">Against securities</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.interactivebrokers.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💎</span><h4 data-i18n="p2_loan12">Precious Metals Loan</h4><p data-i18n="p2_loan12_desc">Gold, silver, platinum</p><span class="tag" data-i18n="p2_tag_loan">Loan</span><a href="https://www.americangold.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
 
-        <!-- DEPOSITS -->
-        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p2_dep1">Term Deposit</h4><p data-i18n="p2_dep1_desc">Up to 12% per year</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_dep2">Savings Account</h4><p data-i18n="p2_dep2_desc">Free top-up</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p2_dep3">Investment Deposit</h4><p data-i18n="p2_dep3_desc">Yield + capital protection</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p2_dep4">Multi-Currency Deposit</h4><p data-i18n="p2_dep4_desc">USD, EUR, RUB, CNY</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p2_dep5">Top-Up Deposit</h4><p data-i18n="p2_dep5_desc">With additional contributions</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">🏆</span><h4 data-i18n="p2_dep6">Prize Deposit</h4><p data-i18n="p2_dep6_desc">Prize draw</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">⏳</span><h4 data-i18n="p2_dep7">Demand Deposit</h4><p data-i18n="p2_dep7_desc">Perpetual</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">👵</span><h4 data-i18n="p2_dep8">Pension Deposit</h4><p data-i18n="p2_dep8_desc">Enhanced rate</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p2_dep9">Compounding Deposit</h4><p data-i18n="p2_dep9_desc">Compound interest</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">🔒</span><h4 data-i18n="p2_dep10">Safe Deposit</h4><p data-i18n="p2_dep10_desc">Valuables storage</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">💱</span><h4 data-i18n="p2_dep11">Foreign Currency Deposit</h4><p data-i18n="p2_dep11_desc">Currency storage</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
-        <div class="card fade-in"><span class="icon">🎁</span><h4 data-i18n="p2_dep12">Children's Deposit</h4><p data-i18n="p2_dep12_desc">Save until adulthood</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <!-- DEPOSITS (уникальные ссылки на DepositAccounts) -->
+        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p2_dep1">Term Deposit</h4><p data-i18n="p2_dep1_desc">Up to 12% per year</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.depositaccounts.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_dep2">Savings Account</h4><p data-i18n="p2_dep2_desc">Free top-up</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.ally.com/bank/savings-account/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p2_dep3">Investment Deposit</h4><p data-i18n="p2_dep3_desc">Yield + capital protection</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.vanguard.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p2_dep4">Multi-Currency Deposit</h4><p data-i18n="p2_dep4_desc">USD, EUR, RUB, CNY</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.wise.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p2_dep5">Top-Up Deposit</h4><p data-i18n="p2_dep5_desc">With additional contributions</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.depositaccounts.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">🏆</span><h4 data-i18n="p2_dep6">Prize Deposit</h4><p data-i18n="p2_dep6_desc">Prize draw</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.prizepool.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">⏳</span><h4 data-i18n="p2_dep7">Demand Deposit</h4><p data-i18n="p2_dep7_desc">Perpetual</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.depositaccounts.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">👵</span><h4 data-i18n="p2_dep8">Pension Deposit</h4><p data-i18n="p2_dep8_desc">Enhanced rate</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.fidelity.com/retirement-ira/overview" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p2_dep9">Compounding Deposit</h4><p data-i18n="p2_dep9_desc">Compound interest</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.depositaccounts.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">🔒</span><h4 data-i18n="p2_dep10">Safe Deposit</h4><p data-i18n="p2_dep10_desc">Valuables storage</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.usbank.com/safe-deposit-boxes.html" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">💱</span><h4 data-i18n="p2_dep11">Foreign Currency Deposit</h4><p data-i18n="p2_dep11_desc">Currency storage</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.wise.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
+        <div class="card fade-in"><span class="icon">🎁</span><h4 data-i18n="p2_dep12">Children's Deposit</h4><p data-i18n="p2_dep12_desc">Save until adulthood</p><span class="tag" data-i18n="p2_tag_dep">Deposit</span><a href="https://www.mint.com/" class="link" target="_blank" data-i18n="p2_link_open">Open →</a></div>
 
-        <!-- GUARANTEES & SBLC -->
-        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p2_guar1">Bank Guarantee</h4><p data-i18n="p2_guar1_desc">For tenders and contracts</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p2_guar2">SBLC</h4><p data-i18n="p2_guar2_desc">Standby Letter of Credit</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p2_guar3">Tender Guarantee</h4><p data-i18n="p2_guar3_desc">For bidding</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📦</span><h4 data-i18n="p2_guar4">Performance Guarantee</h4><p data-i18n="p2_guar4_desc">Obligations security</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p2_guar5">Advance Payment Guarantee</h4><p data-i18n="p2_guar5_desc">Prepayment protection</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏗️</span><h4 data-i18n="p2_guar6">Quality Guarantee</h4><p data-i18n="p2_guar6_desc">For construction works</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p2_guar7">Credit Guarantee</h4><p data-i18n="p2_guar7_desc">Loan security</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p2_lc1">International LC</h4><p data-i18n="p2_lc1_desc">Import/Export</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📑</span><h4 data-i18n="p2_lc2">Standby LC</h4><p data-i18n="p2_lc2_desc">Standby Letter of Credit</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🚢</span><h4 data-i18n="p2_lc3">Collection LC</h4><p data-i18n="p2_lc3_desc">For sea freight</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p2_lc4">Revolving LC</h4><p data-i18n="p2_lc4_desc">Multiple use</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_lc5">Confirmed LC</h4><p data-i18n="p2_lc5_desc">With second bank guarantee</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <!-- GUARANTEES & SBLC (уникальные ссылки) -->
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p2_guar1">Bank Guarantee</h4><p data-i18n="p2_guar1_desc">For tenders and contracts</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.bankguarantee.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p2_guar2">SBLC</h4><p data-i18n="p2_guar2_desc">Standby Letter of Credit</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.sblc.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p2_guar3">Tender Guarantee</h4><p data-i18n="p2_guar3_desc">For bidding</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.bankguarantee.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📦</span><h4 data-i18n="p2_guar4">Performance Guarantee</h4><p data-i18n="p2_guar4_desc">Obligations security</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.bankguarantee.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p2_guar5">Advance Payment Guarantee</h4><p data-i18n="p2_guar5_desc">Prepayment protection</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.bankguarantee.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏗️</span><h4 data-i18n="p2_guar6">Quality Guarantee</h4><p data-i18n="p2_guar6_desc">For construction works</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.bankguarantee.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔐</span><h4 data-i18n="p2_guar7">Credit Guarantee</h4><p data-i18n="p2_guar7_desc">Loan security</p><span class="tag" data-i18n="p2_tag_guar">Guarantee</span><a href="https://www.bankguarantee.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p2_lc1">International LC</h4><p data-i18n="p2_lc1_desc">Import/Export</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.swift.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📑</span><h4 data-i18n="p2_lc2">Standby LC</h4><p data-i18n="p2_lc2_desc">Standby Letter of Credit</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.sblc.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚢</span><h4 data-i18n="p2_lc3">Collection LC</h4><p data-i18n="p2_lc3_desc">For sea freight</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.swift.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p2_lc4">Revolving LC</h4><p data-i18n="p2_lc4_desc">Multiple use</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.swift.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_lc5">Confirmed LC</h4><p data-i18n="p2_lc5_desc">With second bank guarantee</p><span class="tag" data-i18n="p2_tag_lc">LC</span><a href="https://www.swift.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
 
-        <!-- LEASING & FACTORING -->
-        <div class="card fade-in"><span class="icon">🚛</span><h4 data-i18n="p2_lease1">Vehicle Leasing</h4><p data-i18n="p2_lease1_desc">Trucks, buses</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏗️</span><h4 data-i18n="p2_lease2">Heavy Equipment Leasing</h4><p data-i18n="p2_lease2_desc">Excavators, cranes</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p2_lease3">Equipment Leasing</h4><p data-i18n="p2_lease3_desc">Machines, servers</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p2_lease4">Aircraft Leasing</h4><p data-i18n="p2_lease4_desc">Aviation equipment</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🚢</span><h4 data-i18n="p2_lease5">Vessel Leasing</h4><p data-i18n="p2_lease5_desc">Marine vessels</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p2_lease6">Real Estate Leasing</h4><p data-i18n="p2_lease6_desc">Commercial rental</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p2_factor1">Factoring</h4><p data-i18n="p2_factor1_desc">Financing against receivables</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p2_factor2">Recourse Factoring</h4><p data-i18n="p2_factor2_desc">With recourse to supplier</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p2_factor3">International Factoring</h4><p data-i18n="p2_factor3_desc">Export factoring</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_factor4">Public Sector Factoring</h4><p data-i18n="p2_factor4_desc">Government contracts</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p2_factor5">Reverse Factoring</h4><p data-i18n="p2_factor5_desc">Supply chain financing</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p2_factor6">Recourse Factoring</h4><p data-i18n="p2_factor6_desc">Risk insurance</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <!-- LEASING & FACTORING (уникальные ссылки) -->
+        <div class="card fade-in"><span class="icon">🚛</span><h4 data-i18n="p2_lease1">Vehicle Leasing</h4><p data-i18n="p2_lease1_desc">Trucks, buses</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.leaseguide.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏗️</span><h4 data-i18n="p2_lease2">Heavy Equipment Leasing</h4><p data-i18n="p2_lease2_desc">Excavators, cranes</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.leaseguide.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💻</span><h4 data-i18n="p2_lease3">Equipment Leasing</h4><p data-i18n="p2_lease3_desc">Machines, servers</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.leaseguide.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">✈️</span><h4 data-i18n="p2_lease4">Aircraft Leasing</h4><p data-i18n="p2_lease4_desc">Aviation equipment</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.leaseguide.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🚢</span><h4 data-i18n="p2_lease5">Vessel Leasing</h4><p data-i18n="p2_lease5_desc">Marine vessels</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.leaseguide.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏠</span><h4 data-i18n="p2_lease6">Real Estate Leasing</h4><p data-i18n="p2_lease6_desc">Commercial rental</p><span class="tag" data-i18n="p2_tag_lease">Leasing</span><a href="https://www.leaseguide.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p2_factor1">Factoring</h4><p data-i18n="p2_factor1_desc">Financing against receivables</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.factoring.org/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔄</span><h4 data-i18n="p2_factor2">Recourse Factoring</h4><p data-i18n="p2_factor2_desc">With recourse to supplier</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.factoring.org/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p2_factor3">International Factoring</h4><p data-i18n="p2_factor3_desc">Export factoring</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.factoring.org/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_factor4">Public Sector Factoring</h4><p data-i18n="p2_factor4_desc">Government contracts</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.factoring.org/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💰</span><h4 data-i18n="p2_factor5">Reverse Factoring</h4><p data-i18n="p2_factor5_desc">Supply chain financing</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.factoring.org/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p2_factor6">Recourse Factoring</h4><p data-i18n="p2_factor6_desc">Risk insurance</p><span class="tag" data-i18n="p2_tag_factor">Factoring</span><a href="https://www.factoring.org/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
 
-        <!-- OTHER -->
-        <div class="card fade-in"><span class="icon">💱</span><h4 data-i18n="p2_other1">Currency Swap</h4><p data-i18n="p2_other1_desc">Exchange currency flows</p><span class="tag" data-i18n="p2_tag_deriv">Derivative</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p2_other2">Interest Rate Swap</h4><p data-i18n="p2_other2_desc">Rate fixing</p><span class="tag" data-i18n="p2_tag_deriv">Derivative</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p2_other3">FX Hedging</h4><p data-i18n="p2_other3_desc">Futures, options</p><span class="tag" data-i18n="p2_tag_deriv">Derivative</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p2_other4">Deposit Certificate</h4><p data-i18n="p2_other4_desc">Registered or bearer</p><span class="tag" data-i18n="p2_tag_sec">Securities</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p2_other5">Promissory Note</h4><p data-i18n="p2_other5_desc">Simple and transferable</p><span class="tag" data-i18n="p2_tag_sec">Securities</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_other6">Bank Check</h4><p data-i18n="p2_other6_desc">Checkbook</p><span class="tag" data-i18n="p2_tag_pay">Payments</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p2_other7">Payment Order</h4><p data-i18n="p2_other7_desc">Wire transfer</p><span class="tag" data-i18n="p2_tag_pay">Payments</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p2_other8">SWIFT Transfer</h4><p data-i18n="p2_other8_desc">International transfer</p><span class="tag" data-i18n="p2_tag_pay">Payments</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p2_other9">Mobile Banking</h4><p data-i18n="p2_other9_desc">Account management</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🖥️</span><h4 data-i18n="p2_other10">Internet Banking</h4><p data-i18n="p2_other10_desc">Online dashboard</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">🔔</span><h4 data-i18n="p2_other11">Push Notifications</h4><p data-i18n="p2_other11_desc">Transaction alerts</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
-        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p2_other12">Financial Monitoring</h4><p data-i18n="p2_other12_desc">Balance tracking</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <!-- DERIVATIVES (уникальные ссылки на Investopedia и MOEX) -->
+        <div class="card fade-in"><span class="icon">💱</span><h4 data-i18n="p2_other1">Currency Swap</h4><p data-i18n="p2_other1_desc">Exchange currency flows</p><span class="tag" data-i18n="p2_tag_deriv">Derivative</span><a href="https://www.investopedia.com/terms/c/currencyswap.asp" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📈</span><h4 data-i18n="p2_other2">Interest Rate Swap</h4><p data-i18n="p2_other2_desc">Rate fixing</p><span class="tag" data-i18n="p2_tag_deriv">Derivative</span><a href="https://www.investopedia.com/terms/i/interestrateswap.asp" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🛡️</span><h4 data-i18n="p2_other3">FX Hedging</h4><p data-i18n="p2_other3_desc">Futures, options</p><span class="tag" data-i18n="p2_tag_deriv">Derivative</span><a href="https://www.investopedia.com/terms/h/hedge.asp" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+
+        <!-- SECURITIES -->
+        <div class="card fade-in"><span class="icon">🧾</span><h4 data-i18n="p2_other4">Deposit Certificate</h4><p data-i18n="p2_other4_desc">Registered or bearer</p><span class="tag" data-i18n="p2_tag_sec">Securities</span><a href="https://www.investopedia.com/terms/c/certificateofdeposit.asp" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📄</span><h4 data-i18n="p2_other5">Promissory Note</h4><p data-i18n="p2_other5_desc">Simple and transferable</p><span class="tag" data-i18n="p2_tag_sec">Securities</span><a href="https://www.investopedia.com/terms/p/promissorynote.asp" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+
+        <!-- PAYMENTS -->
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p2_other6">Bank Check</h4><p data-i18n="p2_other6_desc">Checkbook</p><span class="tag" data-i18n="p2_tag_pay">Payments</span><a href="https://www.swift.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">💳</span><h4 data-i18n="p2_other7">Payment Order</h4><p data-i18n="p2_other7_desc">Wire transfer</p><span class="tag" data-i18n="p2_tag_pay">Payments</span><a href="https://www.swift.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🌐</span><h4 data-i18n="p2_other8">SWIFT Transfer</h4><p data-i18n="p2_other8_desc">International transfer</p><span class="tag" data-i18n="p2_tag_pay">Payments</span><a href="https://www.swift.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+
+        <!-- DIGITAL -->
+        <div class="card fade-in"><span class="icon">📱</span><h4 data-i18n="p2_other9">Mobile Banking</h4><p data-i18n="p2_other9_desc">Account management</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.revolut.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🖥️</span><h4 data-i18n="p2_other10">Internet Banking</h4><p data-i18n="p2_other10_desc">Online dashboard</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.ally.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">🔔</span><h4 data-i18n="p2_other11">Push Notifications</h4><p data-i18n="p2_other11_desc">Transaction alerts</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.mint.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
+        <div class="card fade-in"><span class="icon">📊</span><h4 data-i18n="p2_other12">Financial Monitoring</h4><p data-i18n="p2_other12_desc">Balance tracking</p><span class="tag" data-i18n="p2_tag_digital">Digital</span><a href="https://www.mint.com/" class="link" target="_blank" data-i18n="p2_link_apply">Apply →</a></div>
     </div>
 </div>
 
