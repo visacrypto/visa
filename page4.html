@@ -26,6 +26,7 @@
         .lang-bar a:hover { color: #fff; background: rgba(255,255,255,0.06); }
         .lang-bar a.active { color: #f7931a; background: rgba(247,147,26,0.12); }
 
+        /* ===== MOVING SUBSTRATE ===== */
         .bg-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
             background: radial-gradient(ellipse at 20% 50%, #1a1a4e, #0a0a1a 70%);
@@ -42,7 +43,32 @@
         .orb-1 { width: 500px; height: 500px; background: #f7931a; top: -10%; left: -5%; }
         .orb-2 { width: 400px; height: 400px; background: #ff6b00; bottom: -10%; right: -5%; animation-delay: -6s; }
         .orb-3 { width: 300px; height: 300px; background: #9945ff; top: 50%; left: 50%; animation-delay: -12s; }
+        .orb-4 { width: 350px; height: 350px; background: #ffd93d; top: 20%; right: 10%; animation-delay: -4s; }
+        .orb-5 { width: 250px; height: 250px; background: #00c8ff; bottom: 20%; left: 10%; animation-delay: -9s; }
         @keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-40px) scale(1.2); } }
+
+        /* ===== TICKER ===== */
+        .ticker-wrap {
+            position: relative; z-index: 5; width: 100%; overflow: hidden;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 10px 0;
+            white-space: nowrap;
+        }
+        .ticker {
+            display: inline-block;
+            animation: tickerScroll 30s linear infinite;
+            font-size: 14px;
+            font-weight: 500;
+            color: #b0b8d1;
+        }
+        .ticker span { margin: 0 40px; color: #f7931a; }
+        .ticker .highlight { color: #00c8ff; }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
         header {
             position: relative; z-index: 10; padding: 18px 0;
@@ -173,6 +199,7 @@
             .cards-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .calc-row { flex-direction: column; }
             .visa-europe-banner { flex-direction: column; text-align: center; }
+            .ticker { font-size: 12px; }
         }
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
@@ -193,7 +220,31 @@
     </div>
 </div>
 
-<div class="bg-canvas"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+<div class="bg-canvas">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+</div>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker-wrap">
+    <div class="ticker">
+        <span>📈 S&P 500 — $5,900</span>
+        <span>🛢️ Brent — $82.50</span>
+        <span>🥇 Gold — $2,350</span>
+        <span>🌾 Wheat — $620</span>
+        <span>⚡ Electricity — $45/MWh</span>
+        <span>🔥 Natural Gas — $2.80</span>
+        <span>📈 S&P 500 — $5,900</span>
+        <span>🛢️ Brent — $82.50</span>
+        <span>🥇 Gold — $2,350</span>
+        <span>🌾 Wheat — $620</span>
+        <span>⚡ Electricity — $45/MWh</span>
+        <span>🔥 Natural Gas — $2.80</span>
+    </div>
+</div>
 
 <header>
     <div class="container header-inner">
@@ -226,7 +277,7 @@
     </div>
 </section>
 
-<!-- ===== TRADE CALCULATOR ===== -->
+<!-- ===== CALCULATOR ===== -->
 <div class="container">
     <div class="calculator-section fade-in">
         <h3 data-i18n="p4_calc_title">📊 Trading Profit Calculator</h3>
@@ -248,74 +299,74 @@
     </div>
     <div class="cards-grid">
         <!-- STOCKS -->
-        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p4_stock1">S&P 500 Stocks</h4><p data-i18n="p4_stock1_desc">USA</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🏛️</span><h4 data-i18n="p4_stock2">NASDAQ Stocks</h4><p data-i18n="p4_stock2_desc">Technology</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p4_stock3">MOEX Stocks</h4><p data-i18n="p4_stock3_desc">Russia</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🏯</span><h4 data-i18n="p4_stock4">Tokyo Stocks</h4><p data-i18n="p4_stock4_desc">Japan</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🐉</span><h4 data-i18n="p4_stock5">Shanghai Stocks</h4><p data-i18n="p4_stock5_desc">China</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🇪🇺</span><h4 data-i18n="p4_stock6">Euro Stocks</h4><p data-i18n="p4_stock6_desc">EURO STOXX 50</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🇬🇧</span><h4 data-i18n="p4_stock7">FTSE 100 Stocks</h4><p data-i18n="p4_stock7_desc">UK</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🇩🇪</span><h4 data-i18n="p4_stock8">DAX 40 Stocks</h4><p data-i18n="p4_stock8_desc">Germany</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🇫🇷</span><h4 data-i18n="p4_stock9">CAC 40 Stocks</h4><p data-i18n="p4_stock9_desc">France</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🇮🇳</span><h4 data-i18n="p4_stock10">NIFTY 50 Stocks</h4><p data-i18n="p4_stock10_desc">India</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🇦🇺</span><h4 data-i18n="p4_stock11">ASX 200 Stocks</h4><p data-i18n="p4_stock11_desc">Australia</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🇨🇦</span><h4 data-i18n="p4_stock12">TSX 60 Stocks</h4><p data-i18n="p4_stock12_desc">Canada</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🏦</span><h4 data-i18n="p4_stock1">S&P 500 Stocks</h4><p data-i18n="p4_stock1_desc">USA</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/SPX/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🏛️</span><h4 data-i18n="p4_stock2">NASDAQ Stocks</h4><p data-i18n="p4_stock2_desc">Technology</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/NDX/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌍</span><h4 data-i18n="p4_stock3">MOEX Stocks</h4><p data-i18n="p4_stock3_desc">Russia</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/MOEX/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🏯</span><h4 data-i18n="p4_stock4">Tokyo Stocks</h4><p data-i18n="p4_stock4_desc">Japan</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/NIKKEI/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🐉</span><h4 data-i18n="p4_stock5">Shanghai Stocks</h4><p data-i18n="p4_stock5_desc">China</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/SSE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇪🇺</span><h4 data-i18n="p4_stock6">Euro Stocks</h4><p data-i18n="p4_stock6_desc">EURO STOXX 50</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/EU50/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇬🇧</span><h4 data-i18n="p4_stock7">FTSE 100 Stocks</h4><p data-i18n="p4_stock7_desc">UK</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/FTSE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇩🇪</span><h4 data-i18n="p4_stock8">DAX 40 Stocks</h4><p data-i18n="p4_stock8_desc">Germany</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/DAX/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇫🇷</span><h4 data-i18n="p4_stock9">CAC 40 Stocks</h4><p data-i18n="p4_stock9_desc">France</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/CAC/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇮🇳</span><h4 data-i18n="p4_stock10">NIFTY 50 Stocks</h4><p data-i18n="p4_stock10_desc">India</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/NIFTY/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇦🇺</span><h4 data-i18n="p4_stock11">ASX 200 Stocks</h4><p data-i18n="p4_stock11_desc">Australia</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/ASX/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🇨🇦</span><h4 data-i18n="p4_stock12">TSX 60 Stocks</h4><p data-i18n="p4_stock12_desc">Canada</p><span class="tag" data-i18n="p4_tag_stock">Stocks</span><a href="https://www.tradingview.com/symbols/TSX/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
         <!-- OIL & GAS -->
-        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil1">Brent Oil</h4><p data-i18n="p4_oil1_desc">Brent crude</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil2">WTI Oil</h4><p data-i18n="p4_oil2_desc">WTI crude</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil3">Urals Oil</h4><p data-i18n="p4_oil3_desc">Russia</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil4">Dubai Oil</h4><p data-i18n="p4_oil4_desc">UAE</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p4_gas1">Natural Gas</h4><p data-i18n="p4_gas1_desc">Henry Hub</p><span class="tag" data-i18n="p4_tag_gas">Gas</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p4_gas2">LNG</h4><p data-i18n="p4_gas2_desc">Liquefied gas</p><span class="tag" data-i18n="p4_tag_gas">Gas</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro1">Gasoline</h4><p data-i18n="p4_petro1_desc">Rbob Gasoline</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro2">Diesel</h4><p data-i18n="p4_petro2_desc">Heating Oil</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro3">Propane</h4><p data-i18n="p4_petro3_desc">LPG</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro4">Ethylene</h4><p data-i18n="p4_petro4_desc">Plastic feedstock</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro5">Polypropylene</h4><p data-i18n="p4_petro5_desc">Plastic</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro6">Polyethylene</h4><p data-i18n="p4_petro6_desc">Plastic</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil1">Brent Oil</h4><p data-i18n="p4_oil1_desc">Brent crude</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.tradingview.com/symbols/BRENT/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil2">WTI Oil</h4><p data-i18n="p4_oil2_desc">WTI crude</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.tradingview.com/symbols/WTI/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil3">Urals Oil</h4><p data-i18n="p4_oil3_desc">Russia</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.tradingview.com/symbols/URALS/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🛢️</span><h4 data-i18n="p4_oil4">Dubai Oil</h4><p data-i18n="p4_oil4_desc">UAE</p><span class="tag" data-i18n="p4_tag_oil">Oil</span><a href="https://www.tradingview.com/symbols/DUBAI/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p4_gas1">Natural Gas</h4><p data-i18n="p4_gas1_desc">Henry Hub</p><span class="tag" data-i18n="p4_tag_gas">Gas</span><a href="https://www.tradingview.com/symbols/XNG/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔥</span><h4 data-i18n="p4_gas2">LNG</h4><p data-i18n="p4_gas2_desc">Liquefied gas</p><span class="tag" data-i18n="p4_tag_gas">Gas</span><a href="https://www.tradingview.com/symbols/LNG/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro1">Gasoline</h4><p data-i18n="p4_petro1_desc">Rbob Gasoline</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.tradingview.com/symbols/RB/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro2">Diesel</h4><p data-i18n="p4_petro2_desc">Heating Oil</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.tradingview.com/symbols/HO/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro3">Propane</h4><p data-i18n="p4_petro3_desc">LPG</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.tradingview.com/symbols/PROPANE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro4">Ethylene</h4><p data-i18n="p4_petro4_desc">Plastic feedstock</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.tradingview.com/symbols/ETHYLENE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro5">Polypropylene</h4><p data-i18n="p4_petro5_desc">Plastic</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.tradingview.com/symbols/PP/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧪</span><h4 data-i18n="p4_petro6">Polyethylene</h4><p data-i18n="p4_petro6_desc">Plastic</p><span class="tag" data-i18n="p4_tag_petro">Petrochem</span><a href="https://www.tradingview.com/symbols/PE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
         <!-- METALS -->
-        <div class="card fade-in"><span class="icon">🥇</span><h4 data-i18n="p4_met1">Gold</h4><p data-i18n="p4_met1_desc">XAU/USD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🥈</span><h4 data-i18n="p4_met2">Silver</h4><p data-i18n="p4_met2_desc">XAG/USD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🥉</span><h4 data-i18n="p4_met3">Platinum</h4><p data-i18n="p4_met3_desc">PL</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">💎</span><h4 data-i18n="p4_met4">Palladium</h4><p data-i18n="p4_met4_desc">PD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met5">Copper</h4><p data-i18n="p4_met5_desc">HG</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met6">Aluminum</h4><p data-i18n="p4_met6_desc">AL</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met7">Zinc</h4><p data-i18n="p4_met7_desc">ZN</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met8">Lead</h4><p data-i18n="p4_met8_desc">PB</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met9">Nickel</h4><p data-i18n="p4_met9_desc">NI</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met10">Steel</h4><p data-i18n="p4_met10_desc">HRC</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met11">Iron Ore</h4><p data-i18n="p4_met11_desc">Iron Ore</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met12">Uranium</h4><p data-i18n="p4_met12_desc">U</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🥇</span><h4 data-i18n="p4_met1">Gold</h4><p data-i18n="p4_met1_desc">XAU/USD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/XAU/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🥈</span><h4 data-i18n="p4_met2">Silver</h4><p data-i18n="p4_met2_desc">XAG/USD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/XAG/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🥉</span><h4 data-i18n="p4_met3">Platinum</h4><p data-i18n="p4_met3_desc">PL</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/PL/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">💎</span><h4 data-i18n="p4_met4">Palladium</h4><p data-i18n="p4_met4_desc">PD</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/PD/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met5">Copper</h4><p data-i18n="p4_met5_desc">HG</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/HG/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met6">Aluminum</h4><p data-i18n="p4_met6_desc">AL</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/AL/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met7">Zinc</h4><p data-i18n="p4_met7_desc">ZN</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/ZN/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met8">Lead</h4><p data-i18n="p4_met8_desc">PB</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/PB/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met9">Nickel</h4><p data-i18n="p4_met9_desc">NI</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/NI/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met10">Steel</h4><p data-i18n="p4_met10_desc">HRC</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/HRC/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met11">Iron Ore</h4><p data-i18n="p4_met11_desc">Iron Ore</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/IRON/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🔩</span><h4 data-i18n="p4_met12">Uranium</h4><p data-i18n="p4_met12_desc">U</p><span class="tag" data-i18n="p4_tag_met">Metal</span><a href="https://www.tradingview.com/symbols/URANIUM/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
         <!-- AGRICULTURE -->
-        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag1">Wheat</h4><p data-i18n="p4_ag1_desc">Wheat</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🌽</span><h4 data-i18n="p4_ag2">Corn</h4><p data-i18n="p4_ag2_desc">Corn</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag3">Soybean</h4><p data-i18n="p4_ag3_desc">Soybean</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag4">Rice</h4><p data-i18n="p4_ag4_desc">Rice</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag5">Barley</h4><p data-i18n="p4_ag5_desc">Barley</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag6">Oats</h4><p data-i18n="p4_ag6_desc">Oats</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">☕</span><h4 data-i18n="p4_ag7">Coffee</h4><p data-i18n="p4_ag7_desc">Coffee</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🍫</span><h4 data-i18n="p4_ag8">Cocoa</h4><p data-i18n="p4_ag8_desc">Cocoa</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🍊</span><h4 data-i18n="p4_ag9">Orange Juice</h4><p data-i18n="p4_ag9_desc">OJ</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🧈</span><h4 data-i18n="p4_ag10">Butter</h4><p data-i18n="p4_ag10_desc">Butter</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🥛</span><h4 data-i18n="p4_ag11">Milk Powder</h4><p data-i18n="p4_ag11_desc">Milk Powder</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🐄</span><h4 data-i18n="p4_ag12">Cattle</h4><p data-i18n="p4_ag12_desc">Cattle</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag1">Wheat</h4><p data-i18n="p4_ag1_desc">Wheat</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.tradingview.com/symbols/WHEAT/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌽</span><h4 data-i18n="p4_ag2">Corn</h4><p data-i18n="p4_ag2_desc">Corn</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.tradingview.com/symbols/CORN/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag3">Soybean</h4><p data-i18n="p4_ag3_desc">Soybean</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.tradingview.com/symbols/SOYB/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag4">Rice</h4><p data-i18n="p4_ag4_desc">Rice</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.tradingview.com/symbols/RICE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag5">Barley</h4><p data-i18n="p4_ag5_desc">Barley</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.tradingview.com/symbols/BARLEY/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌾</span><h4 data-i18n="p4_ag6">Oats</h4><p data-i18n="p4_ag6_desc">Oats</p><span class="tag" data-i18n="p4_tag_ag">Grain</span><a href="https://www.tradingview.com/symbols/OATS/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">☕</span><h4 data-i18n="p4_ag7">Coffee</h4><p data-i18n="p4_ag7_desc">Coffee</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.tradingview.com/symbols/COFFEE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🍫</span><h4 data-i18n="p4_ag8">Cocoa</h4><p data-i18n="p4_ag8_desc">Cocoa</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.tradingview.com/symbols/COCOA/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🍊</span><h4 data-i18n="p4_ag9">Orange Juice</h4><p data-i18n="p4_ag9_desc">OJ</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.tradingview.com/symbols/OJ/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🧈</span><h4 data-i18n="p4_ag10">Butter</h4><p data-i18n="p4_ag10_desc">Butter</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.tradingview.com/symbols/BUTTER/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🥛</span><h4 data-i18n="p4_ag11">Milk Powder</h4><p data-i18n="p4_ag11_desc">Milk Powder</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.tradingview.com/symbols/MILK/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🐄</span><h4 data-i18n="p4_ag12">Cattle</h4><p data-i18n="p4_ag12_desc">Cattle</p><span class="tag" data-i18n="p4_tag_ag">Agri</span><a href="https://www.tradingview.com/symbols/CATTLE/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
 
         <!-- ENERGY & OTHER -->
-        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p4_energy1">Electricity</h4><p data-i18n="p4_energy1_desc">Power</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">☀️</span><h4 data-i18n="p4_energy2">Solar Energy</h4><p data-i18n="p4_energy2_desc">Solar</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">💨</span><h4 data-i18n="p4_energy3">Wind Energy</h4><p data-i18n="p4_energy3_desc">Wind</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p4_energy4">Hydro Energy</h4><p data-i18n="p4_energy4_desc">Hydro</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">⛏️</span><h4 data-i18n="p4_energy5">Coal</h4><p data-i18n="p4_energy5_desc">Coal</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw1">Timber</h4><p data-i18n="p4_raw1_desc">Timber</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw2">Pulp</h4><p data-i18n="p4_raw2_desc">Pulp</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw3">Rubber</h4><p data-i18n="p4_raw3_desc">Rubber</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw4">Cotton</h4><p data-i18n="p4_raw4_desc">Cotton</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw5">Wool</h4><p data-i18n="p4_raw5_desc">Wool</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw6">Sugar</h4><p data-i18n="p4_raw6_desc">Sugar</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
-        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw7">Salt</h4><p data-i18n="p4_raw7_desc">Salt</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.visa.co.uk/about-visa/visa-in-europe.html" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">⚡</span><h4 data-i18n="p4_energy1">Electricity</h4><p data-i18n="p4_energy1_desc">Power</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.tradingview.com/symbols/ELEC/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">☀️</span><h4 data-i18n="p4_energy2">Solar Energy</h4><p data-i18n="p4_energy2_desc">Solar</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.tradingview.com/symbols/SOLAR/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">💨</span><h4 data-i18n="p4_energy3">Wind Energy</h4><p data-i18n="p4_energy3_desc">Wind</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.tradingview.com/symbols/WIND/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🌊</span><h4 data-i18n="p4_energy4">Hydro Energy</h4><p data-i18n="p4_energy4_desc">Hydro</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.tradingview.com/symbols/HYDRO/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">⛏️</span><h4 data-i18n="p4_energy5">Coal</h4><p data-i18n="p4_energy5_desc">Coal</p><span class="tag" data-i18n="p4_tag_energy">Energy</span><a href="https://www.tradingview.com/symbols/COAL/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw1">Timber</h4><p data-i18n="p4_raw1_desc">Timber</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.tradingview.com/symbols/TIMBER/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw2">Pulp</h4><p data-i18n="p4_raw2_desc">Pulp</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.tradingview.com/symbols/PULP/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw3">Rubber</h4><p data-i18n="p4_raw3_desc">Rubber</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.tradingview.com/symbols/RUBBER/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw4">Cotton</h4><p data-i18n="p4_raw4_desc">Cotton</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.tradingview.com/symbols/COTTON/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw5">Wool</h4><p data-i18n="p4_raw5_desc">Wool</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.tradingview.com/symbols/WOOL/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw6">Sugar</h4><p data-i18n="p4_raw6_desc">Sugar</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.tradingview.com/symbols/SUGAR/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
+        <div class="card fade-in"><span class="icon">🪨</span><h4 data-i18n="p4_raw7">Salt</h4><p data-i18n="p4_raw7_desc">Salt</p><span class="tag" data-i18n="p4_tag_raw">Raw</span><a href="https://www.tradingview.com/symbols/SALT/" class="link" target="_blank" data-i18n="p4_link_trade">Trade →</a></div>
     </div>
 </div>
 
@@ -357,6 +408,7 @@
     }
     calcTrade();
 
+    // ===== MULTILANGUAGE ENGINE =====
     const translations = {
         en: {
             nav_home: "Home", nav_finance: "Finance", nav_crypto: "Crypto", nav_exchange: "Exchange",
